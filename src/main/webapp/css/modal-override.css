@@ -1,0 +1,30 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+
+ 
+    Created on : 11 Oct, 2017, 12:34:04 PM
+    Author     : hp-pc*/
+
+
+.modal-stars
+{
+    display:block;
+}
+
+.modal-stars > .modal-backdrop
+{
+    height:100%;
+    z-index:1060;
+}
+
+.modal-stars > .modal-dialog
+{
+    z-index:1070;
+}
+
+body .modal-stars
+{
+    overflow: auto;
+}

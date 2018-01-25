@@ -1,0 +1,61 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.spacewood.stars.employee;
+
+/**
+ *
+ * @author webdesign
+ */
+public enum Designation {
+    NO_DESIGNATION,
+    AGM,
+    AREA_SALES_MANAGER,
+    ASSISTANT,
+    ASSISTANT_MANAGER,
+    BDM,
+    CNC_OPERATOR,
+    CLUSTER_MANAGER,
+    DGM,
+    DEPUTY_MANAGER,
+    DESIGNER,
+    EPP_DET,
+    EXECUTIVE,
+    GAT,
+    GM_KIT_AND_DOOR_PROJECT,
+    GENERAL_MANAGER,
+    GRAPHIC_DESIGNER,
+    HEAD_CUSTOMER_RELATION,
+    JR_TECHNICIAN,
+    JUNIOR_OFFICER,
+    MANAGEMENT_TRAINEE,
+    MANAGER,
+    MANAGER_PROJECTS,
+    MANAGER_SPECIAL_PROJECTS,
+    MANAGER_WEB_SALES,
+    MANAGER_SALES,
+    MARKETING_COORDINATOR,
+    MARKETING_EXECUTIVE,
+    OFFICER,
+    REGIONAL_SALES_EXECUTIVE,
+    REGIONAL_SALES_MANAGER,
+    SALES_PROMOTER,
+    SENIOR_ASSISTANT,
+    SENIOR_DESIGNER,
+    SENIOR_EXECUTIVE,
+    SENIOR_MANAGER,
+    SENIOR_OFFICER,
+    SENIOR_SERVICE_TECHNICIAN,
+    SENIOR_SUPERVISOR,
+    SITE_SUPERVISOR,
+    SUPERVISOR,
+    TECHNICIAN,
+    TRAINEE_DESIGNER,
+    VICE_PRESIDENT,
+    WAREHOUSE_EXECUTIVE,
+    WAREHOUSE_INCHARGE,
+    ZONAL_HEAD,
+    ZONAL_MANAGER
+}

@@ -1,0 +1,431 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+
+ 
+    Created on : 11 Oct, 2017, 12:34:36 PM
+    Author     : hp-pc
+
+
+Change icons size here
+.social-icons .fa {
+    font-size: 1.8em;
+}
+Change icons circle size and color here
+.social-icons .fa {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #FFF;
+    color: rgba(255, 255, 255, 0.8);
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.social-icons.icon-circle .fa{ 
+    border-radius: 50%;
+}
+.social-icons .fa:hover, .social-icons .fa:active {
+    color: #FFF;
+    -webkit-box-shadow: 1px 1px 3px #333;
+    -moz-box-shadow: 1px 1px 3px #333;
+    box-shadow: 1px 1px 3px #333; 
+}
+
+.social-icons.icon-zoom .fa:hover, .social-icons.icon-zoom .fa:active { 
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1); 
+}
+
+.social-icons .fa-facebook-square:hover{background-color:#3C599F;}  
+.social-icons .fa-google-plus:hover{background-color:#CF3D2E;} 
+.social-icons .fa-linkedin-square:hover{background-color:#0085AE;} 
+.social-icons .fa-twitter-square:hover{background-color:#32CCFE;} 
+.social-icons .fa-youtube-play,.social-icons .fa-youtube-square:hover{background-color:#C52F30;}
+.social-icons .fa-rss:hover{background-color:#F7931A;}
+
+IMAGE TRANSITION
+.img_opacity
+{
+    opacity:0.5;
+}
+.img_opacity:hover
+{
+    opacity:1;
+}
+#mainNav {
+        background-color: #4d79ff;
+        border-color: #3366ff;
+    min-height: 80px;
+    background-color: white;
+}
+
+.checkout-bar > li > a {
+    font-family : Arial;
+    font-size: 18px;
+    color: grey;
+    border-radius: 10px;
+    border: 1px solid #a1a1a1;    
+}
+
+Anchor Tag
+a {
+    color: #70330c;
+    text-decoration: none;
+}
+
+a:focus, a:hover{
+    color: #CCA650;
+}
+
+padding
+.padding{
+    padding: 0px;
+}
+
+Margin
+.margin{
+    margin: 0px;
+}
+
+image width
+.img_width{
+    width: 100%
+}
+
+image opacity
+.img_opacity{
+    opacity: 0.6;
+}
+
+Submit Button css
+.submit_btn{
+    margin-bottom: 5px;
+}
+
+****navbar-default css***
+
+.navbar-default .navbar-toggle:hover {
+    background-color: #fff;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #70330c; 
+}
+
+.upper_navbar_content{
+    margin-top: 15px;
+    padding-right: 10px
+}
+
+.navbar-fixed-top .navbar-collapse {
+    max-height: 265px;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #CCA650;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: #CCA650;
+    background-color: transparent;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #70330C;
+    font-size: 18px;
+    line-height: 10px;
+}
+#projTab .navbar-nav>li>a {
+    color: #70330C;
+    font-size: 14px;
+    line-height: 15px;
+    height: 50px;
+    background-color: #f0f;
+}
+
+.navbar-default.nav-upper {
+    height: 50px;
+    color:#4386f9;
+    background-color:#fff;
+}
+.navbar-default.navbar-lower {
+    background-color:#fff;
+}
+.navbar-default.nav-upper ul {
+    float: right;
+    display: table;
+}
+.navbar-default.nav-upper .navbar-upper > li {
+    display: table-cell;
+    font-size: 16px;
+    color: #000;
+}
+.navbar-default.nav-upper .navbar-upper > li > a {
+    color: #000;
+    background-color: transparent;
+    padding: 5px;
+}
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+
+    .navbar.navbar-lower .navbar-nav {
+        margin-left: 100px;
+    }
+    .upper_navbar_content{
+        margin-top: 5px;
+        padding-right: 10px
+    }
+    .navbar.navbar-lower .navbar-nav {
+        margin-left: 8px;
+        height: 185px;
+    }
+    #navbar ul li {
+        border-bottom: 1px solid #cdcdcd;
+    }
+}
+
+@media (max-width: 1200px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+        height: auto;
+    }
+    #navbar ul li {
+        border-bottom: 1px solid #cdcdcd;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+}
+.navbar-logo { 
+        background-image: url('../images/safedeals.png');
+        width: 90px;
+        height: 90px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    z-index: 1051;
+}
+
+************navbar-default css***********
+
+************#content css***********
+.content_background{
+    background-color: #F4ECD9;
+}
+
+.left_padding{
+    padding-left: 45px;
+}
+
+.right_padding{
+    padding-right: 0px;
+}
+
+.bottom_border{
+    border-bottom: 1px dotted #000;
+    font-size: 14px;
+    padding: 5px;
+}
+************#content css***********
+
+************carousel-overlay css***********
+.carousel-overlay{
+    position: absolute;
+    z-index: 10;
+    top: 66%;
+    height:26%;
+    width: 60%;
+    background-color: #fff;
+    opacity: 0.4;
+    font-size:52px;
+    padding: 15px;
+}
+
+************carousel-overlay css***********
+
+************img-overlay css***********
+.img-overlay{
+    position: absolute;
+    z-index: 10;
+    bottom: 5%;
+    height:15%;
+    width: 90%;
+    font-size:36px;
+    padding: 15px;
+    color: #000;
+}
+.overlay{
+    position: absolute;
+    z-index: 10;
+    bottom: 26px;
+    text-align: left;
+    width: 45%;
+    font-size:4.8vw;
+    color: #70330C;
+}
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+    @media (min-width: 768px) {
+    .overlay{
+        bottom: 1px;
+        padding-left: 12px;
+        width: 46%;
+    }
+}
+************img-overlay css***********
+
+************aboutus-img-overlay css***********
+.img {
+    position: relative;
+}
+
+.text {
+    width:100%;
+    position: absolute;
+    bottom:0%;
+    left:0;
+    padding:1rem;
+    font-size: 28px;
+    text-align: center;
+    color: #000;
+
+}
+************aboutus-img-overlay css***********
+
+************#our team css***********
+.team_1 {
+    width: 100%;
+    background-color: #245DA0;
+    color: #fff;
+}
+.team_2 {
+    width: 100%;
+    background-color: #000000;
+    color: #fff;
+}
+.team_3 {
+    width: 100%;
+    background-color: #5C5857;
+    color: #fff;
+}
+.team_4 {
+    width: 100%;
+    background-color: #A70101;
+    color: #fff;
+}
+
+.aboutus_title{
+    width: 90%;
+}
+
+@media only screen and (min-width: 300px) and (max-width: 875px){
+    .team_img {
+        width: 100%;
+    }
+
+}
+@media only screen and (max-width: 700px){
+    .team_1 {
+        width: 49.99999%;
+    }
+    .team_2 {
+        width: 49.99999%;
+    }
+    .team_3 {
+        width: 49.99999%;
+    }
+    .team_4 {
+        width: 49.99999%;
+    }
+}
+
+
+************#our team css***********
+
+************#testimonial css***********
+#testimonial {       /incase you want to shrink carousel
+    width: 60%;       
+}
+.image{
+    border-radius: 50%;
+}
+.quote {
+    color: #70330C;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.carousel-control.left, .carousel-control.right {
+    background-image: none;
+    width: 5%;
+}
+
+************#testimonial css***********
+
+************#event image css***********
+.event_img{
+    margin: 5px;
+    margin-bottom: 9px;
+}
+************#event image css***********
+
+************#contactUs form css***********
+.btn-info {
+    color: #fff;
+    background-color: #70330c;
+    border-color: #70330c;
+}
+************#contactUs form css***********
+
+************#footer css***********
+.footer{
+    background-color: #70330C;
+    color:#fff
+}
+.footer a{
+    color:#fff;
+    text-decoration: none; 
+}
+
+social-icon css
+footer a, footer {
+    color:#fff;
+}
+
+************#footer css************/

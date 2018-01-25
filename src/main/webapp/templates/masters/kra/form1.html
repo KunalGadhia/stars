@@ -1,0 +1,82 @@
+<script>
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+    slider.oninput = function() {
+//    output.innerHTML = this.value;
+    $("#demo").val(this.value);
+//    $scope.editableKRA.weightage = this.value;
+    }
+</script>
+<div class="modal modal-stars">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="approveKra(editableKRA)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-user"></i>
+                        KRA Details Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>KRA Parameter</label>
+                                <select class="form-control" ng-model="editableKRA.kraParameter">
+                                    <option value="">Select KRA Parameter</option>
+                                    <option value="FINANCIAL">Financial</option>
+                                    <option value="CUSTOMER">Customer</option>
+                                    <option value="INTERNAL_PROCESS">Internal Process</option>
+                                    <option value="CAPABILITY">Capability</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Performance Objective</label>
+                                <textarea class="form-control" rows="4" ng-model="editableKRA.performanceObjective"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Measurable Target</label>
+                                <textarea class="form-control" rows="4" ng-model="editableKRA.measurableTarget"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Weightage %</label>
+                                <div class="slidecontainer">
+                                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                                    <br>
+                                    <!--                                    <p>Value: <span id="demo"></span></p>-->
+                                    <input class="form-control" ng-model="editableKRA.weightage" id="demo" readonly="" required="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-lg btn-primary">
+                            <i class="fa fa-save"></i>
+                            Save
+                        </button>
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class="btn btn-link" >
+                            cancel
+                        </button>				
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

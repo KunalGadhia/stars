@@ -1,0 +1,129 @@
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <div class="pull-left">
+
+            <a data-ui-sref="admin.employees"
+               class="btn btn-default">
+                <i class="fa fa-arrow-left"></i>
+                Back
+            </a>            
+        </div>
+        <div>
+            <h4>Your Profile</h4>
+        </div>
+    </div>
+    <div class="row">
+        <h3 style="margin-left: 30px;">Personal Details :</h3>
+        <hr style="width: 1310px;margin-left: 20px;border-top:  2px solid;">
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Name :</label>
+            <span class="col-sm-6">{{employeeObject.empName}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Designation :</label>
+            <span class="col-sm-6">{{employeeObject.designation}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Employee Code :</label>
+            <span class="col-sm-6">{{employeeObject.empNo}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Department :</label>
+            <span class="col-sm-6">{{employeeObject.department}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Date Of Birth :</label>
+            <span class="col-sm-6">{{employeeObject.empDob | date}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Date Of Joining :</label>
+            <span class="col-sm-6">{{employeeObject.empDoj | date}}</span>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Grade :</label>
+            <span class="col-sm-6">{{employeeObject.grade}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Educational Qualification :</label>
+            <span class="col-sm-6">{{employeeObject.eduQual}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Total Experience :</label>
+            <span class="col-sm-6">{{employeeObject.totalExp}} Years</span>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Location :</label>
+            <span class="col-sm-6">{{employeeObject.location}}</span>
+        </div>
+<!--        <div class="col-sm-4">
+            <label class="col-sm-6">Educational Qualification :</label>
+            <span class="col-sm-6">{{employeeObject.eduQual}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Total Experience :</label>
+            <span class="col-sm-6">{{employeeObject.totalExp}} Years</span>
+        </div>        -->
+    </div>
+    
+</div>
+<div class="panel panel-default">
+    <div class="modal-header text-center">
+        <h3 class="col-md-12 col-lg-12 col-xs-12">
+            Actions Menu
+        </h3>           
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-4" style="height: 150px;border-right: 1px solid;">                
+                <a data-ui-sref-active="active" data-ui-sref="admin.profile.password_change({'employeeId' : employeeObject.id})">
+                    <div class="container col-sm-12 col-md-12 col-xs-12">                            
+                        <img src="images/icons_svg/folder.svg" class="profile-image">                            
+                        <div class="overlay">
+                            <div class="text">
+                                <h2>Change Password</h2>
+                            </div>
+                        </div>
+                    </div>                                                
+                </a>                
+            </div> 
+            <div class="col-md-4 col-sm-4 col-xs-4" style="height: 150px;border-left: 1px solid;border-right: 1px solid;">
+                <div class="form-group text-center">
+                    <a data-ui-sref-active="active" data-ui-sref="admin.profile">
+                        <div class="container col-sm-12 col-md-12 col-xs-12">                            
+                            <img src="images/icons_svg/upload-cloud.svg" class="profile-image">                            
+                            <div class="overlay">
+                                <div class="text">
+                                    <h2>Upload Photo</h2> 
+                                </div>
+                            </div>
+                        </div>    
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4" style="height: 150px;border-left: 1px solid;">
+                <div class="form-group text-center">
+                    <a data-ui-sref-active="active" data-ui-sref="admin.profile">
+                        <div class="container col-sm-12 col-md-12 col-xs-12">                            
+                            <img src="images/icons_svg/printer.svg" class="profile-image">                            
+                            <div class="overlay">
+                                <div class="text">
+                                    <h2>Print Your KRA</h2> 
+                                </div>
+                            </div>
+                        </div>    
+                    </a>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+
+<div data-ui-view=""></div>

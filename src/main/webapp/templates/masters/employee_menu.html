@@ -1,0 +1,41 @@
+<marquee class="col-sm-12 col-md-12 col-lg-12 alert alert-info">
+    <span style="font-family: Impact; font-size: 12pt">Welcome To STARS (Spacewood 's Transformational Appraisal Rating System)</span>
+    <span style="font-family: Impact; font-size: 12pt" ng-repeat="notification in notificationList">&nbsp;&nbsp;<strong>|</strong>&nbsp;&nbsp;{{notification.notification}}</span>
+</marquee>
+<div class="panel panel-default">
+    <div class="modal-header text-center">
+        <h3 class="col-md-12 col-lg-12 col-xs-12">
+            Transaction Menu
+        </h3>           
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6" style="height: 360px;border-right: 1px solid;">                
+                <a data-ui-sref-active="active" data-ui-sref="admin.kra_employeelist">
+                    <div class="container col-sm-12 col-md-12 col-xs-12">                            
+                        <img src="images/icons_svg/evaluation.svg" class="image">                            
+                        <div class="overlay">
+                            <div class="text">
+                                <h2>Form A (Enter KRA)</h2>
+                            </div>
+                        </div>
+                    </div>                                                
+                </a>                
+            </div> 
+            <div class="col-md-6 col-sm-6 col-xs-6" style="height: 360px;border-left: 1px solid;">
+                <div class="form-group text-center">
+                    <a data-ui-sref-active="active" data-ui-sref="admin.profile">
+                        <div class="container col-sm-12 col-md-12 col-xs-12">                            
+                            <img src="images/icons_svg/user_1.svg" class="image">                            
+                            <div class="overlay">
+                                <div class="text">
+                                    <h2>Update Profile</h2> 
+                                </div>
+                            </div>
+                        </div>    
+                    </a>
+                </div>
+            </div> 
+        </div>        
+    </div>
+</div>

@@ -1,0 +1,95 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 25, 2017, 11:36:24 AM
+    Author     : Kunal Gadhia
+*/
+
+.wpsl-store-below #wpsl-gmap {
+float:right !important;
+}
+
+
+
+.list-none{list-style-type: none !important;}
+.fleft{
+float:left !important;
+}
+
+.border-zero{
+border: 0px #ffc000 solid !important;
+}
+.float-right{
+float:right !important;
+}
+
+.border-right{
+border-right:0px !important;
+}
+
+
+.inner-banner {
+    background-color: #231f20;
+    padding: 30px;
+}
+.wpcf7-not-valid-tip
+{
+color:red
+}
+.wpcf7-response-output
+{
+color:green
+}
+.wpcf7-validation-errors{
+ display:none !important;
+}
+
+.wpsl-search
+{
+display:none;
+}
+#wpsl-result-list{
+width:30% !important;
+overflow:inherit !important;
+max-height:660px !important;
+
+}
+
+#wpsl-wrap #wpsl-result-list ul li {
+list-style-type: none !important;
+}
+
+#wpsl-result-list li {
+overflow: visible !important;
+
+}
+#wpsl-gmap{
+float:right;
+}
+#wpsl-stores ul li {
+/*margin-top:10px*/
+border-bottom: 2px solid #d6d5d5 !important;
+    list-style: outside none none !important;
+    margin: 20px 15px 15px !important;
+    /*overflow: inherit;*/
+    padding: 0 0 15px 27px !important;
+    position: relative !important;
+
+}
+/*       store     */
+
+
+
+.wpsl-store-location strong:before {
+    content: "";
+    width: 17px !important ;
+    height: 23px !important;
+    position: absolute !important;
+    z-index: 1 !important;
+    left: -8px !important;
+    top: 0 !important;
+    background: url(./images/sprite.png) no-repeat -72px -74px !important;
+}

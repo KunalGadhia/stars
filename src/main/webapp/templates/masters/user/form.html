@@ -1,0 +1,92 @@
+<div class="modal modal-stars">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveUser(editableUser)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-user"></i>
+                        User Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" ng-model="editableUser.username" required="">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="text" class="form-control" ng-model="editableUser.password" required="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 text-danger" ng-show="editableUser.repeatUsername">
+                            Found Records For Above Entered Name
+                        </div>
+                        <div class="col-sm-6 text-danger">                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Role</label>
+                                <select class="form-control" ng-model="editableUser.role" required="">
+                                    <option value="">Select Role</option>
+                                    <option value="ROLE_ADMIN">Admin</option>
+                                    <option value="ROLE_HOD">HOD</option>
+                                    <option value="ROLE_EMPLOYEE">Employee</option>
+                                </select>                                
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Name Of User</label>
+                                <input type="text" class="form-control" ng-model="editableUser.name" required="">
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Mobile Number</label>
+                                <input type="number" class="form-control" ng-model="editableUser.mobileNo">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Employee</label>
+                                <input class="form-control"
+                                       placeholder="Assign Employee"
+                                       uib-typeahead="employees.empName as employees.empName for employees in searchEmployees($viewValue)"
+                                       typeahead-on-select="setEmployee($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingEmployee" 
+                                       typeahead-no-results="noEmployeeFound"
+                                       ng-model="employeeName" />
+                                <p ng-show="noEmployeeFound" class="help-block text-muted">No Employees Found</p>
+                                <p ng-show="loadingEmployee" class="help-block text-muted">Loading...</p>
+                            </div>
+                        </div>
+                    </div>                    
+
+                    <div class="modal-footer">
+                        <button class="btn btn-lg btn-primary" ng-disabled="editableUser.repeatUsername">
+                            <i class="fa fa-save"></i>
+                            Save
+                        </button>
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class="btn btn-link" >
+                            cancel
+                        </button>				
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
