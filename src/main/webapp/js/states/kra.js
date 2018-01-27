@@ -15,6 +15,11 @@ angular.module("stars.states.kra", [])
                 'templateUrl': templateRoot + '/masters/kra/form1.html',
                 'controller': 'KraForm1Controller'
             });
+            $stateProvider.state('admin.kra_employeelist.editForm1', {
+                'url': '/:kraDetailId/kra/edit/form1',
+                'templateUrl': templateRoot + '/masters/kra/form1.html',
+                'controller': 'KraForm1EditController'
+            });
             $stateProvider.state('admin.kra_employeelist.delete', {
                 'url': '/:kraDetailId/kra/delete',
                 'templateUrl': templateRoot + '/masters/kra/delete.html',
@@ -62,7 +67,7 @@ angular.module("stars.states.kra", [])
             console.log("User Object :%O", $scope.user);
         })
         .controller('KraForm1Controller', function (KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
-            $scope.editableKRA = {};            
+            $scope.editableKRA = {};
             $scope.approveKra = function (editableKRA) {
                 var d = new Date();
                 editableKRA.weightage = $("#demo").val();
@@ -80,7 +85,27 @@ angular.module("stars.states.kra", [])
                 });
             };
         })
-        .controller('KraForm1DeleteController', function (KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {            
+        .controller('KraForm1EditController', function (KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
+            $scope.editableKRA = KraDetailsService.get({
+                'id': $stateParams.kraDetailId
+            });
+            $scope.approveKra = function (editableKRA) {
+                var d = new Date();
+                editableKRA.weightage = $("#demo").val();
+//                editableKRA.employeeId = $stateParams.employeeId;
+                editableKRA.year = d.getFullYear();
+
+                console.log("Editable KRA :%O", editableKRA);
+                $scope.saveKra(editableKRA);
+            };
+            $scope.saveKra = function (editableKRA) {
+                console.log("Final Save :%O", editableKRA);
+                editableKRA.$save(function () {
+                    $state.go('admin.kra_employeelist', null, {'reload': true});
+                });
+            };
+        })
+        .controller('KraForm1DeleteController', function (KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
             $scope.editableKRA = KraDetailsService.get({'id': $stateParams.kraDetailId});
             $scope.deleteKraDetail = function (kraDetail) {
                 kraDetail.$delete(function () {

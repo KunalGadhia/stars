@@ -47,6 +47,10 @@
                 <td>{{ kraDetail.weightage}} %</td>
                 <!--<td>{{ user.mobileNo}}</td>-->                
                 <td class="text-right">
+                    <a data-ui-sref="admin.kra_employeelist.editForm1({ kraDetailId: kraDetail.id })"
+                       class="btn btn-primary">					
+                        <i class="fa fa-pencil"></i>
+                    </a>
                     <a data-ui-sref="admin.kra_employeelist.delete({ kraDetailId: kraDetail.id })"
                        class="btn btn-danger">					
                         <i class="fa fa-trash"></i>
@@ -73,7 +77,7 @@
 <div class="row">
     <div class="col-sm-12 text-right">
         <button class="btn btn-lg btn-primary"
-                ng-show="(kraDetailsList | total:'weightage') === 100"
+                ng-disabled="(kraDetailsList | total:'weightage') < 100 || (kraDetailsList | total:'weightage') > 100"
                 data-ui-sref="admin.employees">
             <i class="fa fa-save"></i>
             Done

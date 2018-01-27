@@ -15,11 +15,16 @@ angular.module("stars.states.profile", [])
                 'templateUrl': templateRoot + '/masters/profile/password_change.html',
                 'controller': 'ProfileChangePasswordController'
             });
-//            $stateProvider.state('admin.kra_employeelist.delete', {
-//                'url': '/:kraDetailId/kra/delete',
-//                'templateUrl': templateRoot + '/masters/kra/delete.html',
-//                'controller': 'KraForm1DeleteController'
-//            });
+            $stateProvider.state('print_kra', {
+                'url': '/:employeeId/profile/print_kra',
+                'templateUrl': templateRoot + '/masters/profile/print_kra.html',
+                'controller': 'ProfilePrintKra'
+            });
+            $stateProvider.state('admin.profile.photo_upload', {
+                'url': '/:employeeId/profile/photo_upload',
+                'templateUrl': templateRoot + '/masters/profile/upload_photo.html',
+                'controller': 'ProfilePhotoUpload'
+            });
 
         })
 
@@ -82,15 +87,23 @@ angular.module("stars.states.profile", [])
                 });
             };
 
+        })
+        .controller('ProfilePrintKra', function (KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {            
+            $scope.kraEmployeeObject = EmployeeService.get({
+               'id' : $stateParams.employeeId 
+            });
+            $scope.kraDetailsList = KraDetailsService.findByEmployeeId({
+               'employeeId': $stateParams.employeeId 
+            });
+        })
+        .controller('ProfilePhotoUpload', function (KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {            
+//            $scope.kraEmployeeObject = EmployeeService.get({
+//               'id' : $stateParams.employeeId 
+//            });
+//            $scope.kraDetailsList = KraDetailsService.findByEmployeeId({
+//               'employeeId': $stateParams.employeeId 
+//            });
         });
-//        .controller('KraForm1DeleteController', function (KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {            
-//            $scope.editableKRA = KraDetailsService.get({'id': $stateParams.kraDetailId});
-//            $scope.deleteKraDetail = function (kraDetail) {
-//                kraDetail.$delete(function () {
-//                    $state.go('admin.kra_employeelist', null, {'reload': true});
-//                });
-//            };
-//        });
 
 
 
