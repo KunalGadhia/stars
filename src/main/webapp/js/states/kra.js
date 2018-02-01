@@ -84,6 +84,9 @@ angular.module("stars.states.kra", [])
                     $state.go('admin.kra_employeelist', null, {'reload': true});
                 });
             };
+            $scope.employeeObject = EmployeeService.get({
+                'id': $stateParams.employeeId
+            });            
         })
         .controller('KraForm1EditController', function (KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
             $scope.editableKRA = KraDetailsService.get({
