@@ -26,6 +26,9 @@ public class Employee {
     private String eduQual;
     private String totalExp;
     private String location;
+    private Integer reportingTo;
+    private String lastPromotion;
+    private String departmentHead;
 
     public Integer getId() {
         return id;
@@ -123,21 +126,48 @@ public class Employee {
         this.location = location;
     }
 
+    public Integer getReportingTo() {
+        return reportingTo;
+    }
+
+    public void setReportingTo(Integer reportingTo) {
+        this.reportingTo = reportingTo;
+    }
+
+    public String getLastPromotion() {
+        return lastPromotion;
+    }
+
+    public void setLastPromotion(String lastPromotion) {
+        this.lastPromotion = lastPromotion;
+    }
+
+    public String getDepartmentHead() {
+        return departmentHead;
+    }
+
+    public void setDepartmentHead(String departmentHead) {
+        this.departmentHead = departmentHead;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.id);
-        hash = 47 * hash + Objects.hashCode(this.empNo);
-        hash = 47 * hash + Objects.hashCode(this.doorCode);
-        hash = 47 * hash + Objects.hashCode(this.empName);
-        hash = 47 * hash + Objects.hashCode(this.empDoj);
-        hash = 47 * hash + Objects.hashCode(this.empDob);
-        hash = 47 * hash + Objects.hashCode(this.department);
-        hash = 47 * hash + Objects.hashCode(this.grade);
-        hash = 47 * hash + Objects.hashCode(this.designation);
-        hash = 47 * hash + Objects.hashCode(this.eduQual);
-        hash = 47 * hash + Objects.hashCode(this.totalExp);
-        hash = 47 * hash + Objects.hashCode(this.location);
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.empNo);
+        hash = 37 * hash + Objects.hashCode(this.doorCode);
+        hash = 37 * hash + Objects.hashCode(this.empName);
+        hash = 37 * hash + Objects.hashCode(this.empDoj);
+        hash = 37 * hash + Objects.hashCode(this.empDob);
+        hash = 37 * hash + Objects.hashCode(this.department);
+        hash = 37 * hash + Objects.hashCode(this.grade);
+        hash = 37 * hash + Objects.hashCode(this.designation);
+        hash = 37 * hash + Objects.hashCode(this.eduQual);
+        hash = 37 * hash + Objects.hashCode(this.totalExp);
+        hash = 37 * hash + Objects.hashCode(this.location);
+        hash = 37 * hash + Objects.hashCode(this.reportingTo);
+        hash = 37 * hash + Objects.hashCode(this.lastPromotion);
+        hash = 37 * hash + Objects.hashCode(this.departmentHead);
         return hash;
     }
 
@@ -174,6 +204,12 @@ public class Employee {
         if (!Objects.equals(this.location, other.location)) {
             return false;
         }
+        if (!Objects.equals(this.lastPromotion, other.lastPromotion)) {
+            return false;
+        }
+        if (!Objects.equals(this.departmentHead, other.departmentHead)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -189,12 +225,15 @@ public class Employee {
         if (this.designation != other.designation) {
             return false;
         }
+        if (!Objects.equals(this.reportingTo, other.reportingTo)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Employee{" + "id=" + id + ", empNo=" + empNo + ", doorCode=" + doorCode + ", empName=" + empName + ", empDoj=" + empDoj + ", empDob=" + empDob + ", department=" + department + ", grade=" + grade + ", designation=" + designation + ", eduQual=" + eduQual + ", totalExp=" + totalExp + ", location=" + location + '}';
+        return "Employee{" + "id=" + id + ", empNo=" + empNo + ", doorCode=" + doorCode + ", empName=" + empName + ", empDoj=" + empDoj + ", empDob=" + empDob + ", department=" + department + ", grade=" + grade + ", designation=" + designation + ", eduQual=" + eduQual + ", totalExp=" + totalExp + ", location=" + location + ", reportingTo=" + reportingTo + ", lastPromotion=" + lastPromotion + ", departmentHead=" + departmentHead + '}';
     }
-        
+            
 }

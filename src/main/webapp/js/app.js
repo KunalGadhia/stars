@@ -65,6 +65,7 @@ angular.module("stars", [
     'stars.states.user',
     'stars.states.kra',
     'stars.states.profile',
+    'stars.states.evaluate',
 //    'digitalbusiness.states.admin',
 //    'digitalbusiness.states.employee',
 //    'digitalbusiness.states.notification',

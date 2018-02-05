@@ -16,6 +16,14 @@ angular.module("stars.services.employee")
                     },
                     'isArray': true
                 },
+                'findByDepartmentHead': {
+                    'method': 'GET',
+                    'url': restRoot + '/employee/find/department_head',
+                    'params': {
+                        'departmentHeadId': '@departmentHeadId'
+                    },
+                    'isArray': true
+                },
                 'findByName': {
                     'method': 'GET',
                     'url': restRoot + '/employee/find/name',

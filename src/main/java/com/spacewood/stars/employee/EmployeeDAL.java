@@ -36,6 +36,9 @@ public class EmployeeDAL {
         public static final String EDU_QUAL = "edu_qual";
         public static final String TOTAL_EXP = "total_exp";
         public static final String LOCATION = "location";
+        public static final String REPORTING_TO = "reporting_to";
+        public static final String LAST_PROMOTION = "last_promotion";
+        public static final String DEPARTMENT_HEAD = "department_head";
     }
 
     public static final String TABLE_NAME = "employee_master";
@@ -59,7 +62,10 @@ public class EmployeeDAL {
                         Columns.DESIGNATION,
                         Columns.EDU_QUAL,
                         Columns.TOTAL_EXP,
-                        Columns.LOCATION
+                        Columns.LOCATION,
+                        Columns.REPORTING_TO,
+                        Columns.LAST_PROMOTION,
+                        Columns.DEPARTMENT_HEAD
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -68,7 +74,7 @@ public class EmployeeDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE ORDER BY " + Columns.ID + " DESC LIMIT 10 OFFSET ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(Employee.class));
     }
-    
+
     public List<Employee> findAllList() {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE";
         return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(Employee.class));
@@ -88,6 +94,11 @@ public class EmployeeDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(emp_name) LIKE?";
         String nameLike = "%" + name.toLowerCase() + "%";
         return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(Employee.class));
+    }
+    
+    public List<Employee> findByDepartmentHead(Integer departmentHeadId) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND "+Columns.DEPARTMENT_HEAD+" = ?";        
+        return jdbcTemplate.query(sqlQuery, new Object[]{departmentHeadId}, new BeanPropertyRowMapper<>(Employee.class));
     }
 
     public Employee insert(Employee employee) {
@@ -111,6 +122,9 @@ public class EmployeeDAL {
         parameters.put(Columns.EDU_QUAL, employee.getEduQual());
         parameters.put(Columns.TOTAL_EXP, employee.getTotalExp());
         parameters.put(Columns.LOCATION, employee.getLocation());
+        parameters.put(Columns.REPORTING_TO, employee.getReportingTo());
+        parameters.put(Columns.LAST_PROMOTION, employee.getLastPromotion());
+        parameters.put(Columns.DEPARTMENT_HEAD, employee.getDepartmentHead());
 
         Number newId = insertEmployee.executeAndReturnKey(parameters);
         employee = findById(newId.intValue());
@@ -134,7 +148,10 @@ public class EmployeeDAL {
                 + Columns.DESIGNATION + " = ?,"
                 + Columns.EDU_QUAL + " = ?,"
                 + Columns.TOTAL_EXP + " = ?,"
-                + Columns.LOCATION + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.LOCATION + " = ?,"
+                + Columns.REPORTING_TO + " = ?,"
+                + Columns.LAST_PROMOTION + " = ?,"
+                + Columns.DEPARTMENT_HEAD + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery,
                 new Object[]{
                     employee.getEmpNo(),
@@ -148,6 +165,9 @@ public class EmployeeDAL {
                     employee.getEduQual(),
                     employee.getTotalExp(),
                     employee.getLocation(),
+                    employee.getReportingTo(),
+                    employee.getLastPromotion(),
+                    employee.getDepartmentHead(),
                     employee.getId()
                 });
         employee = findById(employee.getId());

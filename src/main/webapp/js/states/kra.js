@@ -20,6 +20,11 @@ angular.module("stars.states.kra", [])
                 'templateUrl': templateRoot + '/masters/kra/form1.html',
                 'controller': 'KraForm1EditController'
             });
+            $stateProvider.state('admin.kra_employeelist.rateKra', {
+                'url': '/:kraDetailId/kra/:employeeId/rate/form1',
+                'templateUrl': templateRoot + '/masters/kra/rate_kra.html',
+                'controller': 'RateKraForm1EditController'
+            });
             $stateProvider.state('admin.kra_employeelist.delete', {
                 'url': '/:kraDetailId/kra/delete',
                 'templateUrl': templateRoot + '/masters/kra/delete.html',
@@ -86,7 +91,7 @@ angular.module("stars.states.kra", [])
             };
             $scope.employeeObject = EmployeeService.get({
                 'id': $stateParams.employeeId
-            });            
+            });
         })
         .controller('KraForm1EditController', function (KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
             $scope.editableKRA = KraDetailsService.get({
@@ -105,6 +110,40 @@ angular.module("stars.states.kra", [])
                 console.log("Final Save :%O", editableKRA);
                 editableKRA.$save(function () {
                     $state.go('admin.kra_employeelist', null, {'reload': true});
+                });
+            };
+        })
+        .controller('RateKraForm1EditController', function (KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
+            $scope.editableKRA = KraDetailsService.get({
+                'id': $stateParams.kraDetailId
+            });
+            $scope.approveKra = function (editableKRA) {
+                var d = new Date();
+                editableKRA.weightage = $("#demo").val();
+//                editableKRA.employeeId = $stateParams.employeeId;
+                editableKRA.year = d.getFullYear();
+
+                console.log("Editable KRA :%O", editableKRA);
+                $scope.saveKra(editableKRA);
+            };
+            $scope.$watch('editableKRA.rating', function (rating) {
+                console.log("Rating :%O", rating);
+                console.log("Weightage :%O", $scope.editableKRA.weightage);
+                var rating = parseInt(rating);
+                var weightage = parseInt($scope.editableKRA.weightage);
+                console.log("Rating 1 :%O", rating);
+                console.log("Weightage 1 :%O", weightage);
+                var finalweightage = (weightage / 100);
+                console.log("Final Weightage :%O", finalweightage);
+                $scope.editableKRA.ratingScore = Math.round((finalweightage * rating) * 100) / 100;
+//                console.log("weightage :%O", parseInt($scope.editableKRA.weightage));
+//                var ratingScore =  (rating * parseInt($scope.editableKRA.weightage));
+//                console.log("Rating Scowe :%O", ratingScore);
+            });
+            $scope.saveKra = function (editableKRA) {
+                console.log("Final Save :%O", editableKRA);
+                editableKRA.$save(function () {
+                    $state.go('admin.resource_list', {employeeId: $stateParams.employeeId}, {'reload': true});
                 });
             };
         })

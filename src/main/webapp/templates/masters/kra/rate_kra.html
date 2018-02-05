@@ -1,0 +1,1848 @@
+<script>
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+    slider.oninput = function () {
+//    output.innerHTML = this.value;
+        $("#demo").val(this.value);
+//    $scope.editableKRA.weightage = this.value;
+    }
+</script>
+<div class="modal modal-stars">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="approveKra(editableKRA)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-user"></i>
+                        KRA Details Form  <button type="button" class="btn btn-link pull-right" data-toggle="modal" data-target="#kraModal"><i class="fa fa-info-circle"></i></button>
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>KRA Parameter</label>
+                                <select class="form-control" ng-model="editableKRA.kraParameter">
+                                    <option value="">Select KRA Parameter</option>
+                                    <option value="FINANCIAL">Financial</option>
+                                    <option value="CUSTOMER">Customer</option>
+                                    <option value="INTERNAL_PROCESS">Internal Process</option>
+                                    <option value="CAPABILITY">Capability</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Performance Objective</label>
+                                <textarea class="form-control" rows="4" ng-model="editableKRA.performanceObjective"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Measurable Target</label>
+                                <textarea class="form-control" rows="4" ng-model="editableKRA.measurableTarget"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Weightage %</label>
+                                <div class="slidecontainer">
+                                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                                    <br>
+                                    <!--                                    <p>Value: <span id="demo"></span></p>-->
+                                    <input class="form-control" ng-model="editableKRA.weightage" id="demo" readonly="" required="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Rating</label>
+                                <select class="form-control" ng-model="editableKRA.rating">
+                                    <option value="">Give Rating</option>
+                                    <option value="1">1</option>
+                                    <option value="3">3</option>
+                                    <option value="5">5</option>
+                                    <option value="7">7</option>                                    
+                                    <option value="9">9</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Rating Score</label>
+                                <input type="number" class="form-control" ng-model="editableKRA.ratingScore" readonly="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-lg btn-primary">
+                            <i class="fa fa-save"></i>
+                            Save
+                        </button>
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class="btn btn-link" >
+                            cancel
+                        </button>				
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="kraModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Accounts-->
+        <div class="modal-content" ng-if="employeeObject.department === 'ACCOUNTS'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Accounts Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Develop on line trial balance </td>
+                            <td>Assign all branch stores outstanding recovery targets.</td>
+                            <td>50%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Define and provide cost targets </td>
+                            <td>To all departments</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Statutory Compliance</td>
+                            <td>Target 100%</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Create finance awareness in company</td>
+                            <td>Handle at least one session per department</td>
+                            <td>25%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!---Branch Stores---->
+        <div class="modal-content" ng-if="employeeObject.department === 'BRANCH_STORES'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Branch Stores Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Develop on line trial balance </td>
+                            <td>Assign all branch stores outstanding recovery targets.</td>
+                            <td>50%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Define and provide cost targets </td>
+                            <td>To all departments</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Statutory Compliance</td>
+                            <td>Target 100%</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Create finance awareness in company</td>
+                            <td>Handle at least one session per department</td>
+                            <td>25%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!---Operations Stores---->
+        <div class="modal-content" ng-if="employeeObject.department === 'OPERATIONS'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Operations Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Develop on line trial balance </td>
+                            <td>Assign all branch stores outstanding recovery targets.</td>
+                            <td>50%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Define and provide cost targets </td>
+                            <td>To all departments</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Statutory Compliance</td>
+                            <td>Target 100%</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Create finance awareness in company</td>
+                            <td>Handle at least one session per department</td>
+                            <td>25%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- Commerial---->
+        <div class="modal-content" ng-if="employeeObject.department === 'COMMERCIAL'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Commercial Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Develop on line trial balance </td>
+                            <td>Assign all branch stores outstanding recovery targets.</td>
+                            <td>50%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Define and provide cost targets </td>
+                            <td>To all departments</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Statutory Compliance</td>
+                            <td>Target 100%</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Create finance awareness in company</td>
+                            <td>Handle at least one session per department</td>
+                            <td>25%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Excise------------->
+        <div class="modal-content" ng-if="employeeObject.department === 'EXCISE'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Excise Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Develop on line trial balance </td>
+                            <td>Assign all branch stores outstanding recovery targets.</td>
+                            <td>50%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Define and provide cost targets </td>
+                            <td>To all departments</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Statutory Compliance</td>
+                            <td>Target 100%</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Create finance awareness in company</td>
+                            <td>Handle at least one session per department</td>
+                            <td>25%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- BSR --->
+        <div class="modal-content" ng-if="employeeObject.department === 'BSR'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">BSR Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Reduce Dispatch Cost</td>
+                            <td>X% per kg per km</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Ensure undamaged receipt</td>
+                            <td>Target 100%</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Develop 100% barcode identification in one package</td>
+                            <td>Implement bar code system for zero error delivery</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Learn and Develop ‘flow’ methodology for dispatch</td>
+                            <td>Implement for one product line.</td>
+                            <td>5%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Costing --->
+        <div class="modal-content" ng-if="employeeObject.department === 'COSTING'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Costing Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Develop process / product cost modules</td>
+                            <td>One or two</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Deliver cost estimates in time</td>
+                            <td>10% less time taken on average</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Develop suitable data analytics from ERP</td>
+                            <td>Develop one per department</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Learn a new software or concept in MIS</td>
+                            <td>Learn and share at least one software – MS Project</td>
+                            <td>15%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- MIS --->
+        <div class="modal-content" ng-if="employeeObject.department === 'MIS'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">MIS Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Develop process / product cost modules</td>
+                            <td>One or two</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Deliver cost estimates in time</td>
+                            <td>10% less time taken on average</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Develop suitable data analytics from ERP</td>
+                            <td>Develop one per department</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Learn a new software or concept in MIS</td>
+                            <td>Learn and share at least one software – MS Project</td>
+                            <td>15%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- D & D Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'D_AND_D'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">D & D Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Design to Cost of new product</td>
+                            <td>Achieve within 90% of targeted cost.</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Customer wow factor</td>
+                            <td>Define and achieve 80%</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Deliver mock ups ahead of time</td>
+                            <td>Improve average time by at least 10%</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Skill improvement from 2D to 3D</td>
+                            <td>Complete multi-skilling by year end.</td>
+                            <td>15%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Customer Care Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'CUSTOMER_CARE'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Customer Care Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Establish Baseline Order Login Cost and Reduce </td>
+                            <td>Reduce cost from baseline by 10%</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Customer satisfaction index – define and maintain</td>
+                            <td>Define and maintain at 95%</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Reduce Complaints from planning (internal customer)</td>
+                            <td>Down by 50% from previous year</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Improve customer interaction skills</td>
+                            <td>Attend a personality development program and clear the test therein.</td>
+                            <td>20%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Personnel & Admin Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'PERSONNEL_AND_ADMIN'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Personnel & Admin Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Maintain low cost of recruitment</td>
+                            <td>Create Baseline and reduce cost by 10%</td>
+                            <td>25%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Define and measure employee satisfaction Index  </td>
+                            <td>Conduct one exercise</td>
+                            <td>25%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Hold employee motivational events</td>
+                            <td>One new practice / event every year</td>
+                            <td>25%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Build in-house training faculty list</td>
+                            <td>Create for first time</td>
+                            <td>25%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Maintenance Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'MAINTENANCE'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Maintenance Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Overall Maintenance Budget reduction</td>
+                            <td>10% reduction over previous year actuals.</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Handover of critical machines ahead of time for breakdown.</td>
+                            <td>10% hours of the predicted time</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Prepare exhaustive spares list for critical machine</td>
+                            <td>100% coverage</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Understand Maintainability concepts</td>
+                            <td>Conduct 1 session with team members</td>
+                            <td>5%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Marketing Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'MARKETING'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Marketing Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Maintain and track exhibition budgets</td>
+                            <td>Create Baseline and reduce cost by 10%</td>
+                            <td>25%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Define and measure customer satisfaction Index </td>
+                            <td>Conduct one exercise</td>
+                            <td>25%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Develop new age marketing techniques with agency</td>
+                            <td>Cartoon style advert; storyline etc.</td>
+                            <td>25%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Team building for defined markets</td>
+                            <td>Hold team building exercises</td>
+                            <td>25%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Planning Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'PLANNING_AND_CONTROL'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Planning & Control Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Cut average planning time by half</td>
+                            <td>From 6 days to 3 days for kitchen</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Improve RM sufficiency rate for job orders</td>
+                            <td>Only 10% job orders wait for RM.</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Reduce board  inventory types</td>
+                            <td>Dispersion on inventory to reflect focus on HDF</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Learn new inventory control methods</td>
+                            <td>One method per person learn and share</td>
+                            <td>10%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Production Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'PRODUCTION'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Production Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Improve throughput per line</td>
+                            <td>From x% to y%</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Supply as required by BSR</td>
+                            <td>1 or half day inventory before dispatch</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Start and maintain good practices</td>
+                            <td>Inbox – Outbox concept for every work center.</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Understand and learn TPM concepts</td>
+                            <td>Learn and share at least one concept</td>
+                            <td>10%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Industrial Engg Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'INDUSTRIAL_ENGG'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Industrial Engg. Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Improve throughput per line</td>
+                            <td>From x% to y%</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Supply as required by BSR</td>
+                            <td>1 or half day inventory before dispatch</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Start and maintain good practices</td>
+                            <td>Inbox – Outbox concept for every work center.</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Understand and learn TPM concepts</td>
+                            <td>Learn and share at least one concept</td>
+                            <td>10%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Plant 2 Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'PLANT2'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Plant 2 Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Improve throughput per line</td>
+                            <td>From x% to y%</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Supply as required by BSR</td>
+                            <td>1 or half day inventory before dispatch</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Start and maintain good practices</td>
+                            <td>Inbox – Outbox concept for every work center.</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Understand and learn TPM concepts</td>
+                            <td>Learn and share at least one concept</td>
+                            <td>10%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Plant 3 Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'PLANT3'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Plant 3 Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Improve throughput per line</td>
+                            <td>From x% to y%</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Supply as required by BSR</td>
+                            <td>1 or half day inventory before dispatch</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Start and maintain good practices</td>
+                            <td>Inbox – Outbox concept for every work center.</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Understand and learn TPM concepts</td>
+                            <td>Learn and share at least one concept</td>
+                            <td>10%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Plant 4 Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'PLANT4'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Plant 4 Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Improve throughput per line</td>
+                            <td>From x% to y%</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Supply as required by BSR</td>
+                            <td>1 or half day inventory before dispatch</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Start and maintain good practices</td>
+                            <td>Inbox – Outbox concept for every work center.</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Understand and learn TPM concepts</td>
+                            <td>Learn and share at least one concept</td>
+                            <td>10%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Plant 5 Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'PLANT5'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Plant 5 Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Improve throughput per line</td>
+                            <td>From x% to y%</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Supply as required by BSR</td>
+                            <td>1 or half day inventory before dispatch</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Start and maintain good practices</td>
+                            <td>Inbox – Outbox concept for every work center.</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Understand and learn TPM concepts</td>
+                            <td>Learn and share at least one concept</td>
+                            <td>10%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Production Paint Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'PRODUCTION_PAINT'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Production Paint Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Improve throughput per line</td>
+                            <td>From x% to y%</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Supply as required by BSR</td>
+                            <td>1 or half day inventory before dispatch</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Start and maintain good practices</td>
+                            <td>Inbox – Outbox concept for every work center.</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Understand and learn TPM concepts</td>
+                            <td>Learn and share at least one concept</td>
+                            <td>10%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Paint Shop Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'PAINT_SHOP'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Paint Shop Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Improve throughput per line</td>
+                            <td>From x% to y%</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Supply as required by BSR</td>
+                            <td>1 or half day inventory before dispatch</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Start and maintain good practices</td>
+                            <td>Inbox – Outbox concept for every work center.</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Understand and learn TPM concepts</td>
+                            <td>Learn and share at least one concept</td>
+                            <td>10%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Projects / Install Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'PROJECTS_INSTALL'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Projects / Install Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Avoid project cost over run</td>
+                            <td>95% of budgeted cost for xxx project</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Get positive customer testimonials</td>
+                            <td>Target 100%</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Schedule xyz project to avoid time-overrun</td>
+                            <td>Completion 1 week ahead of agreed schedule</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Understand project planning basics</td>
+                            <td>Hold at least 2 sessions to share learning with team</td>
+                            <td>20%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Purchase Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'PURCHASE'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Purchase Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Reduce cost from purchase budget</td>
+                            <td>10% reduction over previous year actuals.</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Schedule inward goods to ease stores management</td>
+                            <td>Keep inventory carrying costs within x%</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Develop favorable standard inco terms</td>
+                            <td>Bring x% more transactions under coverage to our terms</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Develop negotiations skills</td>
+                            <td>Attend sessions and demonstrate </td>
+                            <td>5%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- QAD Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'QAD'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">QAD Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Reduce free replacement</td>
+                            <td>In given product category by x%</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Define and maintain Overall Customer Satisfaction Index</td>
+                            <td>Greater than 95%</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Identify and Eliminate waste</td>
+                            <td>1 process per product line</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Improve process capability</td>
+                            <td>On identified process from x to y</td>
+                            <td>15%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Sales Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'SALES'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sales Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Grow Segment top-line</td>
+                            <td>As per sales budget</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Create more franchises </td>
+                            <td>Increase by 25%</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Negotiate incentive linkage to recovery</td>
+                            <td>X% component of incentive linked to recovery of dues</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Develop presentation skills and increase coverage of clients</td>
+                            <td>Show x% increased visit metric and partner testimonial</td>
+                            <td>5%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- Stores Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'STORES'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Stores Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Segregate and dispose non-moving inventory</td>
+                            <td>Clean 100% non-moving inventory</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Generate and handover space</td>
+                            <td>10% space by better inventory management</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Define Service Level Agreement for Forklift operation</td>
+                            <td>100% safety record.</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Develop international best practice for RM storage in engg. wood</td>
+                            <td>Develop one good practice</td>
+                            <td>5%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!--- STORES_T48 Dept --->
+        <div class="modal-content" ng-if="employeeObject.department === 'STORES_T48'">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Stores Dept Help Menu (with Example)</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>KRA Parameter</th>
+                            <th>Performance Objective</th>
+                            <th>Measurable Target</th>
+                            <th>Weightage</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Segregate and dispose non-moving inventory</td>
+                            <td>Clean 100% non-moving inventory</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer</strong></td>
+                            <td>Generate and handover space</td>
+                            <td>10% space by better inventory management</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Process</strong></td>
+                            <td>Define Service Level Agreement for Forklift operation</td>
+                            <td>100% safety record.</td>
+                            <td>15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capability</strong></td>
+                            <td>Develop international best practice for RM storage in engg. wood</td>
+                            <td>Develop one good practice</td>
+                            <td>5%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span class="text-danger">*Weightage column must total to 100%</span>
+                <br>
+                <p>
+                    <b>Financial:</b> This performance objective must have direct or indirect relation to finances of the company like reduction of cost or increase of profit or increase of sales.
+                </p>
+                <p>
+                    <b>Customer:</b>This performance objective is expected to be made around the customer. The customer shall be external or an internal department / function, not an individual role.
+                </p>
+                <p>
+                    <b>Internal Process:</b>This performance objective shall be directed towards improving an internal process. This could be a process within the department or could run across departments.
+                </p>
+                <p>
+                    <b>Capability:</b> This performance objective shall be concerned with improvement of personal capability. As an exception improvement in departmental capability maybe defined here.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
