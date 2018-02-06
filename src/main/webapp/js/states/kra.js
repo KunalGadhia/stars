@@ -143,7 +143,7 @@ angular.module("stars.states.kra", [])
             $scope.saveKra = function (editableKRA) {
                 console.log("Final Save :%O", editableKRA);
                 editableKRA.$save(function () {
-                    $state.go('admin.resource_list', {employeeId: $stateParams.employeeId}, {'reload': true});
+                    $state.go('admin.resourcekra_list', {employeeId: $stateParams.employeeId}, {'reload': true});
                 });
             };
         })

@@ -20,6 +20,8 @@ angular.module("stars", [
     'stars.services.user',
     'stars.services.employee',
     'stars.services.kra_details',
+    'stars.services.form2_details',
+    'stars.services.additional_details',
 //    'digitalbusiness.services.employee',
 //    'digitalbusiness.services.notification',
 //    'digitalbusiness.services.party',

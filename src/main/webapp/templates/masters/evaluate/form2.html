@@ -2,7 +2,7 @@
     <div class="panel-heading text-center">
         <div class="pull-left">
 
-            <button onclick="window.history.back()"
+            <button data-ui-sref="admin.evaluate"
                     class="btn btn-default">
                 <i class="fa fa-arrow-left"></i>
                 Back
@@ -75,14 +75,14 @@
 
 </div>
 <div class="panel panel-default">
-    <div class="modal-header text-center">
+    <div class="modal-header text-center" style="min-height: 60px">
         <h3 class="col-md-12 col-lg-12 col-xs-12">
             Soft Skills Assessment 
         </h3>           
     </div>
     <div class="panel-body">
         <div class="row">
-            <form role="form">
+            <form role="form" ng-submit="approveForm2(editableForm2)">
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label>Assessment Parameter</label>
@@ -100,7 +100,7 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label>Weightage %</label>
-                        <input type="number" step="any" class="form-control" ng-model="editableForm2.weightage" required="">
+                        <input type="number" step="any" min="0" max="100" class="form-control" ng-model="editableForm2.weightage" required="">
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -123,7 +123,7 @@
                     </div>
                 </div>
                 <div class="col-sm-1">
-                    <button class="btn btn-primary" style="margin-top: 25px">
+                    <button type="submit" class="btn btn-primary" style="margin-top: 25px" ng-disabled="(form2DetailsList | total:'weightage') === 100">
                         <i class="fa fa-plus"></i>
                         Add
                     </button>
@@ -131,6 +131,9 @@
             </form>
         </div>
         <br>
+        <div class=" text-center alert alert-danger" ng-show="(form2DetailsList | total:'weightage') > 100">
+            <strong>Warning : Percentage Weightage Cannot Exceed 100 % ,Please correct the KRA weightage percentage entered above.</strong>
+        </div>
         <div class="row">
             <table class="table table-striped table-hover">
                 <thead>
@@ -140,61 +143,166 @@
                         <th>Weightage %</th>
                         <th>Rating</th>
                         <th>Rating Score</th>                        
-                        <!--<th class="text-right">Actions</th>-->
+                        <th class="text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="form2Params in form2List">
+                    <tr ng-repeat="form2Params in form2DetailsList">
                         <td class="text-right">{{$index + 1}}</td>
                         <td>{{ form2Params.parameter}}</td>   
                         <td>{{ form2Params.weightage}}</td>  
                         <td>{{ form2Params.rating}}</td>  
-                        <td>{{ form2Params.ratingScore}}</td>                        
-                        <!--                        <td>{{ user.mobileNo}}</td>                
-                                                <td class="text-right">
-                                                    <a data-ui-sref="admin.resourcekra_list({ employeeId: employee.id })"
-                                                       class="btn btn-primary">
-                                                        Evaluate KRA &nbsp;
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <a data-ui-sref="admin.form2({ employeeId: employee.id })"
-                                                       class="btn btn-primary">
-                                                        Form 2 &nbsp;
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                </td>                 -->
+                        <td>{{ form2Params.ratingScore}}</td>
+                        <td class="text-right">
+                            <a data-ui-sref="admin.form2.delete({ form2DetailId: form2Params.id })"
+                               class="btn btn-danger">					
+                                <i class="fa fa-trash"></i>
+                            </a>                           
+                        </td>                        
                     </tr>
-                </tbody>        
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="1"></td>
+                        <td class="text-right">Total Weightage :</td>
+                        <td>{{ form2DetailsList | total:'weightage'}} %</td>
+                        <td class="text-right">Rating Score :</td>
+                        <td>{{ form2DetailsList | total:'ratingScore'}} / 9</td>
+                        <td></td>
+                    </tr>           
+                </tfoot>
             </table>
         </div>
     </div>
 </div>
 <div class="panel panel-default">
-    <div class="modal-header text-center">
+    <div class="modal-header text-center" style="min-height: 60px">
         <h3 class="col-md-12 col-lg-12 col-xs-12">
             Additional Inputs
         </h3>           
     </div>
     <div class="panel-body">
         <!--<div class="row">-->
-        <form role="form">
+        <form role="form" ng-submit="approveAdditionalDetail(additionalDetails)">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label>Special Contribution / Achievement (If Any)</label>
-                        <textarea rows="3" class="form-control" ng-model="additionalInputs.specialContribution">
+                        <textarea rows="3" class="form-control" ng-model="additionalDetails.specialContribution">
                                 
                         </textarea>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label>Area Of Improvement (If Ay)</label>
-                        <textarea rows="3" class="form-control" ng-model="additionalInputs.areaOfImprovement">
+                        <label>Area Of Improvement (If Any)</label>
+                        <textarea rows="3" class="form-control" ng-model="additionalDetails.areaOfImprovement">
                                 
                         </textarea>
                     </div>
                 </div>
+            </div>
+            <br>
+            <!--            <div class="row text-center">
+                            <span><strong>Training Need / Identification</strong></span>
+                        </div>-->
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <div class="form-group">
+                        <label>Communication / Interpersonal Skills</label>
+                        <input class="form-control" type="checkbox" ng-model="additionalDetails.commInterpersonalSkill">
+                    </div>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <div class="form-group">
+                        <label>Supervisory Development</label>
+                        <input class="form-control" type="checkbox" ng-model="additionalDetails.supervisoryDevelopment">
+                    </div>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <div class="form-group">
+                        <label>Team Building / Leadership</label>
+                        <input class="form-control" type="checkbox" ng-model="additionalDetails.teamBuilding">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <div class="form-group">
+                        <label>Selling & Negotiation Skills</label>
+                        <input class="form-control" type="checkbox" ng-model="additionalDetails.sellingNegotiationSkill">
+                    </div>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <div class="form-group">
+                        <label>CRM</label>
+                        <input class="form-control" type="checkbox" ng-model="additionalDetails.crm">
+                    </div>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <div class="form-group">
+                        <label>Presentation Skills</label>
+                        <input class="form-control" type="checkbox" ng-model="additionalDetails.presentationSkill">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <div class="form-group">
+                        <label>Time Management</label>
+                        <input class="form-control" type="checkbox" ng-model="additionalDetails.timeManagement">
+                    </div>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <div class="form-group">
+                        <label>Functional</label>
+                        <input class="form-control" type="checkbox" ng-model="additionalDetails.functional">
+                    </div>
+                </div>
+                <!--                <div class="col-sm-4 text-center">
+                                    <div class="form-group">
+                                        <label>Presentation Skills</label>
+                                        <input class="form-control" type="checkbox" ng-model="additionalInputs.presentationSkill">
+                                    </div>
+                                </div>-->
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>HOD Comment</label>
+                        <textarea rows="3" class="form-control" ng-model="additionalDetails.hodComment">
+                                
+                        </textarea>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>HR Comment</label>
+                        <textarea rows="3" class="form-control" ng-model="additionalDetails.hrComment">
+                                
+                        </textarea>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Neutral Observer Comment</label>
+                        <textarea rows="3" class="form-control" ng-model="additionalDetails.noComment">
+                                
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-lg btn-primary">
+                    <i class="fa fa-save"></i>
+                    Save
+                </button>
+                <button type="button"
+                        onclick="window.history.back()"
+                        class="btn btn-link" >
+                    cancel
+                </button>				
             </div>
         </form>
         <!--</div>-->        

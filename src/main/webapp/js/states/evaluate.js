@@ -20,6 +20,11 @@ angular.module("stars.states.evaluate", [])
                 'templateUrl': templateRoot + '/masters/evaluate/form2.html',
                 'controller': 'Form2Controller'
             });
+            $stateProvider.state('admin.form2.delete', {
+                'url': '/form2/:form2DetailId/delete',
+                'templateUrl': templateRoot + '/masters/evaluate/delete.html',
+                'controller': 'Form2DetailDeleteController'
+            });
 //            $stateProvider.state('admin.profile.password_change', {
 //                'url': '/:employeeId/profile/change_pass',
 //                'templateUrl': templateRoot + '/masters/profile/password_change.html',
@@ -75,7 +80,7 @@ angular.module("stars.states.evaluate", [])
                 var a = 0;
                 angular.forEach(kraDetailsList, function (kraDetail) {
 
-                    a = a + kraDetail.ratingScore;                  
+                    a = a + kraDetail.ratingScore;
                     $scope.ratingScore = a;
                 });
             });
@@ -84,19 +89,70 @@ angular.module("stars.states.evaluate", [])
                 console.log("Rating Score" + ratingScore);
             };
         })
-        .controller('Form2Controller', function (KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {            
-            $scope.employeeObject = EmployeeService.get({
-               'id': $stateParams.employeeId 
+        .controller('Form2Controller', function (AdditionalDetailsService, Form2DetailsService, KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
+            $scope.editableForm2 = {};
+            $scope.additionalDetails = {};
+            $scope.additionalDetails = AdditionalDetailsService.findByEmployeeId({
+                'id': $stateParams.employeeId
             });
+            $scope.form2DetailsList = Form2DetailsService.findByEmployeeId({
+                'employeeId': $stateParams.employeeId
+            });
+            $scope.employeeObject = EmployeeService.get({
+                'id': $stateParams.employeeId
+            });
+
+            $scope.$watch('editableForm2.rating', function (rating) {
+                var rating = parseInt(rating);
+                var weightage = parseInt($scope.editableForm2.weightage);
+                var finalweightage = (weightage / 100);
+                $scope.editableForm2.ratingScore = Math.round((finalweightage * rating) * 100) / 100;
+            });
+
+            $scope.approveForm2 = function (editableForm2) {
+                var d = new Date();
+                editableForm2.employeeId = $stateParams.employeeId;
+                editableForm2.year = d.getFullYear();
+                $scope.saveForm2(editableForm2);
+            };
+            $scope.saveForm2 = function (editableForm2Final) {              
+                Form2DetailsService.save(editableForm2Final, function (savedData) {
+                    $scope.editableForm2 = {};
+                    $scope.refreshForm2DetailsList();
+                });
+            };
+            $scope.approveAdditionalDetail = function (additionalDetail) {
+                var d1 = new Date();
+                additionalDetail.employeeId = $stateParams.employeeId;
+                additionalDetail.year = d1.getFullYear();
+                $scope.saveAdditionalDetail(additionalDetail)
+            };
+            $scope.saveAdditionalDetail = function (finalAdditionalDetail) {
+                console.log("FInal additional Detail :%O", finalAdditionalDetail);
+            };
+
+            $scope.refreshForm2DetailsList = function () {
+                $scope.form2DetailsList = Form2DetailsService.findByEmployeeId({
+                    'employeeId': $stateParams.employeeId
+                });
+            };
+        })
+        .controller('Form2DetailDeleteController', function (Form2DetailsService, KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
+            $scope.editableForm2 = Form2DetailsService.get({
+                'id': $stateParams.form2DetailId
+            });
+            $scope.deleteForm2Detail = function (editableForm2) {
+                editableForm2.$delete(function () {
+                    $state.go('admin.form2', null, {'reload': true});
+                });
+            };
+//            $scope.refreshForm2DetailsList = function (employeeId) {
+//                console.log("Employee Id :%O", employeeId);
+//                $scope.form2DetailsList = Form2DetailsService.findByEmployeeId({
+//                    'employeeId': employeeId
+//                });
+//            };
         });
-//        .controller('ProfilePhotoUpload', function (KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {            
-////            $scope.kraEmployeeObject = EmployeeService.get({
-////               'id' : $stateParams.employeeId 
-////            });
-////            $scope.kraDetailsList = KraDetailsService.findByEmployeeId({
-////               'employeeId': $stateParams.employeeId 
-////            });
-//        });
 
 
 
