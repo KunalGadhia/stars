@@ -10,16 +10,16 @@ angular.module("stars.states.evaluate", [])
                 'templateUrl': templateRoot + '/masters/evaluate/list.html',
                 'controller': 'EvaluationListController'
             });
-            $stateProvider.state('admin.resource_list', {
+            $stateProvider.state('admin.resourcekra_list', {
                 'url': '/evaluate/:employeeId/kra',
                 'templateUrl': templateRoot + '/masters/evaluate/kra_list.html',
                 'controller': 'EvaluationKraListController'
             });
-//            $stateProvider.state('admin.resource_list.rating', {
-//                'url': '/evaluate/:kraDetailId/kra',
-//                'templateUrl': templateRoot + '/masters/evaluate/kra_list.html',
-//                'controller': 'EvaluationKraListController'
-//            });
+            $stateProvider.state('admin.form2', {
+                'url': '/form2/:employeeId/kra',
+                'templateUrl': templateRoot + '/masters/evaluate/form2.html',
+                'controller': 'Form2Controller'
+            });
 //            $stateProvider.state('admin.profile.password_change', {
 //                'url': '/:employeeId/profile/change_pass',
 //                'templateUrl': templateRoot + '/masters/profile/password_change.html',
@@ -83,15 +83,12 @@ angular.module("stars.states.evaluate", [])
             $scope.saveScore = function (ratingScore) {
                 console.log("Rating Score" + ratingScore);
             };
+        })
+        .controller('Form2Controller', function (KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {            
+            $scope.employeeObject = EmployeeService.get({
+               'id': $stateParams.employeeId 
+            });
         });
-//        .controller('ProfilePrintKra', function (KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {            
-//            $scope.kraEmployeeObject = EmployeeService.get({
-//               'id' : $stateParams.employeeId 
-//            });
-//            $scope.kraDetailsList = KraDetailsService.findByEmployeeId({
-//               'employeeId': $stateParams.employeeId 
-//            });
-//        })
 //        .controller('ProfilePhotoUpload', function (KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {            
 ////            $scope.kraEmployeeObject = EmployeeService.get({
 ////               'id' : $stateParams.employeeId 
