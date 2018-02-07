@@ -1,0 +1,45 @@
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <div class="pull-left">
+            <button data-ui-sref="admin.masters"
+                    class="btn btn-default">
+                <i class="fa fa-arrow-left"></i>
+                Back
+            </button>            
+        </div>
+        <div>
+            <h4>HOD's List</h4>
+        </div>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="text-right">#</th>
+                <th>Employee Number</th>
+                <th>Employee Name</th>
+                <th>Department</th>
+                <th>Designation</th>                             
+                <th class="text-right">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="hod in hodList">
+                <td class="text-right">{{ currentOffset + $index + 1}}</td>
+                <td>{{ hod.employeeObject.empNo}}</td>   
+                <td>{{ hod.employeeObject.empName}}</td>  
+                <td>{{ hod.employeeObject.department}}</td>  
+                <td>{{ hod.employeeObject.designation}}</td>
+                <td class="text-right">
+                    <a data-ui-sref="admin.department_resource_list({ employeeId: hod.employeeId })"
+                       class="btn btn-primary">
+                        Show Resources &nbsp;
+                        <i class="fa fa-list"></i>
+                    </a>
+                </td>                 
+            </tr>
+        </tbody>        
+    </table>      
+</div>
+
+<div data-ui-view=""></div>

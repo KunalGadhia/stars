@@ -63,9 +63,13 @@ public class UserRest {
     }
 
     @RequestMapping(value = "/find/username", method = RequestMethod.GET)
-
     public User findByUsername(@RequestParam("username") String username) throws Exception {
         return userDAL.findByUsername(username);
+    }
+    
+    @RequestMapping(value = "/find/hod", method = RequestMethod.GET)
+    public List<User> findHod() throws Exception {
+        return userDAL.findHod();
     }
     
     @RequestMapping(value = "/find/user_like", method = RequestMethod.GET)

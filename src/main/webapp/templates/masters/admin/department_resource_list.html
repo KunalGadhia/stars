@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-heading text-center">
         <div class="pull-left">
-            <button data-ui-sref="admin.hod"
+            <button data-ui-sref="admin.department_head_list"
                     class="btn btn-default">
                 <i class="fa fa-arrow-left"></i>
                 Back
@@ -38,16 +38,16 @@
                 <td>{{ employee.location}}</td>
                 <!--<td>{{ user.mobileNo}}</td>-->                
                 <td class="text-right">
-                    <a data-ui-sref="admin.resourcekra_list({ employeeId: employee.id })"
+<!--                    <a data-ui-sref="admin.resourcekra_list({ employeeId: employee.id })"
                        class="btn btn-primary">
                         Evaluate KRA &nbsp;
                         <i class="fa fa-pencil"></i>
-                    </a>
-<!--                    <a data-ui-sref="admin.form2({ employeeId: employee.id })"
+                    </a>-->
+                    <a data-ui-sref="admin.form2({ employeeId: employee.id })"
                        class="btn btn-primary">
                         Form 2 &nbsp;
                         <i class="fa fa-pencil"></i>
-                    </a>-->
+                    </a>
                 </td>                 
             </tr>
         </tbody>        

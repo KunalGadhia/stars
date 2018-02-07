@@ -43,6 +43,7 @@
         <script src="${pageContext.request.contextPath}/js/lib/angular-bootstrap-lightbox.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/ngComboDatePicker.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/ngComboDatePicker.js"></script>
+        <!--<script src="${pageContext.request.contextPath}/js/lib/bootstrap.min.js"></script>-->
 
         <!--Constants-->
         <script>
@@ -370,6 +371,8 @@
         <script src="${pageContext.request.contextPath}/js/states/kra.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/profile.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/evaluate.js"></script>
+        <script src="${pageContext.request.contextPath}/js/states/evaluate.js"></script>
+        <script src="${pageContext.request.contextPath}/js/states/admin_menu.js"></script>
 <!--        <script src="${pageContext.request.contextPath}/js/states/employee.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/notification.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/party.js"></script>

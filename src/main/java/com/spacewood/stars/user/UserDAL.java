@@ -70,6 +70,11 @@ public class UserDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.USERNAME + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{username}, new BeanPropertyRowMapper<>(User.class));
     }
+    
+    public List<User> findHod() {        
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND role='ROLE_HOD'";
+        return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(User.class));
+    }
 
     public List<User> findByNameLike(String username) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(username) LIKE?";

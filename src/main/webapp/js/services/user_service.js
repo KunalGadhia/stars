@@ -29,6 +29,11 @@ angular.module("stars.services.user")
                     },
                     'isArray': true
                 },
+                'findHod': {
+                    'method': 'GET',
+                    'url': restRoot + '/user/find/hod',                    
+                    'isArray': true
+                },
                 'findByUsername': {
                     'method': 'GET',
                     'url': restRoot + '/user/find/username',

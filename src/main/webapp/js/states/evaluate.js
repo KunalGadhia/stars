@@ -90,8 +90,7 @@ angular.module("stars.states.evaluate", [])
                 });
             });
 //            $scope.filterList = $filter("total")('ratingScore');
-            $scope.saveScore = function (ratingScore) {
-                console.log("Rating Score" + ratingScore);
+            $scope.saveScore = function () {                
                 $state.go('admin.evaluate', null, {'reload': true});
             };
         })
@@ -153,7 +152,7 @@ angular.module("stars.states.evaluate", [])
             $scope.saveAdditionalDetail = function (finalAdditionalDetail) {
                 console.log("FInal additional Detail :%O", finalAdditionalDetail);
                 AdditionalDetailsService.save(finalAdditionalDetail, function (savedData) {
-                    $state.go('admin.evaluate', null, {'reload': true});
+                    $state.go('admin.department_resource_list', {'employeeId': $scope.employeeObject.departmentHead}, {'reload': true});
                 });
             };
 
