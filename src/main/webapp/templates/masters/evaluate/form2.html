@@ -110,7 +110,7 @@
                             <option value="">Select Rating</option>
                             <option value="1">Needs Improvement</option>
                             <option value="3">Below Average</option>
-                            <option value="4">Average</option>
+                            <option value="5">Average</option>
                             <option value="7">Above Average</option>
                             <option value="9">Excellent</option>
                         </select>
@@ -118,7 +118,7 @@
                 </div>
                 <div class="col-sm-2">
                     <div class="form-group">
-                        <label>Rating Score</label>
+                        <label>Interview Rating Score</label>
                         <input type="number" step="any" class="form-control" ng-model="editableForm2.ratingScore" required="" readonly="">
                     </div>
                 </div>
@@ -166,7 +166,7 @@
                         <td colspan="1"></td>
                         <td class="text-right">Total Weightage :</td>
                         <td>{{ form2DetailsList | total:'weightage'}} %</td>
-                        <td class="text-right">Rating Score :</td>
+                        <td class="text-right">Interview Rating Score :</td>
                         <td>{{ form2DetailsList | total:'ratingScore'}} / 9</td>
                         <td></td>
                     </tr>           
@@ -294,10 +294,14 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-lg btn-primary">
+                <button class="btn btn-lg btn-primary" ng-if="showSave">
                     <i class="fa fa-save"></i>
                     Save
                 </button>
+                <a target="_blank" class="btn btn-lg btn-primary" data-ui-sref="print_form2({'employeeId' : employeeObject.id})">
+                    <i class="fa fa-print"></i>
+                    Print Form 2
+                </a>
                 <button type="button"
                         onclick="window.history.back()"
                         class="btn btn-link" >

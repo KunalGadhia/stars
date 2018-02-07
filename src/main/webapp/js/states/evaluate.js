@@ -25,11 +25,16 @@ angular.module("stars.states.evaluate", [])
                 'templateUrl': templateRoot + '/masters/evaluate/delete.html',
                 'controller': 'Form2DetailDeleteController'
             });
-//            $stateProvider.state('admin.profile.password_change', {
-//                'url': '/:employeeId/profile/change_pass',
-//                'templateUrl': templateRoot + '/masters/profile/password_change.html',
-//                'controller': 'ProfileChangePasswordController'
-//            });
+            $stateProvider.state('print_form1', {
+                'url': '/:employeeId/print/form1',
+                'templateUrl': templateRoot + '/masters/evaluate/print_form1.html',
+                'controller': 'PrintForm1Controller'
+            });
+            $stateProvider.state('print_form2', {
+                'url': '/:employeeId/print/form2',
+                'templateUrl': templateRoot + '/masters/evaluate/print_form2.html',
+                'controller': 'PrintForm2Controller'
+            });
 //            $stateProvider.state('print_kra', {
 //                'url': '/:employeeId/profile/print_kra',
 //                'templateUrl': templateRoot + '/masters/profile/print_kra.html',
@@ -87,13 +92,31 @@ angular.module("stars.states.evaluate", [])
 //            $scope.filterList = $filter("total")('ratingScore');
             $scope.saveScore = function (ratingScore) {
                 console.log("Rating Score" + ratingScore);
+                $state.go('admin.evaluate', null, {'reload': true});
             };
         })
         .controller('Form2Controller', function (AdditionalDetailsService, Form2DetailsService, KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
+            $scope.employeeId = $stateParams.emploeeId;
             $scope.editableForm2 = {};
             $scope.additionalDetails = {};
-            $scope.additionalDetails = AdditionalDetailsService.findByEmployeeId({
-                'id': $stateParams.employeeId
+            AdditionalDetailsService.findByEmployeeId({
+                'employeeId': $stateParams.employeeId
+            }).$promise.catch(function (response) {
+                if (response.status === 500) {
+                    $scope.showSave = true;
+//                        $scope.showUpdate = false;
+                } else if (response.status === 404) {
+                    $scope.showSave = true;
+//                        $scope.showUpdate = false;
+                } else if (response.status === 400) {
+                    $scope.showSave = true;
+//                        $scope.showUpdate = false;
+                } else if (response.status === 200) {
+                    $scope.showSave = false;
+                }
+            }).then(function (additionalDetailsList) {
+                console.log("Additional Details :%O", additionalDetailsList);
+                $scope.additionalDetails = additionalDetailsList;
             });
             $scope.form2DetailsList = Form2DetailsService.findByEmployeeId({
                 'employeeId': $stateParams.employeeId
@@ -115,7 +138,7 @@ angular.module("stars.states.evaluate", [])
                 editableForm2.year = d.getFullYear();
                 $scope.saveForm2(editableForm2);
             };
-            $scope.saveForm2 = function (editableForm2Final) {              
+            $scope.saveForm2 = function (editableForm2Final) {
                 Form2DetailsService.save(editableForm2Final, function (savedData) {
                     $scope.editableForm2 = {};
                     $scope.refreshForm2DetailsList();
@@ -125,10 +148,13 @@ angular.module("stars.states.evaluate", [])
                 var d1 = new Date();
                 additionalDetail.employeeId = $stateParams.employeeId;
                 additionalDetail.year = d1.getFullYear();
-                $scope.saveAdditionalDetail(additionalDetail)
+                $scope.saveAdditionalDetail(additionalDetail);
             };
             $scope.saveAdditionalDetail = function (finalAdditionalDetail) {
                 console.log("FInal additional Detail :%O", finalAdditionalDetail);
+                AdditionalDetailsService.save(finalAdditionalDetail, function (savedData) {
+                    $state.go('admin.evaluate', null, {'reload': true});
+                });
             };
 
             $scope.refreshForm2DetailsList = function () {
@@ -150,6 +176,98 @@ angular.module("stars.states.evaluate", [])
 //                console.log("Employee Id :%O", employeeId);
 //                $scope.form2DetailsList = Form2DetailsService.findByEmployeeId({
 //                    'employeeId': employeeId
+//                });
+//            };
+        })
+        .controller('PrintForm1Controller', function (Form2DetailsService, KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
+            $scope.kraEmployeeObject = EmployeeService.get({
+                'id': $stateParams.employeeId
+            });
+            $scope.kraDetailsList = KraDetailsService.findByEmployeeId({
+                'employeeId': $stateParams.employeeId
+            });
+        })
+        .controller('PrintForm2Controller', function (AdditionalDetailsService, Form2DetailsService, KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
+            $scope.employeeId = $stateParams.employeeId;
+            $scope.editableForm2 = {};
+            $scope.additionalDetails = {};
+            AdditionalDetailsService.findByEmployeeId({
+                'employeeId': $stateParams.employeeId
+            }).$promise.catch(function (response) {
+                if (response.status === 500) {
+                    $scope.showSave = true;
+//                        $scope.showUpdate = false;
+                } else if (response.status === 404) {
+                    $scope.showSave = true;
+//                        $scope.showUpdate = false;
+                } else if (response.status === 400) {
+                    $scope.showSave = true;
+//                        $scope.showUpdate = false;
+                } else if (response.status === 200) {
+                    $scope.showSave = false;
+                }
+            }).then(function (additionalDetailsList) {
+                console.log("Additional Details :%O", additionalDetailsList);
+                $scope.additionalDetails = additionalDetailsList;
+            });
+            $scope.form2DetailsList = Form2DetailsService.findByEmployeeId({
+                'employeeId': $stateParams.employeeId
+            }, function (form2DetailsList) {
+                var b = 0;
+                angular.forEach(form2DetailsList, function (form2Detail) {
+                    b = b + form2Detail.ratingScore;
+                    $scope.ratingForm2 = b;
+                });
+            });
+            $scope.kraEmployeeObject = EmployeeService.get({
+                'id': $stateParams.employeeId
+            });
+            $scope.kraDetailsList = KraDetailsService.findByEmployeeId({
+                'employeeId': $stateParams.employeeId
+            }, function (kraDetailsList) {
+                var a = 0;
+                angular.forEach(kraDetailsList, function (kraDetail) {
+
+                    a = a + kraDetail.ratingScore;
+                    $scope.ratingForm1 = a;
+                });
+            });
+
+//            $scope.$watch('editableForm2.rating', function (rating) {
+//                var rating = parseInt(rating);
+//                var weightage = parseInt($scope.editableForm2.weightage);
+//                var finalweightage = (weightage / 100);
+//                $scope.editableForm2.ratingScore = Math.round((finalweightage * rating) * 100) / 100;
+//            });
+//
+//            $scope.approveForm2 = function (editableForm2) {
+//                var d = new Date();
+//                editableForm2.employeeId = $stateParams.employeeId;
+//                editableForm2.year = d.getFullYear();
+//                $scope.saveForm2(editableForm2);
+//            };
+//            $scope.saveForm2 = function (editableForm2Final) {
+//                Form2DetailsService.save(editableForm2Final, function (savedData) {
+//                    $scope.editableForm2 = {};
+//                    $scope.refreshForm2DetailsList();
+//                });
+//            };
+//            $scope.approveAdditionalDetail = function (additionalDetail) {
+//                var d1 = new Date();
+//                additionalDetail.employeeId = $stateParams.employeeId;
+//                additionalDetail.year = d1.getFullYear();
+//                $scope.saveAdditionalDetail(additionalDetail);
+//            };
+//            $scope.saveAdditionalDetail = function (finalAdditionalDetail) {
+//                console.log("FInal additional Detail :%O", finalAdditionalDetail);
+//                AdditionalDetailsService.save(finalAdditionalDetail, function (savedData) {
+//                    $state.go('admin.evaluate', null, {'reload': true});
+//                });
+//            };
+//
+//            $scope.refreshForm2DetailsList = function () {
+//                $scope.form2DetailsList = Form2DetailsService.findByEmployeeId({
+//                    'employeeId': $stateParams.employeeId
 //                });
 //            };
         });

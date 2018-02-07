@@ -21,7 +21,7 @@
                 <th>Measurable Target</th>
                 <th>Weightage</th>
                 <th>Rating</th>
-                <th>Rating Score</th>
+                <th>Performance Rating Score</th>
                 <!--<th>Mobile No</th>-->                
                 <th class="text-right">Actions</th>
             </tr>
@@ -53,7 +53,7 @@
                 <td colspan="3"></td>
                 <td>Total Weightage %</td>
                 <td>{{ kraDetailsList | total:'weightage'}} %</td>
-                <td></td>
+                <td>Performance Rating Score </td>
                 <td>{{ kraDetailsList | total:'ratingScore'}} / 9</td>
                 <td></td>
             </tr>          
@@ -67,6 +67,10 @@
             <i class="fa fa-save"></i>
             Save
         </button>
+<!--        <a target="_blank" class="btn btn-lg btn-primary" data-ui-sref="print_form1({'employeeId' : employeeId})">
+            <i class="fa fa-print"></i>
+            Print KRA
+        </a>-->
     </div>
 </div>
 <div data-ui-view=""></div>

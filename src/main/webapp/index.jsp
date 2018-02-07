@@ -310,7 +310,7 @@
         </style>
 
         <!-- Internal JS Files -->
-        <script>
+<!--        <script>
             (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
             i[r] = i[r] || function () {
@@ -324,7 +324,7 @@
             })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
             ga('create', 'UA-41214428-1', 'auto');
             ga('send', 'pageview');
-        </script>
+        </script>-->
 
         <script type="application/ld+json">
             {"@context":"http:\/\/schema.org","@type":"WebSite","@id":"#website","url":"https:\/\/spacewood.in\/","name":"Modular Kitchens, Wardrobes, Living Room, Bedroom Interior Designers - Spacewood.in - Spacewood","potentialAction":{"@type":"SearchAction","target":"https:\/\/spacewood.in\/?s={search_term_string}","query-input":"required name=search_term_string"}}
