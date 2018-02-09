@@ -1,0 +1,142 @@
+<div class="container-fluid top">
+    <div class="container no-padding">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 no-padding">
+                <a class="navbar-brand">
+                    <img src="./images/logo.png" alt="Spacewood" title="Spacewood">
+                </a>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 no-padding cust-nav1">                
+            </div>
+        </div>
+    </div>
+    <div class="container no-padding">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+            <br>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-size: 12px">
+                Spacewood Furnishers Pvt Ltd. T-48, MIDC Hingna, Nagpur-16
+                <br>
+                Ph No : 07104-235968 / Fax No : 07104-232139 / Email : info@spacewood.in
+                <br>
+                <!--<h3>KRA Details</h3>-->
+            </div>            
+            <!--            <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12 text-right" style="margin-top: 50px">
+                            Invoice Date : {{currentDate| date:'dd-MM-yyyy'}}
+                        </div>-->
+        </div>
+    </div>
+    <hr>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <div class="pull-left">
+
+            <!--            <a data-ui-sref="admin.employees"
+                           class="btn btn-default">
+                            <i class="fa fa-arrow-left"></i>
+                            Back
+                        </a>            -->
+        </div>
+        <div>
+            <h4>KRA Details</h4>
+        </div>
+    </div>
+    <div class="row">
+        <h3 style="margin-left: 30px;">Personal Details :</h3>
+        <hr style="width: 1310px;margin-left: 20px;border-top:  2px solid;">
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Name :</label>
+            <span class="col-sm-6">{{kraEmployeeObject.empName}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Designation :</label>
+            <span class="col-sm-6">{{kraEmployeeObject.designation}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Employee Code :</label>
+            <span class="col-sm-6">{{kraEmployeeObject.empNo}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Department :</label>
+            <span class="col-sm-6">{{kraEmployeeObject.department}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Date Of Birth :</label>
+            <span class="col-sm-6">{{kraEmployeeObject.empDob| date}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Date Of Joining :</label>
+            <span class="col-sm-6">{{kraEmployeeObject.empDoj| date}}</span>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Grade :</label>
+            <span class="col-sm-6">{{kraEmployeeObject.grade}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Educational Qualification :</label>
+            <span class="col-sm-6">{{kraEmployeeObject.eduQual}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Total Experience :</label>
+            <span class="col-sm-6">{{kraEmployeeObject.totalExp}} Years</span>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Location :</label>
+            <span class="col-sm-6">{{kraEmployeeObject.location}}</span>
+        </div>
+        <!--        <div class="col-sm-4">
+                    <label class="col-sm-6">Educational Qualification :</label>
+                    <span class="col-sm-6">{{employeeObject.eduQual}}</span>
+                </div>
+                <div class="col-sm-4">
+                    <label class="col-sm-6">Total Experience :</label>
+                    <span class="col-sm-6">{{employeeObject.totalExp}} Years</span>
+                </div>        -->
+    </div>
+
+</div>
+<div class="panel panel-default">
+<!--    <div class="modal-header text-center">
+        <h3 class="col-md-12 col-lg-12 col-xs-12">
+            Actions Menu
+        </h3>           
+    </div>-->
+    <div class="panel-body">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th class="text-right">#</th>
+                    <th>KRA Parameter</th>
+                    <th>Performance Objective</th>
+                    <th>Measurable Target</th>
+                    <th>Weightage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="kraDetail in kraDetailsList">
+                    <td class="text-right">{{ currentOffset + $index + 1}}</td>
+                    <td>{{ kraDetail.kraParameter}}</td>   
+                    <td>{{ kraDetail.performanceObjective}}</td>  
+                    <td>{{ kraDetail.measurableTarget}}</td>  
+                    <td>{{ kraDetail.weightage}} %</td>                                    
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"></td>
+                    <td>Total Weightage %</td>
+                    <td>{{ kraDetailsList | total:'weightage'}} %</td>
+                    <td></td>
+                </tr>           
+            </tfoot>
+        </table>
+    </div>
+</div>

@@ -25,6 +25,11 @@ angular.module("stars.states.admin_menu", [])
                 'templateUrl': templateRoot + '/masters/admin/department_resource_list.html',
                 'controller': 'AdminDepartmentResourceMenu'
             });
+            $stateProvider.state('admin.department_resource_list.update_additional_details', {
+                'url': '/:employeeId/update_additional_details',
+                'templateUrl': templateRoot + '/masters/admin/update_additional_details.html',
+                'controller': 'UpdateAdditionalDetails'
+            });
 //            $stateProvider.state('admin.hod', {
 //                'url': '/hod',
 //                'templateUrl': templateRoot + '/masters/hod_menu.html',
@@ -41,10 +46,45 @@ angular.module("stars.states.admin_menu", [])
         })
         .controller('AdminReportMenu', function ($scope, UserService) {
         })
-        .controller('AdminDepartmentResourceMenu', function ($scope, $stateParams, UserService,EmployeeService) {
+        .controller('AdminDepartmentResourceMenu', function (AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
             $scope.resourcesList = EmployeeService.findByDepartmentHead({
                 'departmentHeadId': $stateParams.employeeId
+            }, function (resourcesList) {
+                angular.forEach($scope.resourcesList, function (resourceData) {
+                    AdditionalDetailsService.findByEmployeeId({
+                        'employeeId': resourceData.id
+                    }).$promise.catch(function (response) {
+                        if (response.status === 500) {
+                            resourceData.showUpdateButton = false;
+                        } else if (response.status === 404) {
+                            resourceData.showUpdateButton = false;
+                        } else if (response.status === 400) {
+                            resourceData.showUpdateButton = false;
+                        } else if (response.status === 200) {
+                            resourceData.showUpdateButton = true;
+                        }
+                    }).then(function (additionalDetailsObject) {                        
+                        if (additionalDetailsObject !== undefined) {                            
+                            resourceData.showUpdateButton = true;
+                        }else{
+                            resourceData.showUpdateButton = false;
+                        }
+                    });                    
+                });
             });
+        })
+        .controller('UpdateAdditionalDetails', function ($state, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {            
+            $scope.additionalDetails = AdditionalDetailsService.findByEmployeeId({
+                'employeeId': $stateParams.employeeId
+            });
+            $scope.employeeObject = EmployeeService.get({
+                'id': $stateParams.employeeId
+            });
+            $scope.updateAdditionalDetail = function (additionalDetails) {                
+                additionalDetails.$save(function () {
+                    $state.go('admin.department_resource_list', {'employeeId': $scope.employeeObject.reportingTo}, {'reload': true});
+                });
+            };
         })
         .controller('AdminDepartmentHeadMenu', function ($scope, UserService, EmployeeService) {
             $scope.hodList = UserService.findHod(function (hodList) {

@@ -84,7 +84,7 @@
         <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Ubuntu:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
         <link rel="dns-prefetch" href="//s.w.org">
-        <link rel="stylesheet" id="contact-form-7-group-css" href="https://spacewood.in/wp-content/plugins/bwp-minify/min/?f=wp-content/plugins/contact-form-7/includes/css/styles.css,wp-content/plugins/wp-store-locator/css/styles.css" type="text/css" media="all">
+        <!--<link rel="stylesheet" id="contact-form-7-group-css" href="https://spacewood.in/wp-content/plugins/bwp-minify/min/?f=wp-content/plugins/contact-form-7/includes/css/styles.css,wp-content/plugins/wp-store-locator/css/styles.css" type="text/css" media="all">-->
         <link rel="https://api.w.org/" href="https://spacewood.in/wp-json/">
         <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://spacewood.in/xmlrpc.php?rsd">
         <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://spacewood.in/wp-includes/wlwmanifest.xml">
@@ -336,11 +336,11 @@
         <script href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script href="${pageContext.request.contextPath}/js/scrollbar.min.js"></script>
         <script href="${pageContext.request.contextPath}/js/emojisetting.js"></script>
-        <script src="https://spacewood.in/wp-includes/js/twemoji.js?ver=4.8.2" type="text/javascript" defer=""></script>
+<!--        <script src="https://spacewood.in/wp-includes/js/twemoji.js?ver=4.8.2" type="text/javascript" defer=""></script>
         <script src="https://spacewood.in/wp-includes/js/wp-emoji.js?ver=4.8.2" type="text/javascript" defer=""></script>
         <script type="text/javascript" src="https://spacewood.in/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
-        <script type="text/javascript" src="https://spacewood.in/wp-includes/js/jquery/jquery-migrate.js?ver=1.4.1"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://spacewood.in/wp-includes/js/jquery/jquery-migrate.js?ver=1.4.1"></script>-->
+        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
         <!-- Icons & Images -->
@@ -373,6 +373,7 @@
         <script src="${pageContext.request.contextPath}/js/states/evaluate.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/evaluate.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/admin_menu.js"></script>
+        <script src="${pageContext.request.contextPath}/js/states/reports.js"></script>
 <!--        <script src="${pageContext.request.contextPath}/js/states/employee.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/notification.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/party.js"></script>

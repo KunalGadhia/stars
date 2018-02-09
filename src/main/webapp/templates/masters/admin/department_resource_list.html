@@ -38,11 +38,11 @@
                 <td>{{ employee.location}}</td>
                 <!--<td>{{ user.mobileNo}}</td>-->                
                 <td class="text-right">
-<!--                    <a data-ui-sref="admin.resourcekra_list({ employeeId: employee.id })"
-                       class="btn btn-primary">
-                        Evaluate KRA &nbsp;
+                    <a data-ui-sref="admin.department_resource_list.update_additional_details({ employeeId: employee.id })"
+                       class="btn btn-primary" ng-show="employee.showUpdateButton">
+                        Update Additional Details &nbsp;
                         <i class="fa fa-pencil"></i>
-                    </a>-->
+                    </a>
                     <a data-ui-sref="admin.form2({ employeeId: employee.id })"
                        class="btn btn-primary">
                         Form 2 &nbsp;

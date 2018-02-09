@@ -1,0 +1,259 @@
+<div class="modal modal-stars">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog" style="margin-left: 250px;">
+        <form role="form" ng-submit="updateAdditionalDetail(additionalDetails)">
+            <div class="modal-content modal-lg">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-user"></i>
+                        Update Additional Details for {{employeeObject.empName}}
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Special Contribution / Achievement (If Any)</label>
+                                <textarea rows="3" class="form-control" ng-model="additionalDetails.specialContribution">
+                                            
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Area Of Improvement (If Any)</label>
+                                <textarea rows="3" class="form-control" ng-model="additionalDetails.areaOfImprovement">
+                                            
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row text-center">
+                        <span><strong>Training Need / Identification</strong></span>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-4 text-center">
+                            <div class="form-group">
+                                <label>Communication / Interpersonal Skills</label>
+                                <input class="form-control" type="checkbox" ng-model="additionalDetails.commInterpersonalSkill">
+                            </div>
+                        </div>
+                        <div class="col-sm-4 text-center">
+                            <div class="form-group">
+                                <label>Supervisory Development</label>
+                                <input class="form-control" type="checkbox" ng-model="additionalDetails.supervisoryDevelopment">
+                            </div>
+                        </div>
+                        <div class="col-sm-4 text-center">
+                            <div class="form-group">
+                                <label>Team Building / Leadership</label>
+                                <input class="form-control" type="checkbox" ng-model="additionalDetails.teamBuilding">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 text-center">
+                            <div class="form-group">
+                                <label>Selling & Negotiation Skills</label>
+                                <input class="form-control" type="checkbox" ng-model="additionalDetails.sellingNegotiationSkill">
+                            </div>
+                        </div>
+                        <div class="col-sm-4 text-center">
+                            <div class="form-group">
+                                <label>CRM</label>
+                                <input class="form-control" type="checkbox" ng-model="additionalDetails.crm">
+                            </div>
+                        </div>
+                        <div class="col-sm-4 text-center">
+                            <div class="form-group">
+                                <label>Presentation Skills</label>
+                                <input class="form-control" type="checkbox" ng-model="additionalDetails.presentationSkill">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 text-center">
+                            <div class="form-group">
+                                <label>Time Management</label>
+                                <input class="form-control" type="checkbox" ng-model="additionalDetails.timeManagement">
+                            </div>
+                        </div>
+                        <div class="col-sm-4 text-center">
+                            <div class="form-group">
+                                <label>Functional</label>
+                                <input class="form-control" type="checkbox" ng-model="additionalDetails.functional">
+                            </div>
+                        </div>
+                        <div class="col-sm-4 text-center">
+                            <div class="form-group">
+                                <label>Presentation Skills</label>
+                                <input class="form-control" type="checkbox" ng-model="additionalInputs.presentationSkill">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>HOD Comment</label>
+                                <textarea rows="3" class="form-control" ng-model="additionalDetails.hodComment">
+                                            
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>HR Comment</label>
+                                <textarea rows="3" class="form-control" ng-model="additionalDetails.hrComment">
+                                            
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Neutral Observer Comment</label>
+                                <textarea rows="3" class="form-control" ng-model="additionalDetails.noComment">
+                                            
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-lg btn-primary" ng-disabled="editableUser.repeatUsername">
+                            <i class="fa fa-save"></i>
+                            Update
+                        </button>
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class="btn btn-link" >
+                            cancel
+                        </button>				
+                    </div>
+                </div>
+            </div>
+            <!--            <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Special Contribution / Achievement (If Any)</label>
+                                    <textarea rows="3" class="form-control" ng-model="additionalDetails.specialContribution">
+                                            
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Area Of Improvement (If Any)</label>
+                                    <textarea rows="3" class="form-control" ng-model="additionalDetails.areaOfImprovement">
+                                            
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                                    <div class="row text-center">
+                                        <span><strong>Training Need / Identification</strong></span>
+                                    </div>
+                        <div class="row">
+                            <div class="col-sm-4 text-center">
+                                <div class="form-group">
+                                    <label>Communication / Interpersonal Skills</label>
+                                    <input class="form-control" type="checkbox" ng-model="additionalDetails.commInterpersonalSkill">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <div class="form-group">
+                                    <label>Supervisory Development</label>
+                                    <input class="form-control" type="checkbox" ng-model="additionalDetails.supervisoryDevelopment">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <div class="form-group">
+                                    <label>Team Building / Leadership</label>
+                                    <input class="form-control" type="checkbox" ng-model="additionalDetails.teamBuilding">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 text-center">
+                                <div class="form-group">
+                                    <label>Selling & Negotiation Skills</label>
+                                    <input class="form-control" type="checkbox" ng-model="additionalDetails.sellingNegotiationSkill">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <div class="form-group">
+                                    <label>CRM</label>
+                                    <input class="form-control" type="checkbox" ng-model="additionalDetails.crm">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <div class="form-group">
+                                    <label>Presentation Skills</label>
+                                    <input class="form-control" type="checkbox" ng-model="additionalDetails.presentationSkill">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 text-center">
+                                <div class="form-group">
+                                    <label>Time Management</label>
+                                    <input class="form-control" type="checkbox" ng-model="additionalDetails.timeManagement">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <div class="form-group">
+                                    <label>Functional</label>
+                                    <input class="form-control" type="checkbox" ng-model="additionalDetails.functional">
+                                </div>
+                            </div>
+                                            <div class="col-sm-4 text-center">
+                                                <div class="form-group">
+                                                    <label>Presentation Skills</label>
+                                                    <input class="form-control" type="checkbox" ng-model="additionalInputs.presentationSkill">
+                                                </div>
+                                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>HOD Comment</label>
+                                    <textarea rows="3" class="form-control" ng-model="additionalDetails.hodComment">
+                                            
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>HR Comment</label>
+                                    <textarea rows="3" class="form-control" ng-model="additionalDetails.hrComment">
+                                            
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Neutral Observer Comment</label>
+                                    <textarea rows="3" class="form-control" ng-model="additionalDetails.noComment">
+                                            
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-lg btn-primary" ng-if="showSave">
+                                <i class="fa fa-save"></i>
+                                Update
+                            </button>               
+                            <button type="button"
+                                    onclick="window.history.back()"
+                                    class="btn btn-link" >
+                                cancel
+                            </button>				
+                        </div>-->
+        </form>
+    </div>
+</div>

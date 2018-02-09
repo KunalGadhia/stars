@@ -104,7 +104,6 @@ angular.module("stars.states.user", [])
                 }).$promise;
             };
             $scope.setEmployee = function (employee) {
-//                $scope.partyName = employee.empName;
                 $scope.editableUser.employeeId = employee.id;
             };            
 
