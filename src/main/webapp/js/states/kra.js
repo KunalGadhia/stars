@@ -55,6 +55,7 @@ angular.module("stars.states.kra", [])
                 $scope.kraDetailsList = KraDetailsService.findByEmployeeId({
                     'employeeId': userObject.employeeId
                 });
+                console.log("KRA Details List :%O", $scope.kraDetailsList);
                 if (userObject.role === "ROLE_EMPLOYEE") {
                     $scope.employeeBack = true;
                     $scope.hodBack = false;

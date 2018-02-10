@@ -48,11 +48,11 @@
                 <!--<td>{{ user.mobileNo}}</td>-->                
                 <td class="text-right">
                     <a data-ui-sref="admin.kra_employeelist.editForm1({ kraDetailId: kraDetail.id })"
-                       class="btn btn-primary">					
+                       class="btn btn-primary" ng-disabled="kraDetail.rating !== null">
                         <i class="fa fa-pencil"></i>
                     </a>
                     <a data-ui-sref="admin.kra_employeelist.delete({ kraDetailId: kraDetail.id })"
-                       class="btn btn-danger">					
+                       class="btn btn-danger" ng-disabled="kraDetail.rating !== null">
                         <i class="fa fa-trash"></i>
                     </a>                    
                 </td>                 

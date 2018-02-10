@@ -25,6 +25,16 @@ angular.module("stars.states.reports", [])
                 'templateUrl': templateRoot + '/masters/reports/form1_report.html',
                 'controller': 'Report1Details'
             });
+            $stateProvider.state('report2_details', {
+                'url': '/:employeeId/report2_details',
+                'templateUrl': templateRoot + '/masters/reports/form2_report.html',
+                'controller': 'Report2Details'
+            });
+            $stateProvider.state('report3_details', {
+                'url': '/:employeeId/report3_details',
+                'templateUrl': templateRoot + '/masters/reports/form3_report.html',
+                'controller': 'Report3Details'
+            });
 //            $stateProvider.state('admin.department_resource_list.update_additional_details', {
 //                'url': '/:employeeId/update_additional_details',
 //                'templateUrl': templateRoot + '/masters/admin/update_additional_details.html',
@@ -48,20 +58,29 @@ angular.module("stars.states.reports", [])
                 }).$promise;
             };
             $scope.setEmployee = function (employee) {
-                console.log("SEt Employee :%O", employee);
                 $scope.searchEmployeeId = employee.id;
-//                $scope.editableSearch.employeeId = employee.id;
-//                $scope.searchEmployeeId = employee.id;
             };
-//            $scope.generateReport1 = function () {
-//                console.log("Employee id in generate function" + $scope.searchEmployeeId);
-//                $state.go('report1_details', {'employeeId': $scope.searchEmployeeId}, {'reload': true});
-//            };
+
         })
-        .controller('AdminForm2Controller', function ($scope, UserService) {
+        .controller('AdminForm2Controller', function ($scope, UserService, EmployeeService) {
+            $scope.searchEmployees = function (empString) {
+                return EmployeeService.findByNameLike({
+                    'name': empString
+                }).$promise;
+            };
+            $scope.setEmployee = function (employee) {
+                $scope.searchEmployeeId = employee.id;
+            };
         })
         .controller('AdminForm3Controller', function (AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
-
+            $scope.searchEmployees = function (empString) {
+                return EmployeeService.findByNameLike({
+                    'name': empString
+                }).$promise;
+            };
+            $scope.setEmployee = function (employee) {
+                $scope.searchEmployeeId = employee.id;
+            };
         })
         .controller('Report1Details', function (KraDetailsService, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
             $scope.kraEmployeeObject = EmployeeService.get({
@@ -69,6 +88,57 @@ angular.module("stars.states.reports", [])
             });
             $scope.kraDetailsList = KraDetailsService.findByEmployeeId({
                 'employeeId': $stateParams.employeeId
+            });
+        })
+        .controller('Report2Details', function (Form2DetailsService, KraDetailsService, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
+            $scope.employeeId = $stateParams.employeeId;
+            $scope.editableForm2 = {};
+            $scope.additionalDetails = {};
+            $scope.additionalDetails = AdditionalDetailsService.findByEmployeeId({
+                'employeeId': $stateParams.employeeId
+            });
+
+            $scope.form2DetailsList = Form2DetailsService.findByEmployeeId({
+                'employeeId': $stateParams.employeeId
+            }, function (form2DetailsList) {
+                var b = 0;
+                angular.forEach(form2DetailsList, function (form2Detail) {
+                    b = b + form2Detail.ratingScore;
+                    $scope.ratingForm2 = b;
+                });
+            });
+            $scope.employeeObject = EmployeeService.get({
+                'id': $stateParams.employeeId
+            });
+        })
+        .controller('Report3Details', function (Form2DetailsService, KraDetailsService, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
+            $scope.employeeId = $stateParams.employeeId;
+            $scope.editableForm2 = {};
+            $scope.additionalDetails = {};
+            $scope.additionalDetails = AdditionalDetailsService.findByEmployeeId({
+                'employeeId': $stateParams.employeeId
+            });
+            $scope.form2DetailsList = Form2DetailsService.findByEmployeeId({
+                'employeeId': $stateParams.employeeId
+            }, function (form2DetailsList) {
+                var b = 0;
+                angular.forEach(form2DetailsList, function (form2Detail) {
+                    b = b + form2Detail.ratingScore;
+                    $scope.ratingForm2 = b;
+                });
+            });
+            $scope.kraEmployeeObject = EmployeeService.get({
+                'id': $stateParams.employeeId
+            });
+            $scope.kraDetailsList = KraDetailsService.findByEmployeeId({
+                'employeeId': $stateParams.employeeId
+            }, function (kraDetailsList) {
+                var a = 0;
+                angular.forEach(kraDetailsList, function (kraDetail) {
+
+                    a = a + kraDetail.ratingScore;
+                    $scope.ratingForm1 = a;
+                });
             });
         });
 //        .controller('UpdateAdditionalDetails', function ($state, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {            

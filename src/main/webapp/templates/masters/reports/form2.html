@@ -1,16 +1,46 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <div class="pull-left">
+            <button data-ui-sref="admin.report_menu"
+                    class="btn btn-default">
+                <i class="fa fa-arrow-left"></i>
+                Back
+            </button>            
+        </div>
+        <div>
+            <h4>Get Form 2 Details based on Employee Code</h4>
+        </div>
+    </div>
+    <div class="row">
+        <br>
+    </div>
+    <!--<form type="form" ng-submit="generateReport1()">-->
+        <div class="row" style="margin-top: 20px;margin-left: 5px">
+            <div class="col-sm-6">
+                <div class="form-group">                
+                    <input class="form-control"
+                           placeholder="Type Name Of An Employee"
+                           uib-typeahead="employees.empName as employees.empName for employees in searchEmployees($viewValue)"
+                           typeahead-on-select="setEmployee($item)"
+                           typeahead-editable="false"
+                           typeahead-loading="loadingEmployee" 
+                           typeahead-no-results="noEmployeeFound"
+                           required ="required"
+                           style="height:47px"
+                           ng-model="employeeName" />
+                    <p ng-show="noEmployeeFound" class="help-block text-muted">No Employees Found</p>
+                    <p ng-show="loadingEmployee" class="help-block text-muted">Loading...</p>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">                
+                    <a class='btn btn-primary btn-lg' target="_blank" data-ui-sref="report2_details({'employeeId': searchEmployeeId})">Fetch KRA Details</a>
+                </div>
+            </div>
+        </div>
+    <!--</form>-->
+
+
+</div>
+
+<div data-ui-view=""></div>

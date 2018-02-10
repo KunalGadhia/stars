@@ -1,16 +1,229 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <div>
+            <h4>Form 2 Report</h4>
+        </div>
+    </div>
+    <div class="row">
+        <h3 style="margin-left: 30px;">Personal Details :</h3>
+        <hr style="width: 1310px;margin-left: 20px;border-top:  2px solid;">
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Name :</label>
+            <span class="col-sm-6">{{employeeObject.empName}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Designation :</label>
+            <span class="col-sm-6">{{employeeObject.designation}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Employee Code :</label>
+            <span class="col-sm-6">{{employeeObject.empNo}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Department :</label>
+            <span class="col-sm-6">{{employeeObject.department}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Date Of Birth :</label>
+            <span class="col-sm-6">{{employeeObject.empDob| date}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Date Of Joining :</label>
+            <span class="col-sm-6">{{employeeObject.empDoj| date}}</span>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Grade :</label>
+            <span class="col-sm-6">{{employeeObject.grade}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Educational Qualification :</label>
+            <span class="col-sm-6">{{employeeObject.eduQual}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Total Experience :</label>
+            <span class="col-sm-6">{{employeeObject.totalExp}} Years</span>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Location :</label>
+            <span class="col-sm-6">{{employeeObject.location}}</span>
+        </div>
+        <!--        <div class="col-sm-4">
+                    <label class="col-sm-6">Educational Qualification :</label>
+                    <span class="col-sm-6">{{employeeObject.eduQual}}</span>
+                </div>
+                <div class="col-sm-4">
+                    <label class="col-sm-6">Total Experience :</label>
+                    <span class="col-sm-6">{{employeeObject.totalExp}} Years</span>
+                </div>        -->
+    </div>
+
+</div>
+<div class="panel panel-default">
+    <div class="modal-header text-center" style="min-height: 60px">
+        <h3 class="col-md-12 col-lg-12 col-xs-12">
+            Soft Skills Assessment 
+        </h3>           
+    </div>
+    <div class="panel-body">        
+        <div class="row">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-right">#</th>
+                        <th>Assessment Parameter</th>
+                        <th>Weightage %</th>
+                        <th>Rating</th>
+                        <!--<th>Rating Score</th>-->                        
+                        <!--<th class="text-right">Actions</th>-->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="form2Params in form2DetailsList">
+                        <td class="text-right">{{$index + 1}}</td>
+                        <td>{{ form2Params.parameter}}</td>   
+                        <td>{{ form2Params.weightage}}</td>  
+                        <td>{{ form2Params.rating}}</td>
+
+                        <!--<td>{{ form2Params.ratingScore}}</td>-->
+                        <!--                        <td class="text-right">
+                                                    <a data-ui-sref="admin.form2.delete({ form2DetailId: form2Params.id })"
+                                                       class="btn btn-danger">					
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>                           
+                                                </td>                        -->
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="1"></td>
+                        <td class="text-right">Total Weightage :</td>
+                        <td>{{ form2DetailsList | total:'weightage'}} %</td>
+                        <td></td>
+                        <!--                        <td class="text-right">Interview Rating Score :</td>
+                                                <td>{{ form2DetailsList | total:'ratingScore'}} / 9</td>-->
+                        <!--<td></td>-->
+                    </tr>           
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="modal-header text-center" style="min-height: 60px">
+        <h3 class="col-md-12 col-lg-12 col-xs-12">
+            Additional Inputs
+        </h3>           
+    </div>
+    <div class="panel-body">        
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Special Contribution / Achievement (If Any)</label>
+                    <textarea rows="3" class="form-control" ng-model="additionalDetails.specialContribution">
+                                
+                    </textarea>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Area Of Improvement (If Any)</label>
+                    <textarea rows="3" class="form-control" ng-model="additionalDetails.areaOfImprovement">
+                                
+                    </textarea>
+                </div>
+            </div>
+        </div>
+        <br>          
+        <div class="row">
+            <div class="col-sm-4 text-center">
+                <div class="form-group">
+                    <label>Communication / Interpersonal Skills</label>
+                    <input class="form-control" type="checkbox" ng-model="additionalDetails.commInterpersonalSkill">
+                </div>
+            </div>
+            <div class="col-sm-4 text-center">
+                <div class="form-group">
+                    <label>Supervisory Development</label>
+                    <input class="form-control" type="checkbox" ng-model="additionalDetails.supervisoryDevelopment">
+                </div>
+            </div>
+            <div class="col-sm-4 text-center">
+                <div class="form-group">
+                    <label>Team Building / Leadership</label>
+                    <input class="form-control" type="checkbox" ng-model="additionalDetails.teamBuilding">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 text-center">
+                <div class="form-group">
+                    <label>Selling & Negotiation Skills</label>
+                    <input class="form-control" type="checkbox" ng-model="additionalDetails.sellingNegotiationSkill">
+                </div>
+            </div>
+            <div class="col-sm-4 text-center">
+                <div class="form-group">
+                    <label>CRM</label>
+                    <input class="form-control" type="checkbox" ng-model="additionalDetails.crm">
+                </div>
+            </div>
+            <div class="col-sm-4 text-center">
+                <div class="form-group">
+                    <label>Presentation Skills</label>
+                    <input class="form-control" type="checkbox" ng-model="additionalDetails.presentationSkill">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 text-center">
+                <div class="form-group">
+                    <label>Time Management</label>
+                    <input class="form-control" type="checkbox" ng-model="additionalDetails.timeManagement">
+                </div>
+            </div>
+            <div class="col-sm-4 text-center">
+                <div class="form-group">
+                    <label>Functional</label>
+                    <input class="form-control" type="checkbox" ng-model="additionalDetails.functional">
+                </div>
+            </div>                
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>HOD Comment</label>
+                    <textarea rows="3" class="form-control" ng-model="additionalDetails.hodComment">
+                                
+                    </textarea>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>HR Comment</label>
+                    <textarea rows="3" class="form-control" ng-model="additionalDetails.hrComment">
+                                
+                    </textarea>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Neutral Observer Comment</label>
+                    <textarea rows="3" class="form-control" ng-model="additionalDetails.noComment">
+                                
+                    </textarea>
+                </div>
+            </div>
+        </div>       
+    </div>
+</div>
+
+<div data-ui-view=""></div>

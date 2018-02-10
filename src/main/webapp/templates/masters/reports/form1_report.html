@@ -118,6 +118,8 @@
                     <th>Performance Objective</th>
                     <th>Measurable Target</th>
                     <th>Weightage</th>
+                    <th>Rating</th>
+                    <th>Rating Score</th>
                 </tr>
             </thead>
             <tbody>
@@ -127,6 +129,8 @@
                     <td>{{ kraDetail.performanceObjective}}</td>  
                     <td>{{ kraDetail.measurableTarget}}</td>  
                     <td>{{ kraDetail.weightage}} %</td>                                    
+                    <td>{{ kraDetail.rating}}</td>
+                    <td>{{ kraDetail.ratingScore}}</td>
                 </tr>
             </tbody>
             <tfoot>
@@ -134,7 +138,8 @@
                     <td colspan="3"></td>
                     <td>Total Weightage %</td>
                     <td>{{ kraDetailsList | total:'weightage'}} %</td>
-                    <td></td>
+                    <td>Rating Score </td>
+                    <td>{{ kraDetailsList | total:'ratingScore'}} / 9</td>
                 </tr>           
             </tfoot>
         </table>
