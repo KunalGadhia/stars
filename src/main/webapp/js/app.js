@@ -71,6 +71,7 @@ angular.module("stars", [
     'stars.states.admin_menu',
     'stars.states.reports',
     'stars.states.employee',
+    'stars.states.hr_menu',
 //    'digitalbusiness.states.admin',
 //    'digitalbusiness.states.employee',
 //    'digitalbusiness.states.notification',

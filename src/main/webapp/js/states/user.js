@@ -26,7 +26,21 @@ angular.module("stars.states.user", [])
                 'controller': 'UserDeleteController'
             });
         })
-        .controller('UserListController', function (EmployeeService, UserService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('UserListController', function ($rootScope, EmployeeService, UserService, $scope, $stateParams, $state, paginationLimit) {
+
+            $scope.user = $rootScope.currentUser;
+            UserService.findByUsername({
+                'username': $scope.user.username
+            }, function (userObject) {
+                if (userObject.role === "ROLE_HR") {
+                    $scope.showHRBack = true;
+                    $scope.showAdminBack = false;
+                } else if (userObject.role === "ROLE_ADMIN") {
+                    $scope.showHRBack = false;
+                    $scope.showAdminBack = true;
+                }
+            });
+            
             if (
                     $stateParams.offset === undefined ||
                     isNaN($stateParams.offset) ||
@@ -70,7 +84,7 @@ angular.module("stars.states.user", [])
 
             $scope.editableUser = {};
 
-            $scope.$watch('editableUser.username', function (username) {                
+            $scope.$watch('editableUser.username', function (username) {
                 UserService.findByUsername({'username': username}).$promise.catch(function (response) {
                     if (response.status === 500) {
                         $scope.editableUser.repeatUsername = false;
@@ -87,7 +101,7 @@ angular.module("stars.states.user", [])
                 });
             });
 
-            $scope.$watch('editableUser.employeeId', function (employeeId) {                
+            $scope.$watch('editableUser.employeeId', function (employeeId) {
                 UserService.findByEmployeeId({'employeeId': employeeId}).$promise.catch(function (response) {
                     if (response.status === 500) {
                         $scope.editableUser.repeatEmployee = false;
@@ -96,7 +110,7 @@ angular.module("stars.states.user", [])
                     } else if (response.status === 400) {
                         $scope.editableUser.repeatEmployee = false;
                     }
-                }).then(function (employeeId) {                    
+                }).then(function (employeeId) {
                     if (employeeId !== undefined) {
                         $scope.editableUser.repeatEmployee = true;
                     }

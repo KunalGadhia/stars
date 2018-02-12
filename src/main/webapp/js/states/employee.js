@@ -26,7 +26,20 @@ angular.module("stars.states.employee", [])
                 'controller': 'EmployeeDeleteController'
             });
         })
-        .controller('EmployeeListController', function (EmployeeService, UserService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('EmployeeListController', function ($rootScope, EmployeeService, UserService, $scope, $stateParams, $state, paginationLimit) {
+            $scope.user = $rootScope.currentUser;
+            UserService.findByUsername({
+                'username': $scope.user.username
+            }, function (userObject) {
+                if (userObject.role === "ROLE_HR") {
+                    $scope.showHRBack = true;
+                    $scope.showAdminBack = false;
+                } else if (userObject.role === "ROLE_ADMIN") {
+                    $scope.showHRBack = false;
+                    $scope.showAdminBack = true;
+                }
+            });
+
             if (
                     $stateParams.offset === undefined ||
                     isNaN($stateParams.offset) ||

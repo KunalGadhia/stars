@@ -90,11 +90,23 @@ angular.module("stars.states.evaluate", [])
                 });
             });
 //            $scope.filterList = $filter("total")('ratingScore');
-            $scope.saveScore = function () {                
+            $scope.saveScore = function () {
                 $state.go('admin.evaluate', null, {'reload': true});
             };
         })
         .controller('Form2Controller', function (AdditionalDetailsService, Form2DetailsService, KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
+            $scope.user = $rootScope.currentUser;            
+            UserService.findByUsername({
+                'username': $scope.user.username
+            }, function (userObject) {                
+                if(userObject.role === "ROLE_HR"){
+                    $scope.showHRBack = true;
+                    $scope.showAdminBack = false;
+                }else if(userObject.role === "ROLE_ADMIN"){
+                    $scope.showHRBack = false;
+                    $scope.showAdminBack = true;
+                }
+            });
             $scope.employeeId = $stateParams.emploeeId;
             $scope.editableForm2 = {};
             $scope.additionalDetails = {};

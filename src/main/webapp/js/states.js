@@ -61,6 +61,8 @@ angular.module("stars.states", ['ngAnimate', 'ui.bootstrap'])
                         console.log("Data ROle :%O", data.role);
                         if (data.role === "ROLE_ADMIN") {
                             $state.go("admin.masters");
+                        } else if (data.role === "ROLE_HR") {
+                            $state.go("admin.hr");
                         } else if (data.role === "ROLE_HOD") {
                             $state.go("admin.hod");
                         } else if (data.role === "ROLE_EMPLOYEE") {

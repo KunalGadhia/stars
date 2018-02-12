@@ -375,6 +375,7 @@
         <script src="${pageContext.request.contextPath}/js/states/admin_menu.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/reports.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/employee.js"></script>
+        <script src="${pageContext.request.contextPath}/js/states/hr_menu.js"></script>
 <!--        <script src="${pageContext.request.contextPath}/js/states/employee.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/notification.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/party.js"></script>

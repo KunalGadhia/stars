@@ -3,10 +3,15 @@
         <div class="pull-left">
 
             <button data-ui-sref="admin.department_resource_list({'employeeId': employeeObject.departmentHead})"
-                    class="btn btn-default">
+                    class="btn btn-default" ng-show="showAdminBack">
                 <i class="fa fa-arrow-left"></i>
                 Back
-            </button>            
+            </button> 
+            <button data-ui-sref="admin.hr_department_resource_list({'employeeId': employeeObject.departmentHead})"
+                    class="btn btn-default" ng-show="showHRBack">
+                <i class="fa fa-arrow-left"></i>
+                Back
+            </button> 
         </div>
         <div>
             <h4>Form 2</h4>
@@ -298,7 +303,7 @@
                     <i class="fa fa-save"></i>
                     Save
                 </button>
-                <a target="_blank" class="btn btn-lg btn-primary" data-ui-sref="print_form2({'employeeId' : employeeObject.id})">
+                <a target="_blank" class="btn btn-lg btn-primary" data-ui-sref="print_form2({'employeeId' : employeeObject.id})" ng-show="showAdminBack">
                     <i class="fa fa-print"></i>
                     Print Form 2
                 </a>
