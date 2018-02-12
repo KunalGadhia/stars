@@ -81,7 +81,7 @@
                         <th>Assessment Parameter</th>
                         <th>Weightage %</th>
                         <th>Rating</th>
-                        <!--<th>Rating Score</th>-->                        
+                        <th>Rating Score</th>                        
                         <!--<th class="text-right">Actions</th>-->
                     </tr>
                 </thead>
@@ -91,8 +91,7 @@
                         <td>{{ form2Params.parameter}}</td>   
                         <td>{{ form2Params.weightage}}</td>  
                         <td>{{ form2Params.rating}}</td>
-
-                        <!--<td>{{ form2Params.ratingScore}}</td>-->
+                        <td>{{ form2Params.ratingScore}}</td>
                         <!--                        <td class="text-right">
                                                     <a data-ui-sref="admin.form2.delete({ form2DetailId: form2Params.id })"
                                                        class="btn btn-danger">					
@@ -106,9 +105,9 @@
                         <td colspan="1"></td>
                         <td class="text-right">Total Weightage :</td>
                         <td>{{ form2DetailsList | total:'weightage'}} %</td>
-                        <td></td>
-                        <!--                        <td class="text-right">Interview Rating Score :</td>
-                                                <td>{{ form2DetailsList | total:'ratingScore'}} / 9</td>-->
+                        <!--<td></td>-->
+                                                <td class="text-right">Interview Rating Score :</td>
+                                                <td>{{ form2DetailsList | total:'ratingScore'}} / 9</td>
                         <!--<td></td>-->
                     </tr>           
                 </tfoot>

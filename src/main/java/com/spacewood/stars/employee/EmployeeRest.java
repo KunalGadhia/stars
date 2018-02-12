@@ -62,6 +62,11 @@ public class EmployeeRest {
         return employeeDAL.findByNameLike(name);
     }
     
+    @RequestMapping(value = "/find/emp_no_like", method = RequestMethod.GET)
+    public List<Employee> findByEmpNumLike(@RequestParam("empNo") String empNo) {
+        return employeeDAL.findByEmpNumLike(empNo);
+    }
+    
     @RequestMapping(value = "/find/department_head", method = RequestMethod.GET)
     public List<Employee> findByDepartmentHead(@RequestParam("departmentHeadId") Integer departmentHeadId) {
         return employeeDAL.findByDepartmentHead(departmentHeadId);

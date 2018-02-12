@@ -72,10 +72,17 @@
                                 <p ng-show="loadingEmployee" class="help-block text-muted">Loading...</p>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 text-danger">                            
+                        </div>
+                        <div class="col-sm-6 text-danger" ng-show="editableUser.repeatEmployee">
+                            Employee Selected has Already been selected once. Same Employee Id cannot be assigned twice.
+                        </div>                        
                     </div>                    
 
                     <div class="modal-footer">
-                        <button class="btn btn-lg btn-primary" ng-disabled="editableUser.repeatUsername">
+                        <button class="btn btn-lg btn-primary" ng-disabled="editableUser.repeatUsername || editableUser.repeatEmployee">
                             <i class="fa fa-save"></i>
                             Save
                         </button>

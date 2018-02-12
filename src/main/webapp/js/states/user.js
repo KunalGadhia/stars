@@ -46,9 +46,9 @@ angular.module("stars.states.user", [])
                 'offset': $scope.currentOffset
             }, function (userList) {
                 console.log("S :%O", userList);
-                angular.forEach($scope.users, function (user) {                    
+                angular.forEach($scope.users, function (user) {
                     user.employee = EmployeeService.get({
-                       'id':user.employeeId 
+                        'id': user.employeeId
                     });
                 });
 //                $scope.colorConstraints = s;
@@ -68,10 +68,9 @@ angular.module("stars.states.user", [])
         })
         .controller('UserAddController', function (UserService, EmployeeService, $scope, $stateParams, $state, paginationLimit) {
 
-            $scope.editableUser = {};            
-            
-            $scope.$watch('editableUser.username', function (username) {
-                console.log("Name :" + username);
+            $scope.editableUser = {};
+
+            $scope.$watch('editableUser.username', function (username) {                
                 UserService.findByUsername({'username': username}).$promise.catch(function (response) {
                     if (response.status === 500) {
                         $scope.editableUser.repeatUsername = false;
@@ -83,6 +82,23 @@ angular.module("stars.states.user", [])
                 }).then(function (username) {
                     if (username.username !== null) {
                         $scope.editableUser.repeatUsername = true;
+                    }
+                    ;
+                });
+            });
+
+            $scope.$watch('editableUser.employeeId', function (employeeId) {                
+                UserService.findByEmployeeId({'employeeId': employeeId}).$promise.catch(function (response) {
+                    if (response.status === 500) {
+                        $scope.editableUser.repeatEmployee = false;
+                    } else if (response.status === 404) {
+                        $scope.editableUser.repeatEmployee = false;
+                    } else if (response.status === 400) {
+                        $scope.editableUser.repeatEmployee = false;
+                    }
+                }).then(function (employeeId) {                    
+                    if (employeeId !== undefined) {
+                        $scope.editableUser.repeatEmployee = true;
                     }
                     ;
                 });
@@ -105,10 +121,10 @@ angular.module("stars.states.user", [])
             };
             $scope.setEmployee = function (employee) {
                 $scope.editableUser.employeeId = employee.id;
-            };            
+            };
 
         })
-        .controller('UserEditController', function (UserService, EmployeeService, $scope, $stateParams, $state, paginationLimit) {            
+        .controller('UserEditController', function (UserService, EmployeeService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableUser = {};
             $scope.saveUser = function (User) {
                 User.$save(function () {
@@ -119,10 +135,10 @@ angular.module("stars.states.user", [])
                 'id': $stateParams.userId
             }, function (user) {
                 user.employee = EmployeeService.get({
-                   'id' : user.employeeId
+                    'id': user.employeeId
                 });
-                $scope.editableUser = user;                
-                
+                $scope.editableUser = user;
+
             });
             $scope.searchEmployees = function (empString) {
                 return EmployeeService.findByNameLike({
@@ -131,8 +147,8 @@ angular.module("stars.states.user", [])
             };
             $scope.setEmployee = function (employee) {
                 $scope.editableUser.employeeId = employee.id;
-            }; 
-            
+            };
+
         })
         .controller('UserDeleteController', function (UserService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableUser = UserService.get({'id': $stateParams.userId});
@@ -141,6 +157,7 @@ angular.module("stars.states.user", [])
                     $state.go('admin.masters_user', null, {'reload': true});
                 });
             };
-        });;
+        });
+;
 
 

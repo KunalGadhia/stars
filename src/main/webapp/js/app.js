@@ -70,6 +70,7 @@ angular.module("stars", [
     'stars.states.evaluate',
     'stars.states.admin_menu',
     'stars.states.reports',
+    'stars.states.employee',
 //    'digitalbusiness.states.admin',
 //    'digitalbusiness.states.employee',
 //    'digitalbusiness.states.notification',

@@ -46,6 +46,11 @@ public class UserRest {
 
     }
     
+    @RequestMapping(value = "/find/employeeId", method = RequestMethod.GET)
+    public User findByEmployeeId(@RequestParam("employeeId") Integer employeeId) throws Exception {
+        return userDAL.findByEmployeeId(employeeId);
+    }
+    
     @RequestMapping(method = RequestMethod.POST)
     public User insert(@RequestBody User user) throws JsonProcessingException, ParseException {
         return userDAL.insert(user);

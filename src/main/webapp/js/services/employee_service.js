@@ -16,6 +16,14 @@ angular.module("stars.services.employee")
                     },
                     'isArray': true
                 },
+                'findByEmpNumLike': {
+                    'method': 'GET',
+                    'url': restRoot + '/employee/find/emp_no_like',
+                    'params': {
+                        'empNo': '@empNo'
+                    },
+                    'isArray': true
+                },
                 'findByDepartmentHead': {
                     'method': 'GET',
                     'url': restRoot + '/employee/find/department_head',

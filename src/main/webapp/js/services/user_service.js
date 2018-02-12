@@ -41,6 +41,14 @@ angular.module("stars.services.user")
                         'username': '@username'
                     },
                     'isArray': false
+                },
+                'findByEmployeeId': {
+                    'method': 'GET',
+                    'url': restRoot + '/user/find/employeeId',
+                    'params': {
+                        'employeeId': '@employeeId'
+                    },
+                    'isArray': false
                 }
 //                ,
 //                'findUnapprovedUser': {

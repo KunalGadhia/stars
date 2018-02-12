@@ -30,7 +30,7 @@ public class EmployeeDAL {
         public static final String EMP_NAME = "emp_name";
         public static final String EMP_DOJ = "emp_doj";
         public static final String EMP_DOB = "emp_dob";
-        public static final String DEPARTMENT = "designation";
+        public static final String DEPARTMENT = "department";
         public static final String GRADE = "grade";
         public static final String DESIGNATION = "designation";
         public static final String EDU_QUAL = "edu_qual";
@@ -83,7 +83,7 @@ public class EmployeeDAL {
     public Employee findById(Integer id) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(Employee.class));
-    }
+    }       
 
     public Employee findByName(String name) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.EMP_NAME + " = ?";
@@ -93,6 +93,12 @@ public class EmployeeDAL {
     public List<Employee> findByNameLike(String name) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(emp_name) LIKE?";
         String nameLike = "%" + name.toLowerCase() + "%";
+        return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(Employee.class));
+    }
+    
+    public List<Employee> findByEmpNumLike(String empNo) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(emp_no) LIKE?";
+        String nameLike = "%" + empNo.toLowerCase() + "%";
         return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(Employee.class));
     }
     

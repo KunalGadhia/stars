@@ -1,0 +1,238 @@
+<div class="modal modal-stars">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveEmployee(editableEmployee)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-user"></i>
+                        Employee Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Employee Number</label>
+                                <input placeholder="Enter Employee Number" type="text" class="form-control" ng-model="editableEmployee.empNo" required="">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Door Code</label>
+                                <input placeholder="Enter Door Code" type="text" class="form-control" ng-model="editableEmployee.doorCode" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 text-danger" ng-show="editableEmployee.repeatEmployeeNumber">
+                            Found Records For Above Entered Employee Number
+                        </div>
+                        <div class="col-sm-6 text-danger">                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input placeholder="Enter Employee Name" type="text" class="form-control" ng-model="editableEmployee.empName" required="">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Department</label>
+                                <select class="form-control" ng-model="editableEmployee.department" required="">
+                                    <option value="">Select Department</option>
+                                    <option value="ACCOUNTS">Accounts</option>
+                                    <option value="BSR">BSR</option>
+                                    <option value="BRANCH_STORES">Branch Stores</option>
+                                    <option value="COMMERCIAL">Commercial</option>
+                                    <option value="COSTING">Costing</option>
+                                    <option value="CUSTOMER_CARE">Customer Care</option>
+                                    <option value="D_AND_D">D & D</option>
+                                    <option value="EXCISE">Excise</option>
+                                    <option value="INDUSTRIAL_ENGG">Industrial Engg</option>
+                                    <option value="MIS">MIS</option>
+                                    <option value="MAINTENANCE">Maintenance</option>
+                                    <option value="MARKETING">Marketing</option>
+                                    <option value="OPERATIONS">Operations</option>
+                                    <option value="PAINT_SHOP">Paint Shop</option>
+                                    <option value="PERSONNEL_AND_ADMIN">Personnel & Admin</option>
+                                    <option value="PLANNING_AND_CONTROL">Planning & Control</option>
+                                    <option value="PLANT2">Plant 2</option>
+                                    <option value="PLANT3">Plant 3</option>
+                                    <option value="PLANT4">Plant 4</option>
+                                    <option value="PLANT5">Plant 5</option>
+                                    <option value="PRODUCTION">Production</option>
+                                    <option value="PRODUCTION_PAINT">Production Paint</option>
+                                    <option value="PROJECTS_INSTALL">Projects / Install</option>
+                                    <option value="PURCHASE">Purchase</option>
+                                    <option value="QAD">QAD</option>
+                                    <option value="SALES">Sales</option>
+                                    <option value="STORES">Stores</option>
+                                    <option value="STORES_T48">Stores T48</option>                                                                        
+                                </select>                                
+                            </div>
+                        </div>                        
+                    </div>                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Date Of Joining</label>
+                                <input type="date" class="form-control" ng-model="editableEmployee.empDoj">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Date Of Birth</label>
+                                <input type="date" class="form-control" ng-model="editableEmployee.empDob">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Grade</label>
+                                <input placeholder="Enter Employee Grade" type="text" class="form-control" ng-model="editableEmployee.grade">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Designation</label>
+                                <select class="form-control" ng-model="editableEmployee.designation">
+                                    <option value="">Select Employee</option>    
+                                    <option value="AGM">AGM</option>
+                                    <option value="AREA_SALES_MANAGER">Area Sales Manager</option>
+                                    <option value="ASSISTANT">Assistant</option>
+                                    <option value="ASSISTANT_MANAGER">Assistant Manager</option>
+                                    <option value="BDM">BDM</option>
+                                    <option value="CNC_OPERATOR">CNC Operator</option>
+                                    <option value="CLUSTER_MANAGER">Cluster Manager</option>
+                                    <option value="DGM">DGM</option>
+                                    <option value="DEPUTY_MANAGER">Deputy Manager</option>
+                                    <option value="DESIGNER">Designer</option>
+                                    <option value="EPP_DET">EPP DET</option>
+                                    <option value="EXECUTIVE">Executive</option>
+                                    <option value="GAT">GAT</option>
+                                    <option value="GM_KIT_AND_DOOR_PROJECT"> GM Kit & Door Project</option>
+                                    <option value="GENERAL_MANAGER">General Manager</option>
+                                    <option value="GRAPHIC_DESIGNER">Graphic Designer</option>
+                                    <option value="HEAD_CUSTOMER_RELATION">Head Customer Relation</option>
+                                    <option value="JR_TECHNICIAN">Junior Technician</option>
+                                    <option value="JUNIOR_OFFICER">Junior Officer</option>
+                                    <option value="MANAGEMENT_TRAINEE">Management Trainee</option>
+                                    <option value="MANAGER">Manager</option>
+                                    <option value="MANAGER_PROJECTS">Manager Projects</option>
+                                    <option value="MANAGER_SPECIAL_PROJECTS">Manager Special Projects</option>
+                                    <option value="MANAGER_WEB_SALES">Manager Web Sales</option>
+                                    <option value="MANAGER_SALES">Manager Sales</option>
+                                    <option value="MARKETING_COORDINATOR">Marketing Coordinator</option>
+                                    <option value="MARKETING_EXECUTIVE">Marketing Executive</option>
+                                    <option value="OFFICER">Officer</option>
+                                    <option value="REGIONAL_SALES_EXECUTIVE">Regional Sales Executive</option>
+                                    <option value="REGIONAL_SALES_MANAGER">Regional Sales Manager</option>
+                                    <option value="SALES_PROMOTER">Sales Promotor</option>
+                                    <option value="SENIOR_ASSISTANT">Senior Assistant</option>
+                                    <option value="SENIOR_DESIGNER">Senior Designer</option>
+                                    <option value="SENIOR_EXECUTIVE">Senior Executive</option>
+                                    <option value="SENIOR_MANAGER">Senior Manager</option>
+                                    <option value="SENIOR_OFFICER">Senior Officer</option>
+                                    <option value="SENIOR_SERVICE_TECHNICIAN">Senior Service Technician</option>
+                                    <option value="SENIOR_SUPERVISOR">Senior Supervisor</option>
+                                    <option value="SITE_SUPERVISOR">Site Supervisor</option>
+                                    <option value="SUPERVISOR">Supervisor</option>
+                                    <option value="TECHNICIAN">Technician</option>
+                                    <option value="TRAINEE_DESIGNER">Trainee Designer</option>
+                                    <option value="VICE_PRESIDENT">Vice President</option>
+                                    <option value="WAREHOUSE_EXECUTIVE">Warehouse Executive</option>
+                                    <option value="WAREHOUSE_INCHARGE">Warehouse Incharge</option>
+                                    <option value="ZONAL_HEAD">Zonal Head</option>
+                                    <option value="ZONAL_MANAGER">Zonal Manager</option>                                    
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Education Qualification</label>
+                                <input placeholder="Enter Educational Qualification" type="text" class="form-control" ng-model="editableEmployee.eduQual">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Total Experience (In Years)</label>
+                                <input placeholder="Enter Total Experience (In Years)" type="number" step="any" min="0" class="form-control" ng-model="editableEmployee.totalExp">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input placeholder="Enter Location" type="text" class="form-control" ng-model="editableEmployee.location">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Reporting To</label>
+                                <input class="form-control"
+                                       placeholder="Assign Reporting Person"
+                                       uib-typeahead="reportingEmployees.empName as reportingEmployees.empName for reportingEmployees in searchReportingEmployees($viewValue)"
+                                       typeahead-on-select="setReportingEmployee($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingReportingEmployee" 
+                                       typeahead-no-results="noReportingEmployeeFound"
+                                       ng-model="reportingEmployeeObject.empName" />
+                                <p ng-show="noReportingEmployeeFound" class="help-block text-muted">No Employees Found</p>
+                                <p ng-show="loadingReportingEmployee" class="help-block text-muted">Loading...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Last Promotion</label>
+                                <input placeholder="Enter Last Promotion" type="text" class="form-control" ng-model="editableEmployee.lastPromotion">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Department Head</label>
+                                <input class="form-control"
+                                       placeholder="Assign Department Head"
+                                       uib-typeahead="headEmployees.empName as headEmployees.empName for headEmployees in searchHeadEmployees($viewValue)"
+                                       typeahead-on-select="setHeadEmployee($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingHeadEmployee" 
+                                       typeahead-no-results="noHeadEmployeeFound"
+                                       ng-model="headEmployeeObject.empName" />
+                                <p ng-show="noReportingEmployeeFound" class="help-block text-muted">No Employees Found</p>
+                                <p ng-show="loadingReportingEmployee" class="help-block text-muted">Loading...</p>
+                            </div>
+                        </div>
+                    </div>
+<!--                    <div class="row">
+                        <div class="col-sm-6 text-danger">                            
+                        </div>
+                        <div class="col-sm-6 text-danger" ng-show="editableUser.repeatEmployee">
+                            Employee Selected has Already been selected once. Same Employee Id cannot be assigned twice.
+                        </div>                        
+                    </div>                    -->
+
+                    <div class="modal-footer">
+                        <button class="btn btn-lg btn-primary" ng-disabled="editableEmployee.repeatEmployeeNumber">
+                            <i class="fa fa-save"></i>
+                            Save
+                        </button>
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class="btn btn-link" >
+                            cancel
+                        </button>				
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
