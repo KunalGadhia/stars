@@ -39,6 +39,7 @@ public class EmployeeDAL {
         public static final String REPORTING_TO = "reporting_to";
         public static final String LAST_PROMOTION = "last_promotion";
         public static final String DEPARTMENT_HEAD = "department_head";
+        public static final String IMAGE = "image";
     }
 
     public static final String TABLE_NAME = "employee_master";
@@ -83,7 +84,7 @@ public class EmployeeDAL {
     public Employee findById(Integer id) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(Employee.class));
-    }       
+    }
 
     public Employee findByName(String name) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.EMP_NAME + " = ?";
@@ -95,15 +96,15 @@ public class EmployeeDAL {
         String nameLike = "%" + name.toLowerCase() + "%";
         return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(Employee.class));
     }
-    
+
     public List<Employee> findByEmpNumLike(String empNo) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(emp_no) LIKE?";
         String nameLike = "%" + empNo.toLowerCase() + "%";
         return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(Employee.class));
     }
-    
+
     public List<Employee> findByDepartmentHead(Integer departmentHeadId) {
-        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND "+Columns.DEPARTMENT_HEAD+" = ?";        
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.DEPARTMENT_HEAD + " = ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{departmentHeadId}, new BeanPropertyRowMapper<>(Employee.class));
     }
 
@@ -143,6 +144,8 @@ public class EmployeeDAL {
     }
 
     public Employee update(Employee employee) {
+        String path = employee.getImage().get(0).toString().replace("\\", "\\\\");
+        System.out.println("Image Path :" + path);
         String sqlQuery = "UPDATE " + TABLE_NAME + " SET "
                 + Columns.EMP_NO + " = ?,"
                 + Columns.DOOR_CODE + " = ?,"
@@ -157,7 +160,8 @@ public class EmployeeDAL {
                 + Columns.LOCATION + " = ?,"
                 + Columns.REPORTING_TO + " = ?,"
                 + Columns.LAST_PROMOTION + " = ?,"
-                + Columns.DEPARTMENT_HEAD + " = ? WHERE " + Columns.ID + " = ?";
+                + Columns.DEPARTMENT_HEAD + " = ?,"
+                + Columns.IMAGE + " = '" + path + "' WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery,
                 new Object[]{
                     employee.getEmpNo(),

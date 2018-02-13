@@ -6,6 +6,7 @@
 package com.spacewood.stars.employee;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -29,6 +30,7 @@ public class Employee {
     private Integer reportingTo;
     private String lastPromotion;
     private String departmentHead;
+    private List<String> image;
 
     public Integer getId() {
         return id;
@@ -150,24 +152,33 @@ public class Employee {
         this.departmentHead = departmentHead;
     }
 
+    public List<String> getImage() {
+        return image;
+    }
+
+    public void setImage(List<String> image) {
+        this.image = image;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.id);
-        hash = 37 * hash + Objects.hashCode(this.empNo);
-        hash = 37 * hash + Objects.hashCode(this.doorCode);
-        hash = 37 * hash + Objects.hashCode(this.empName);
-        hash = 37 * hash + Objects.hashCode(this.empDoj);
-        hash = 37 * hash + Objects.hashCode(this.empDob);
-        hash = 37 * hash + Objects.hashCode(this.department);
-        hash = 37 * hash + Objects.hashCode(this.grade);
-        hash = 37 * hash + Objects.hashCode(this.designation);
-        hash = 37 * hash + Objects.hashCode(this.eduQual);
-        hash = 37 * hash + Objects.hashCode(this.totalExp);
-        hash = 37 * hash + Objects.hashCode(this.location);
-        hash = 37 * hash + Objects.hashCode(this.reportingTo);
-        hash = 37 * hash + Objects.hashCode(this.lastPromotion);
-        hash = 37 * hash + Objects.hashCode(this.departmentHead);
+        hash = 71 * hash + Objects.hashCode(this.id);
+        hash = 71 * hash + Objects.hashCode(this.empNo);
+        hash = 71 * hash + Objects.hashCode(this.doorCode);
+        hash = 71 * hash + Objects.hashCode(this.empName);
+        hash = 71 * hash + Objects.hashCode(this.empDoj);
+        hash = 71 * hash + Objects.hashCode(this.empDob);
+        hash = 71 * hash + Objects.hashCode(this.department);
+        hash = 71 * hash + Objects.hashCode(this.grade);
+        hash = 71 * hash + Objects.hashCode(this.designation);
+        hash = 71 * hash + Objects.hashCode(this.eduQual);
+        hash = 71 * hash + Objects.hashCode(this.totalExp);
+        hash = 71 * hash + Objects.hashCode(this.location);
+        hash = 71 * hash + Objects.hashCode(this.reportingTo);
+        hash = 71 * hash + Objects.hashCode(this.lastPromotion);
+        hash = 71 * hash + Objects.hashCode(this.departmentHead);
+        hash = 71 * hash + Objects.hashCode(this.image);
         return hash;
     }
 
@@ -228,12 +239,14 @@ public class Employee {
         if (!Objects.equals(this.reportingTo, other.reportingTo)) {
             return false;
         }
+        if (!Objects.equals(this.image, other.image)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Employee{" + "id=" + id + ", empNo=" + empNo + ", doorCode=" + doorCode + ", empName=" + empName + ", empDoj=" + empDoj + ", empDob=" + empDob + ", department=" + department + ", grade=" + grade + ", designation=" + designation + ", eduQual=" + eduQual + ", totalExp=" + totalExp + ", location=" + location + ", reportingTo=" + reportingTo + ", lastPromotion=" + lastPromotion + ", departmentHead=" + departmentHead + '}';
-    }
-            
+        return "Employee{" + "id=" + id + ", empNo=" + empNo + ", doorCode=" + doorCode + ", empName=" + empName + ", empDoj=" + empDoj + ", empDob=" + empDob + ", department=" + department + ", grade=" + grade + ", designation=" + designation + ", eduQual=" + eduQual + ", totalExp=" + totalExp + ", location=" + location + ", reportingTo=" + reportingTo + ", lastPromotion=" + lastPromotion + ", departmentHead=" + departmentHead + ", image=" + image + '}';
+    }            
 }

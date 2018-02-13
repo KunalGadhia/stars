@@ -13,7 +13,45 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img style="width: 100%;" src="./images/coming_soon.jpg" alt="Coming Soon" title="Coming Soon">
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <div class='form-group'>
+                                <label ng-hide="showDetails === 'false'">Add Attachment</label>
+                                <div ng-hide="showDetails === 'false'">
+
+                                    <input type="file" name="file" uploader="fileUploader" nv-file-select="">
+                                </div>					
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="alert alert-info" ng-show="uploadInProgress">
+                                Attachment upload is in progress...
+                            </div>
+                            <div class="alert alert-warning" ng-show="uploadWarning">
+                                Attachment Already Exist
+                            </div>
+                            <div class="alert alert-danger" ng-show="uploadFailed">
+                                Attachment upload failed
+                            </div>
+                            <div class="alert alert-success" ng-show="uploadSuccess">
+                                Attachment upload success
+                            </div>
+                        </div>
+                    </div>                
+                    <div class="row" ng-if="employeeObject.image !== null">
+                        <div class='col-sm-12 text-center'>
+                            <image ng-src="./rest/employee/{{employeeObject.id}}/attachment" width="250px" height="400px"/>
+                        </div>
+                    </div>
+                    <!--<img style="width: 100%;" src="./images/coming_soon.jpg" alt="Coming Soon" title="Coming Soon">-->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" 
+                            type="button"
+                            data-ui-sref="admin.profile"
+                            ng-disabled="employeeObject.image === null">
+                        Save
+                    </button>                
                 </div>
             </div>
         </form>
