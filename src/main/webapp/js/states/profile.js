@@ -35,6 +35,31 @@ angular.module("stars.states.profile", [])
                 'username': $scope.user.username
             }, function (userObject) {
                 $scope.userObject = userObject;
+                if (userObject.role === "ROLE_HR") {
+                    $scope.showHRBack = true;
+                    $scope.showAdminBack = false;
+                    $scope.showEmployeeBack = false;
+                    $scope.showHodBack = false;
+                    $scope.hideProfile = true;
+                } else if (userObject.role === "ROLE_ADMIN") {
+                    $scope.showHRBack = false;
+                    $scope.showAdminBack = true;
+                    $scope.showEmployeeBack = false;
+                    $scope.showHodBack = false;
+                    $scope.hideProfile = true;
+                } else if (userObject.role === "ROLE_EMPLOYEE") {
+                    $scope.showHRBack = false;
+                    $scope.showAdminBack = false;
+                    $scope.showEmployeeBack = true;
+                    $scope.showHodBack = false;
+                    $scope.hideProfile = false;
+                } else if (userObject.role === "ROLE_HOD") {
+                    $scope.showHRBack = false;
+                    $scope.showAdminBack = false;
+                    $scope.showEmployeeBack = false;
+                    $scope.showHodBack = true;
+                    $scope.hideProfile = false;
+                }
                 EmployeeService.get({
                     'id': userObject.employeeId
                 }, function (employeeObject) {

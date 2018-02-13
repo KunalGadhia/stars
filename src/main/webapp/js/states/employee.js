@@ -65,7 +65,6 @@ angular.module("stars.states.employee", [])
                         'id': employee.departmentHead
                     });
                 });
-//                $scope.colorConstraints = s;
             });
             $scope.nextPage = function () {
                 $scope.currentOffset += paginationLimit;
@@ -77,6 +76,40 @@ angular.module("stars.states.employee", [])
                 }
                 $scope.currentOffset -= paginationLimit;
                 $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+            };
+            $scope.searchEmployees = function (empString) {
+                return EmployeeService.findByNameLike({
+                    'name': empString
+                }).$promise;
+            };
+            $scope.setEmployee = function (employee) {
+                $scope.searchEmployeeId = employee.id;
+            };
+            $scope.searchEmp = function () {
+
+                console.log("Employee Id :%O", $scope.searchEmployeeId);
+                $scope.employeeList = [];
+                EmployeeService.get({
+                    'id': $scope.searchEmployeeId
+                }, function (employeeObject) {
+                    $scope.employeeList.push(employeeObject);
+                });
+            };
+            $scope.clearSearch = function(){
+                $scope.searchEmployeeId = '';
+                $scope.employeeObject = {};
+                $scope.employeeList = EmployeeService.query({
+                'offset': $scope.currentOffset
+            }, function (employeeList) {
+                angular.forEach($scope.employeeList, function (employee) {
+                    employee.reportingToObject = EmployeeService.get({
+                        'id': employee.reportingTo
+                    });
+                    employee.departmentHeadObject = EmployeeService.get({
+                        'id': employee.departmentHead
+                    });
+                });
+            });
             };
         })
         .controller('EmployeeAddController', function (EmployeeService, $scope, $stateParams, $state, paginationLimit) {

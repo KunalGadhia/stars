@@ -38,6 +38,7 @@ public class AdditionalDetailsDAL {
         public static final String HOD_COMMENT = "hod_comment";
         public static final String HR_COMMENT = "hr_comment";
         public static final String NO_COMMENT = "no_comment";
+        public static final String CORRECTION_FACTOR = "correction_factor";
         public static final String YEAR = "year";
     }
 
@@ -66,6 +67,7 @@ public class AdditionalDetailsDAL {
                         Columns.HOD_COMMENT,
                         Columns.HR_COMMENT,
                         Columns.NO_COMMENT,
+                        Columns.CORRECTION_FACTOR,
                         Columns.YEAR
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
@@ -107,6 +109,7 @@ public class AdditionalDetailsDAL {
         parameters.put(Columns.HOD_COMMENT, additionalDetails.getHodComment());
         parameters.put(Columns.HR_COMMENT, additionalDetails.getHrComment());
         parameters.put(Columns.NO_COMMENT, additionalDetails.getNoComment());
+        parameters.put(Columns.CORRECTION_FACTOR, additionalDetails.getCorrectionFactor());
         parameters.put(Columns.YEAR, additionalDetails.getYear());
         Number newId = insertAdditionalDetails.executeAndReturnKey(parameters);
         additionalDetails = findById(newId.intValue());
@@ -134,6 +137,7 @@ public class AdditionalDetailsDAL {
                 + Columns.HOD_COMMENT + " = ?,"
                 + Columns.HR_COMMENT + " = ?,"
                 + Columns.NO_COMMENT + " = ?,"
+                + Columns.CORRECTION_FACTOR + " = ?,"
                 + Columns.YEAR + " = ?  WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery,
                 new Object[]{
@@ -151,6 +155,7 @@ public class AdditionalDetailsDAL {
                     additionaldetails.getHodComment(),
                     additionaldetails.getHrComment(),
                     additionaldetails.getNoComment(),
+                    additionaldetails.getCorrectionFactor(),
                     additionaldetails.getYear(),
                     additionaldetails.getId()
                 });

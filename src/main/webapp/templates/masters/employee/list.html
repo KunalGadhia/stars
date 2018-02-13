@@ -23,6 +23,32 @@
             <h4>Employee Master</h4>
         </div>
     </div>
+    <div class="panel-heading text-center">        
+        <form ng-submit="searchEmp()">
+            <div class="row">
+                <div class="col-sm-9">
+                    <input class="form-control"
+                           placeholder="Search Employee"
+                           uib-typeahead="reportingEmployees.empName as reportingEmployees.empName for reportingEmployees in searchEmployees($viewValue)"
+                           typeahead-on-select="setEmployee($item)"
+                           typeahead-editable="false"
+                           typeahead-loading="loadingEmployee" 
+                           typeahead-no-results="noEmployeeFound"
+                           ng-model="employeeObject.empName" />
+                    <p ng-show="noEmployeeFound" class="help-block text-muted">No Employees Found</p>
+                    <p ng-show="loadingEmployee" class="help-block text-muted">Loading...</p>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary pull-right">Search Employee</button>
+                </div>
+                <div class="col-sm-1">
+                    <button type="button" class="btn btn-primary pull-left" ng-click="clearSearch()">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
     <table class="table table-striped table-hover">
         <thead>
             <tr>

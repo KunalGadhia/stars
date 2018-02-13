@@ -63,26 +63,30 @@ angular.module("stars.states.admin_menu", [])
                         } else if (response.status === 200) {
                             resourceData.showUpdateButton = true;
                         }
-                    }).then(function (additionalDetailsObject) {                        
-                        if (additionalDetailsObject !== undefined) {                            
+                    }).then(function (additionalDetailsObject) {
+                        if (additionalDetailsObject !== undefined) {
                             resourceData.showUpdateButton = true;
-                        }else{
+                        } else {
                             resourceData.showUpdateButton = false;
                         }
-                    });                    
+                    });
                 });
             });
         })
-        .controller('UpdateAdditionalDetails', function ($state, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {            
+        .controller('UpdateAdditionalDetails', function ($state, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
             $scope.additionalDetails = AdditionalDetailsService.findByEmployeeId({
                 'employeeId': $stateParams.employeeId
+            }, function(additionalDetails){
+//                $scope.additionalDetails.correctionFactor = parsadditionalDetails.correctionFactor
             });
             $scope.employeeObject = EmployeeService.get({
                 'id': $stateParams.employeeId
             });
-            $scope.updateAdditionalDetail = function (additionalDetails) {                
+            $scope.updateAdditionalDetail = function (additionalDetails) {
+                console.log("Additional Details :%O", additionalDetails);
+                console.log("Department Head :%O", $scope.employeeObject);
                 additionalDetails.$save(function () {
-                    $state.go('admin.department_resource_list', {'employeeId': $scope.employeeObject.reportingTo}, {'reload': true});
+                    $state.go('admin.department_resource_list', {'employeeId': $scope.employeeObject.departmentHead}, {'reload': true});
                 });
             };
         })

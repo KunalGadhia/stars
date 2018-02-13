@@ -27,6 +27,7 @@ public class AdditionalDetails {
     private String hodComment;
     private String hrComment;
     private String noComment;
+    private Double correctionFactor;
     private Integer year;
 
     public Integer getId() {
@@ -149,6 +150,14 @@ public class AdditionalDetails {
         this.noComment = noComment;
     }
 
+    public Double getCorrectionFactor() {
+        return correctionFactor;
+    }
+
+    public void setCorrectionFactor(Double correctionFactor) {
+        this.correctionFactor = correctionFactor;
+    }
+
     public Integer getYear() {
         return year;
     }
@@ -159,23 +168,24 @@ public class AdditionalDetails {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.id);
-        hash = 17 * hash + Objects.hashCode(this.employeeId);
-        hash = 17 * hash + Objects.hashCode(this.specialContribution);
-        hash = 17 * hash + Objects.hashCode(this.areaOfImprovement);
-        hash = 17 * hash + Objects.hashCode(this.commInterpersonalSkill);
-        hash = 17 * hash + Objects.hashCode(this.supervisoryDevelopment);
-        hash = 17 * hash + Objects.hashCode(this.teamBuilding);
-        hash = 17 * hash + Objects.hashCode(this.sellingNegotiationSkill);
-        hash = 17 * hash + Objects.hashCode(this.crm);
-        hash = 17 * hash + Objects.hashCode(this.presentationSkill);
-        hash = 17 * hash + Objects.hashCode(this.timeManagement);
-        hash = 17 * hash + Objects.hashCode(this.functional);
-        hash = 17 * hash + Objects.hashCode(this.hodComment);
-        hash = 17 * hash + Objects.hashCode(this.hrComment);
-        hash = 17 * hash + Objects.hashCode(this.noComment);
-        hash = 17 * hash + Objects.hashCode(this.year);
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + Objects.hashCode(this.employeeId);
+        hash = 79 * hash + Objects.hashCode(this.specialContribution);
+        hash = 79 * hash + Objects.hashCode(this.areaOfImprovement);
+        hash = 79 * hash + Objects.hashCode(this.commInterpersonalSkill);
+        hash = 79 * hash + Objects.hashCode(this.supervisoryDevelopment);
+        hash = 79 * hash + Objects.hashCode(this.teamBuilding);
+        hash = 79 * hash + Objects.hashCode(this.sellingNegotiationSkill);
+        hash = 79 * hash + Objects.hashCode(this.crm);
+        hash = 79 * hash + Objects.hashCode(this.presentationSkill);
+        hash = 79 * hash + Objects.hashCode(this.timeManagement);
+        hash = 79 * hash + Objects.hashCode(this.functional);
+        hash = 79 * hash + Objects.hashCode(this.hodComment);
+        hash = 79 * hash + Objects.hashCode(this.hrComment);
+        hash = 79 * hash + Objects.hashCode(this.noComment);
+        hash = 79 * hash + Objects.hashCode(this.correctionFactor);
+        hash = 79 * hash + Objects.hashCode(this.year);
         return hash;
     }
 
@@ -236,6 +246,9 @@ public class AdditionalDetails {
         if (!Objects.equals(this.functional, other.functional)) {
             return false;
         }
+        if (!Objects.equals(this.correctionFactor, other.correctionFactor)) {
+            return false;
+        }
         if (!Objects.equals(this.year, other.year)) {
             return false;
         }
@@ -244,7 +257,7 @@ public class AdditionalDetails {
 
     @Override
     public String toString() {
-        return "AdditionalDetails{" + "id=" + id + ", employeeId=" + employeeId + ", specialContribution=" + specialContribution + ", areaOfImprovement=" + areaOfImprovement + ", commInterpersonalSkill=" + commInterpersonalSkill + ", supervisoryDevelopment=" + supervisoryDevelopment + ", teamBuilding=" + teamBuilding + ", sellingNegotiationSkill=" + sellingNegotiationSkill + ", crm=" + crm + ", presentationSkill=" + presentationSkill + ", timeManagement=" + timeManagement + ", functional=" + functional + ", hodComment=" + hodComment + ", hrComment=" + hrComment + ", noComment=" + noComment + ", year=" + year + '}';
-    }
+        return "AdditionalDetails{" + "id=" + id + ", employeeId=" + employeeId + ", specialContribution=" + specialContribution + ", areaOfImprovement=" + areaOfImprovement + ", commInterpersonalSkill=" + commInterpersonalSkill + ", supervisoryDevelopment=" + supervisoryDevelopment + ", teamBuilding=" + teamBuilding + ", sellingNegotiationSkill=" + sellingNegotiationSkill + ", crm=" + crm + ", presentationSkill=" + presentationSkill + ", timeManagement=" + timeManagement + ", functional=" + functional + ", hodComment=" + hodComment + ", hrComment=" + hrComment + ", noComment=" + noComment + ", correctionFactor=" + correctionFactor + ", year=" + year + '}';
+    }    
        
 }

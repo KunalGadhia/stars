@@ -73,19 +73,19 @@ angular.module("stars.states.hr_menu", [])
                 });
             });
         })
-        .controller('UpdateAdditionalDetails', function ($state, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {            
-            $scope.additionalDetails = AdditionalDetailsService.findByEmployeeId({
-                'employeeId': $stateParams.employeeId
-            });
-            $scope.employeeObject = EmployeeService.get({
-                'id': $stateParams.employeeId
-            });
-            $scope.updateAdditionalDetail = function (additionalDetails) {                
-                additionalDetails.$save(function () {
-                    $state.go('admin.department_resource_list', {'employeeId': $scope.employeeObject.reportingTo}, {'reload': true});
-                });
-            };
-        })
+//        .controller('UpdateAdditionalDetails', function ($state, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {            
+//            $scope.additionalDetails = AdditionalDetailsService.findByEmployeeId({
+//                'employeeId': $stateParams.employeeId
+//            });
+//            $scope.employeeObject = EmployeeService.get({
+//                'id': $stateParams.employeeId
+//            });
+//            $scope.updateAdditionalDetail = function (additionalDetails) {                
+//                additionalDetails.$save(function () {
+//                    $state.go('admin.department_resource_list', {'employeeId': $scope.employeeObject.reportingTo}, {'reload': true});
+//                });
+//            };
+//        })
         .controller('HrDepartmentHeadMenu', function ($scope, UserService, EmployeeService) {
             $scope.hodList = UserService.findHod(function (hodList) {
                 angular.forEach($scope.hodList, function (hodObject) {
