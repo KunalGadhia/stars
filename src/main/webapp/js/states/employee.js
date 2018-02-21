@@ -95,21 +95,21 @@ angular.module("stars.states.employee", [])
                     $scope.employeeList.push(employeeObject);
                 });
             };
-            $scope.clearSearch = function(){
+            $scope.clearSearch = function () {
                 $scope.searchEmployeeId = '';
                 $scope.employeeObject = {};
                 $scope.employeeList = EmployeeService.query({
-                'offset': $scope.currentOffset
-            }, function (employeeList) {
-                angular.forEach($scope.employeeList, function (employee) {
-                    employee.reportingToObject = EmployeeService.get({
-                        'id': employee.reportingTo
-                    });
-                    employee.departmentHeadObject = EmployeeService.get({
-                        'id': employee.departmentHead
+                    'offset': $scope.currentOffset
+                }, function (employeeList) {
+                    angular.forEach($scope.employeeList, function (employee) {
+                        employee.reportingToObject = EmployeeService.get({
+                            'id': employee.reportingTo
+                        });
+                        employee.departmentHeadObject = EmployeeService.get({
+                            'id': employee.departmentHead
+                        });
                     });
                 });
-            });
             };
         })
         .controller('EmployeeAddController', function (EmployeeService, $scope, $stateParams, $state, paginationLimit) {

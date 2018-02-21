@@ -22,7 +22,8 @@
                 <th>DOJ</th>
                 <th>DOB</th>
                 <th>Education Qualification</th>
-                <th>Location</th>                
+                <th>Location</th>
+                <th>KRA Progress</th>                
                 <th class="text-right">Actions</th>
             </tr>
         </thead>
@@ -36,6 +37,9 @@
                 <td>{{ employee.empDob | date}}</td>
                 <td>{{ employee.eduQual}}</td>
                 <td>{{ employee.location}}</td>
+                <td ng-if="employee.complete === true"><label class="label label-success">Complete</label></td>
+                <td ng-if="employee.inProgress === true"><label class="label label-warning">Partial Complete ({{employee.totalWeightage}} %)</label></td>
+                <td ng-if="employee.notStarted === true"><label class="label label-danger">Not Started</label></td>
                 <!--<td>{{ user.mobileNo}}</td>-->                
                 <td class="text-right">
                     <a data-ui-sref="admin.department_resource_list.update_additional_details({ employeeId: employee.id })"

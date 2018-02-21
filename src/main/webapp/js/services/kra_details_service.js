@@ -15,6 +15,14 @@ angular.module("stars.services.kra_details")
                         'employeeId': '@employeeId'
                     },
                     'isArray': true
+                },
+                'findWeightageByEmployeeId': {
+                    'method': 'GET',
+                    'url': restRoot + '/kra_details/find/weightage/employeeId',
+                    'params': {
+                        'employeeId': '@employeeId'
+                    },
+                    'isArray': false
                 }
             });
         });

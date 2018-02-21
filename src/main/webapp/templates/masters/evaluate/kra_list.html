@@ -54,7 +54,7 @@
                 <td>Total Weightage %</td>
                 <td>{{ kraDetailsList | total:'weightage'}} %</td>
                 <td>Performance Rating Score </td>
-                <td>{{ kraDetailsList | total:'ratingScore'}} / 9</td>
+                <td>{{ kraDetailsList | total:'ratingScore' | number:2}} / 9</td>
                 <td></td>
             </tr>          
         </tfoot>

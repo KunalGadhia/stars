@@ -75,6 +75,11 @@ public class KraDetailsDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.EMPLOYEE_ID + " = ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{employeeId}, new BeanPropertyRowMapper<>(KraDetails.class));
     }
+    
+    public int findWeightageByEmployeeId(Integer employeeId) {
+        String sqlQuery = "SELECT sum(weightage) FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.EMPLOYEE_ID + " = ?";
+        return jdbcTemplate.queryForObject(sqlQuery, new Object[]{employeeId}, Integer.class);
+    }
 
 //    public User findByUsername(String username) {
 //        System.out.println("Username in DAL :" + username);

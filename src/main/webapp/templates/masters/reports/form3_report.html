@@ -140,7 +140,7 @@
                         <td class="text-right">Total Weightage :</td>
                         <td>{{ kraDetailsList | total:'weightage'}} %</td>
                         <td class="text-right">Performance Rating Score :</td>
-                        <td>{{ kraDetailsList | total:'ratingScore'}} / 9</td>                        
+                        <td>{{ kraDetailsList | total:'ratingScore' | number:2}} / 9</td>                        
                     </tr>           
                 </tfoot>
             </table>
@@ -180,7 +180,7 @@
                         <td class="text-right">Total Weightage :</td>
                         <td>{{ form2DetailsList | total:'weightage'}} %</td>
                         <td class="text-right">Interview Rating Score :</td>
-                        <td>{{ form2DetailsList | total:'ratingScore'}} / 9</td>                        
+                        <td>{{ form2DetailsList | total:'ratingScore' | number:2}} / 9</td>                        
                     </tr>           
                 </tfoot>
             </table>
@@ -316,10 +316,10 @@
         </div>
         <div class="row">
             <div class="col-xs-6 col-sm-6 text-center">
-                <span>{{ kraDetailsList | total:'ratingScore'}} / 9</span>
+                <span>{{ kraDetailsList | total:'ratingScore' | number:2}} / 9</span>
             </div>
             <div class="col-xs-6 col-sm-6 text-center">
-                <span>{{ form2DetailsList | total:'ratingScore'}} / 9</span>
+                <span>{{ form2DetailsList | total:'ratingScore' | number:2}} / 9</span>
             </div>
         </div>
         <div class="row">

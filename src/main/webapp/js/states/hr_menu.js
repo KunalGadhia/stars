@@ -46,11 +46,45 @@ angular.module("stars.states.hr_menu", [])
         })
 //        .controller('AdminReportMenu', function ($scope, UserService) {
 //        })
-        .controller('HrDepartmentResourceMenu', function (AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
+        .controller('HrDepartmentResourceMenu', function (KraDetailsService, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
             $scope.resourcesList = EmployeeService.findByDepartmentHead({
                 'departmentHeadId': $stateParams.employeeId
             }, function (resourcesList) {
                 angular.forEach($scope.resourcesList, function (resourceData) {
+
+//                    KraDetailsService.findWeightageByEmployeeId({
+//                        'employeeId': resourceData.id
+//                    }).$promise.catch(function (response) {
+////                        console.log("Response %O", response);
+//                    }).then(function (weightageData) {
+//                        console.log("Weightage Data :%O", weightageData);
+//                    });
+                    KraDetailsService.findByEmployeeId({
+                        'employeeId': resourceData.id
+                    }, function (employeeKraList) {                        
+                        if (employeeKraList.length === 0) {                            
+                            resourceData.complete = false;
+                            resourceData.inProgress = false;
+                            resourceData.notStarted = true;
+                        }
+                        var a = 0;
+                        angular.forEach(employeeKraList, function (kra) {
+                            a = a + kra.weightage;
+                            resourceData.totalWeightage = a;
+                            if (a === 100) {
+                                resourceData.complete = true;
+                                resourceData.inProgress = false;
+                                resourceData.notStarted = false;
+                            }
+                            if (a > 0 && a < 100) {
+                                resourceData.complete = false;
+                                resourceData.inProgress = true;
+                                resourceData.notStarted = false;
+                            }
+
+                        });
+                    });
+
                     AdditionalDetailsService.findByEmployeeId({
                         'employeeId': resourceData.id
                     }).$promise.catch(function (response) {
@@ -63,10 +97,10 @@ angular.module("stars.states.hr_menu", [])
                         } else if (response.status === 200) {
                             resourceData.showUpdateButton = true;
                         }
-                    }).then(function (additionalDetailsObject) {                        
-                        if (additionalDetailsObject !== undefined) {                            
+                    }).then(function (additionalDetailsObject) {
+                        if (additionalDetailsObject !== undefined) {
                             resourceData.showUpdateButton = true;
-                        }else{
+                        } else {
                             resourceData.showUpdateButton = false;
                         }
                     });                    

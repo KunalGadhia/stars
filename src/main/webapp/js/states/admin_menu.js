@@ -46,11 +46,38 @@ angular.module("stars.states.admin_menu", [])
         })
         .controller('AdminReportMenu', function ($scope, UserService) {
         })
-        .controller('AdminDepartmentResourceMenu', function (AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
+        .controller('AdminDepartmentResourceMenu', function (KraDetailsService, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
             $scope.resourcesList = EmployeeService.findByDepartmentHead({
                 'departmentHeadId': $stateParams.employeeId
             }, function (resourcesList) {
                 angular.forEach($scope.resourcesList, function (resourceData) {
+                    
+                    KraDetailsService.findByEmployeeId({
+                        'employeeId': resourceData.id
+                    }, function (employeeKraList) {                        
+                        if (employeeKraList.length === 0) {                            
+                            resourceData.complete = false;
+                            resourceData.inProgress = false;
+                            resourceData.notStarted = true;
+                        }
+                        var a = 0;
+                        angular.forEach(employeeKraList, function (kra) {
+                            a = a + kra.weightage;
+                            resourceData.totalWeightage = a;
+                            if (a === 100) {
+                                resourceData.complete = true;
+                                resourceData.inProgress = false;
+                                resourceData.notStarted = false;
+                            }
+                            if (a > 0 && a < 100) {
+                                resourceData.complete = false;
+                                resourceData.inProgress = true;
+                                resourceData.notStarted = false;
+                            }
+
+                        });
+                    });
+                    
                     AdditionalDetailsService.findByEmployeeId({
                         'employeeId': resourceData.id
                     }).$promise.catch(function (response) {

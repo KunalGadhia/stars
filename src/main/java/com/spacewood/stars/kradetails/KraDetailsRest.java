@@ -65,4 +65,9 @@ public class KraDetailsRest {
     public List<KraDetails> findByEmployeeId(@RequestParam("employeeId") Integer employeeId) {
         return kraDetailsDAL.findByEmployeeId(employeeId);
     }
+    
+    @RequestMapping(value = "/find/weightage/employeeId", method = RequestMethod.GET)
+    public int findWeightageByEmployeeId(@RequestParam("employeeId") Integer employeeId) {
+        return kraDetailsDAL.findWeightageByEmployeeId(employeeId);
+    }
 }
