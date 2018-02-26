@@ -1,0 +1,34 @@
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <div class="pull-left">
+            <button data-ui-sref="admin.report_menu"
+                    class="btn btn-default">
+                <i class="fa fa-arrow-left"></i>
+                Back
+            </button>            
+        </div>
+        <div>
+            <h4>Get Ranking Of Employees</h4>
+        </div>
+    </div>
+    <div class="row">
+        <br>
+    </div>
+        <div class="row" style="margin-top: 20px;margin-left: 5px">
+            <div class="col-sm-6">
+                <div class="form-group">                
+                    <select class="form-control" ng-model="departmentHeadId" style="height: 46px">
+                        <option value="">Select Department Head</option>
+                        <option ng-repeat="hod in hodList" value="{{hod.employeeId}}">{{hod.employeeObject.empName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">                
+                    <a class='btn btn-primary btn-lg' target="_blank" data-ui-sref="report5_details({'employeeId': departmentHeadId})">Fetch Ranking</a>
+                </div>
+            </div>
+        </div>    
+</div>
+
+<div data-ui-view=""></div>

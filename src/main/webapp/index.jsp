@@ -240,6 +240,12 @@
                 width: 100%;
                 height: 150px;
             }
+            
+            .report-image {
+                display: block;
+                width: 100%;
+                height: 170px;
+            }
 
             .overlay {
                 position: absolute;
