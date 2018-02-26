@@ -212,6 +212,32 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Company</label>
+                                <select class="form-control" ng-model="editableEmployee.companyId" required="">
+                                    <option value="">Select Company</option>
+                                    <option ng-repeat="company in companyList" value="{{company.id}}">{{company.companyName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+<!--                            <div class="form-group">
+                                <label>Department Head</label>
+                                <input class="form-control"
+                                       placeholder="Assign Department Head"
+                                       uib-typeahead="headEmployees.empName as headEmployees.empName for headEmployees in searchHeadEmployees($viewValue)"
+                                       typeahead-on-select="setHeadEmployee($item)"
+                                       typeahead-editable="false"
+                                       typeahead-loading="loadingHeadEmployee" 
+                                       typeahead-no-results="noHeadEmployeeFound"
+                                       ng-model="headEmployeeObject.empName" />
+                                <p ng-show="noReportingEmployeeFound" class="help-block text-muted">No Employees Found</p>
+                                <p ng-show="loadingReportingEmployee" class="help-block text-muted">Loading...</p>
+                            </div>-->
+                        </div>
+                    </div>
 <!--                    <div class="row">
                         <div class="col-sm-6 text-danger">                            
                         </div>

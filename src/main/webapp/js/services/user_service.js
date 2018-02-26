@@ -34,6 +34,14 @@ angular.module("stars.services.user")
                     'url': restRoot + '/user/find/hod',                    
                     'isArray': true
                 },
+                'findHodByCompanyId': {
+                    'method': 'GET',
+                    'url': restRoot + '/user/find/hod/company_id',
+                    'params': {
+                      'companyId': '@companyId'  
+                    },
+                    'isArray': true
+                },
                 'findByUsername': {
                     'method': 'GET',
                     'url': restRoot + '/user/find/username',
@@ -41,6 +49,22 @@ angular.module("stars.services.user")
                         'username': '@username'
                     },
                     'isArray': false
+                },
+                'findSfplUsers': {
+                    'method': 'GET',
+                    'url': restRoot + '/user/find/sfpl',
+                    'params': {
+                        'offset': '@offset'
+                    },
+                    'isArray': true
+                },
+                'findSosUsers': {
+                    'method': 'GET',
+                    'url': restRoot + '/user/find/sos',
+                    'params': {
+                        'offset': '@offset'
+                    },
+                    'isArray': true
                 },
                 'findByEmployeeId': {
                     'method': 'GET',

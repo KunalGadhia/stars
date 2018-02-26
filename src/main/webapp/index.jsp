@@ -414,6 +414,7 @@
         <script src="${pageContext.request.contextPath}/js/services/kra_details_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/form2_details_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/additional_details_service.js"></script>
+        <script src="${pageContext.request.contextPath}/js/services/company_service.js"></script>
 <!--        <script src="${pageContext.request.contextPath}/js/services/notification_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/party_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/segment_service.js"></script>

@@ -51,11 +51,11 @@ angular.module("stars.states.admin_menu", [])
                 'departmentHeadId': $stateParams.employeeId
             }, function (resourcesList) {
                 angular.forEach($scope.resourcesList, function (resourceData) {
-                    
+
                     KraDetailsService.findByEmployeeId({
                         'employeeId': resourceData.id
-                    }, function (employeeKraList) {                        
-                        if (employeeKraList.length === 0) {                            
+                    }, function (employeeKraList) {
+                        if (employeeKraList.length === 0) {
                             resourceData.complete = false;
                             resourceData.inProgress = false;
                             resourceData.notStarted = true;
@@ -77,7 +77,7 @@ angular.module("stars.states.admin_menu", [])
 
                         });
                     });
-                    
+
                     AdditionalDetailsService.findByEmployeeId({
                         'employeeId': resourceData.id
                     }).$promise.catch(function (response) {
@@ -103,7 +103,7 @@ angular.module("stars.states.admin_menu", [])
         .controller('UpdateAdditionalDetails', function ($state, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
             $scope.additionalDetails = AdditionalDetailsService.findByEmployeeId({
                 'employeeId': $stateParams.employeeId
-            }, function(additionalDetails){
+            }, function (additionalDetails) {
 //                $scope.additionalDetails.correctionFactor = parsadditionalDetails.correctionFactor
             });
             $scope.employeeObject = EmployeeService.get({
@@ -117,14 +117,29 @@ angular.module("stars.states.admin_menu", [])
                 });
             };
         })
-        .controller('AdminDepartmentHeadMenu', function ($scope, UserService, EmployeeService) {
-            $scope.hodList = UserService.findHod(function (hodList) {
-                angular.forEach($scope.hodList, function (hodObject) {
-                    hodObject.employeeObject = EmployeeService.get({
-                        'id': hodObject.employeeId
+        .controller('AdminDepartmentHeadMenu', function ($rootScope, $scope, UserService, EmployeeService) {
+            $scope.user = $rootScope.currentUser;
+            UserService.findByUsername({
+                'username': $scope.user.username
+            }, function (userObject) {
+                $scope.hodList = UserService.findHodByCompanyId({
+                    'companyId': userObject.companyId
+                }, function (hodList) {
+                    angular.forEach($scope.hodList, function (hodObject) {
+                        hodObject.employeeObject = EmployeeService.get({
+                            'id': hodObject.employeeId
+                        });
                     });
                 });
             });
+//
+//            $scope.hodList = UserService.findHod(function (hodList) {
+//                angular.forEach($scope.hodList, function (hodObject) {
+//                    hodObject.employeeObject = EmployeeService.get({
+//                        'id': hodObject.employeeId
+//                    });
+//                });
+//            });
             console.log("HOD List :%O", $scope.hodList);
         });
 //        .controller('HodMenu', function ($scope, UserService) {

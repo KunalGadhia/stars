@@ -16,6 +16,22 @@ angular.module("stars.services.employee")
                     },
                     'isArray': true
                 },
+                'findSfplEmployee': {
+                    'method': 'GET',
+                    'url': restRoot + '/employee/find/sfpl',
+                    'params': {
+                        'offset': '@offset'
+                    },
+                    'isArray': true
+                },
+                'findSosEmployee': {
+                    'method': 'GET',
+                    'url': restRoot + '/employee/find/sos',
+                    'params': {
+                        'offset': '@offset'
+                    },
+                    'isArray': true
+                },
                 'findByEmpNumLike': {
                     'method': 'GET',
                     'url': restRoot + '/employee/find/emp_no_like',

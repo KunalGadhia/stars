@@ -39,6 +39,7 @@ public class EmployeeDAL {
         public static final String REPORTING_TO = "reporting_to";
         public static final String LAST_PROMOTION = "last_promotion";
         public static final String DEPARTMENT_HEAD = "department_head";
+        public static final String COMPANY_ID = "company_id";
         public static final String IMAGE = "image";
     }
 
@@ -66,13 +67,24 @@ public class EmployeeDAL {
                         Columns.LOCATION,
                         Columns.REPORTING_TO,
                         Columns.LAST_PROMOTION,
-                        Columns.DEPARTMENT_HEAD
+                        Columns.DEPARTMENT_HEAD,
+                        Columns.COMPANY_ID
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
     public List<Employee> findAll(Integer offset) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE ORDER BY " + Columns.ID + " DESC LIMIT 10 OFFSET ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(Employee.class));
+    }
+
+    public List<Employee> findSfplEmployee(Integer offset) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND company_id = 3 ORDER BY " + Columns.ID + " DESC LIMIT 10 OFFSET ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(Employee.class));
+    }
+    
+    public List<Employee> findSosEmployee(Integer offset) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND company_id = 4 ORDER BY " + Columns.ID + " DESC LIMIT 10 OFFSET ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(Employee.class));
     }
 
@@ -132,6 +144,7 @@ public class EmployeeDAL {
         parameters.put(Columns.REPORTING_TO, employee.getReportingTo());
         parameters.put(Columns.LAST_PROMOTION, employee.getLastPromotion());
         parameters.put(Columns.DEPARTMENT_HEAD, employee.getDepartmentHead());
+        parameters.put(Columns.COMPANY_ID, employee.getCompanyId());
 
         Number newId = insertEmployee.executeAndReturnKey(parameters);
         employee = findById(newId.intValue());
@@ -161,6 +174,7 @@ public class EmployeeDAL {
                 + Columns.REPORTING_TO + " = ?,"
                 + Columns.LAST_PROMOTION + " = ?,"
                 + Columns.DEPARTMENT_HEAD + " = ?,"
+                + Columns.COMPANY_ID + " = ?,"
                 + Columns.IMAGE + " = '" + path + "' WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery,
                 new Object[]{
@@ -178,6 +192,7 @@ public class EmployeeDAL {
                     employee.getReportingTo(),
                     employee.getLastPromotion(),
                     employee.getDepartmentHead(),
+                    employee.getCompanyId(),
                     employee.getId()
                 });
         employee = findById(employee.getId());

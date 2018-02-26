@@ -30,6 +30,7 @@ public class Employee {
     private Integer reportingTo;
     private String lastPromotion;
     private String departmentHead;
+    private Integer companyId;
     private List<String> image;
 
     public Integer getId() {
@@ -152,6 +153,14 @@ public class Employee {
         this.departmentHead = departmentHead;
     }
 
+    public Integer getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
+    }
+
     public List<String> getImage() {
         return image;
     }
@@ -162,23 +171,24 @@ public class Employee {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.id);
-        hash = 71 * hash + Objects.hashCode(this.empNo);
-        hash = 71 * hash + Objects.hashCode(this.doorCode);
-        hash = 71 * hash + Objects.hashCode(this.empName);
-        hash = 71 * hash + Objects.hashCode(this.empDoj);
-        hash = 71 * hash + Objects.hashCode(this.empDob);
-        hash = 71 * hash + Objects.hashCode(this.department);
-        hash = 71 * hash + Objects.hashCode(this.grade);
-        hash = 71 * hash + Objects.hashCode(this.designation);
-        hash = 71 * hash + Objects.hashCode(this.eduQual);
-        hash = 71 * hash + Objects.hashCode(this.totalExp);
-        hash = 71 * hash + Objects.hashCode(this.location);
-        hash = 71 * hash + Objects.hashCode(this.reportingTo);
-        hash = 71 * hash + Objects.hashCode(this.lastPromotion);
-        hash = 71 * hash + Objects.hashCode(this.departmentHead);
-        hash = 71 * hash + Objects.hashCode(this.image);
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.empNo);
+        hash = 97 * hash + Objects.hashCode(this.doorCode);
+        hash = 97 * hash + Objects.hashCode(this.empName);
+        hash = 97 * hash + Objects.hashCode(this.empDoj);
+        hash = 97 * hash + Objects.hashCode(this.empDob);
+        hash = 97 * hash + Objects.hashCode(this.department);
+        hash = 97 * hash + Objects.hashCode(this.grade);
+        hash = 97 * hash + Objects.hashCode(this.designation);
+        hash = 97 * hash + Objects.hashCode(this.eduQual);
+        hash = 97 * hash + Objects.hashCode(this.totalExp);
+        hash = 97 * hash + Objects.hashCode(this.location);
+        hash = 97 * hash + Objects.hashCode(this.reportingTo);
+        hash = 97 * hash + Objects.hashCode(this.lastPromotion);
+        hash = 97 * hash + Objects.hashCode(this.departmentHead);
+        hash = 97 * hash + Objects.hashCode(this.companyId);
+        hash = 97 * hash + Objects.hashCode(this.image);
         return hash;
     }
 
@@ -239,6 +249,9 @@ public class Employee {
         if (!Objects.equals(this.reportingTo, other.reportingTo)) {
             return false;
         }
+        if (!Objects.equals(this.companyId, other.companyId)) {
+            return false;
+        }
         if (!Objects.equals(this.image, other.image)) {
             return false;
         }
@@ -247,6 +260,8 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" + "id=" + id + ", empNo=" + empNo + ", doorCode=" + doorCode + ", empName=" + empName + ", empDoj=" + empDoj + ", empDob=" + empDob + ", department=" + department + ", grade=" + grade + ", designation=" + designation + ", eduQual=" + eduQual + ", totalExp=" + totalExp + ", location=" + location + ", reportingTo=" + reportingTo + ", lastPromotion=" + lastPromotion + ", departmentHead=" + departmentHead + ", image=" + image + '}';
-    }            
+        return "Employee{" + "id=" + id + ", empNo=" + empNo + ", doorCode=" + doorCode + ", empName=" + empName + ", empDoj=" + empDoj + ", empDob=" + empDob + ", department=" + department + ", grade=" + grade + ", designation=" + designation + ", eduQual=" + eduQual + ", totalExp=" + totalExp + ", location=" + location + ", reportingTo=" + reportingTo + ", lastPromotion=" + lastPromotion + ", departmentHead=" + departmentHead + ", companyId=" + companyId + ", image=" + image + '}';
+    }
+
+                
 }

@@ -26,7 +26,7 @@ angular.module("stars.states.employee", [])
                 'controller': 'EmployeeDeleteController'
             });
         })
-        .controller('EmployeeListController', function ($rootScope, EmployeeService, UserService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('EmployeeListController', function ($rootScope, CompanyService, EmployeeService, UserService, $scope, $stateParams, $state, paginationLimit) {
             $scope.user = $rootScope.currentUser;
             UserService.findByUsername({
                 'username': $scope.user.username
@@ -34,49 +34,172 @@ angular.module("stars.states.employee", [])
                 if (userObject.role === "ROLE_HR") {
                     $scope.showHRBack = true;
                     $scope.showAdminBack = false;
+                    if (userObject.companyId === 3) {
+                        console.log("SFPL Login");
+                        if (
+                                $stateParams.offset === undefined ||
+                                isNaN($stateParams.offset) ||
+                                new Number($stateParams.offset) < 0)
+                        {
+                            $scope.currentOffset = 0;
+                        } else {
+                            $scope.currentOffset = new Number($stateParams.offset);
+                        }
+
+                        $scope.nextOffset = $scope.currentOffset + 10;
+                        $scope.nextEmployees = EmployeeService.query({
+                            'offset': $scope.nextOffset
+                        });
+                        $scope.employeeList = EmployeeService.findSfplEmployee({
+                            'offset': $scope.currentOffset
+                        }, function (employeeList) {
+                            angular.forEach($scope.employeeList, function (employee) {
+                                employee.reportingToObject = EmployeeService.get({
+                                    'id': employee.reportingTo
+                                });
+                                employee.departmentHeadObject = EmployeeService.get({
+                                    'id': employee.departmentHead
+                                });
+                            });
+                        });
+                        $scope.nextPage = function () {
+                            $scope.currentOffset += paginationLimit;
+                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                        };
+                        $scope.previousPage = function () {
+                            if ($scope.currentOffset <= 0) {
+                                return;
+                            }
+                            $scope.currentOffset -= paginationLimit;
+                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                        };
+                    } else if (userObject.companyId === 4) {
+                        console.log("SOS Login");
+                        if (
+                                $stateParams.offset === undefined ||
+                                isNaN($stateParams.offset) ||
+                                new Number($stateParams.offset) < 0)
+                        {
+                            $scope.currentOffset = 0;
+                        } else {
+                            $scope.currentOffset = new Number($stateParams.offset);
+                        }
+
+                        $scope.nextOffset = $scope.currentOffset + 10;
+                        $scope.nextEmployees = EmployeeService.query({
+                            'offset': $scope.nextOffset
+                        });
+                        $scope.employeeList = EmployeeService.findSosEmployee({
+                            'offset': $scope.currentOffset
+                        }, function (employeeList) {
+                            angular.forEach($scope.employeeList, function (employee) {
+                                employee.reportingToObject = EmployeeService.get({
+                                    'id': employee.reportingTo
+                                });
+                                employee.departmentHeadObject = EmployeeService.get({
+                                    'id': employee.departmentHead
+                                });
+                            });
+                        });
+                        $scope.nextPage = function () {
+                            $scope.currentOffset += paginationLimit;
+                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                        };
+                        $scope.previousPage = function () {
+                            if ($scope.currentOffset <= 0) {
+                                return;
+                            }
+                            $scope.currentOffset -= paginationLimit;
+                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                        };
+                    }
                 } else if (userObject.role === "ROLE_ADMIN") {
                     $scope.showHRBack = false;
                     $scope.showAdminBack = true;
+                    console.log("User object :%O", userObject);
+                    if (userObject.companyId === 3) {
+                        console.log("SFPL Login");
+                        if (
+                                $stateParams.offset === undefined ||
+                                isNaN($stateParams.offset) ||
+                                new Number($stateParams.offset) < 0)
+                        {
+                            $scope.currentOffset = 0;
+                        } else {
+                            $scope.currentOffset = new Number($stateParams.offset);
+                        }
+
+                        $scope.nextOffset = $scope.currentOffset + 10;
+                        $scope.nextEmployees = EmployeeService.query({
+                            'offset': $scope.nextOffset
+                        });
+                        $scope.employeeList = EmployeeService.findSfplEmployee({
+                            'offset': $scope.currentOffset
+                        }, function (employeeList) {
+                            angular.forEach($scope.employeeList, function (employee) {
+                                employee.reportingToObject = EmployeeService.get({
+                                    'id': employee.reportingTo
+                                });
+                                employee.departmentHeadObject = EmployeeService.get({
+                                    'id': employee.departmentHead
+                                });
+                            });
+                        });
+                        $scope.nextPage = function () {
+                            $scope.currentOffset += paginationLimit;
+                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                        };
+                        $scope.previousPage = function () {
+                            if ($scope.currentOffset <= 0) {
+                                return;
+                            }
+                            $scope.currentOffset -= paginationLimit;
+                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                        };
+                    } else if (userObject.companyId === 4) {
+                        console.log("SOS Login");
+                        if (
+                                $stateParams.offset === undefined ||
+                                isNaN($stateParams.offset) ||
+                                new Number($stateParams.offset) < 0)
+                        {
+                            $scope.currentOffset = 0;
+                        } else {
+                            $scope.currentOffset = new Number($stateParams.offset);
+                        }
+
+                        $scope.nextOffset = $scope.currentOffset + 10;
+                        $scope.nextEmployees = EmployeeService.query({
+                            'offset': $scope.nextOffset
+                        });
+                        $scope.employeeList = EmployeeService.findSosEmployee({
+                            'offset': $scope.currentOffset
+                        }, function (employeeList) {
+                            angular.forEach($scope.employeeList, function (employee) {
+                                employee.reportingToObject = EmployeeService.get({
+                                    'id': employee.reportingTo
+                                });
+                                employee.departmentHeadObject = EmployeeService.get({
+                                    'id': employee.departmentHead
+                                });
+                            });
+                        });
+                        $scope.nextPage = function () {
+                            $scope.currentOffset += paginationLimit;
+                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                        };
+                        $scope.previousPage = function () {
+                            if ($scope.currentOffset <= 0) {
+                                return;
+                            }
+                            $scope.currentOffset -= paginationLimit;
+                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                        };
+                    }
+
                 }
             });
 
-            if (
-                    $stateParams.offset === undefined ||
-                    isNaN($stateParams.offset) ||
-                    new Number($stateParams.offset) < 0)
-            {
-                $scope.currentOffset = 0;
-            } else {
-                $scope.currentOffset = new Number($stateParams.offset);
-            }
-
-            $scope.nextOffset = $scope.currentOffset + 10;
-            $scope.nextEmployees = EmployeeService.query({
-                'offset': $scope.nextOffset
-            });
-            $scope.employeeList = EmployeeService.query({
-                'offset': $scope.currentOffset
-            }, function (employeeList) {
-                angular.forEach($scope.employeeList, function (employee) {
-                    employee.reportingToObject = EmployeeService.get({
-                        'id': employee.reportingTo
-                    });
-                    employee.departmentHeadObject = EmployeeService.get({
-                        'id': employee.departmentHead
-                    });
-                });
-            });
-            $scope.nextPage = function () {
-                $scope.currentOffset += paginationLimit;
-                $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-            };
-            $scope.previousPage = function () {
-                if ($scope.currentOffset <= 0) {
-                    return;
-                }
-                $scope.currentOffset -= paginationLimit;
-                $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-            };
             $scope.searchEmployees = function (empString) {
                 return EmployeeService.findByNameLike({
                     'name': empString
@@ -112,7 +235,7 @@ angular.module("stars.states.employee", [])
                 });
             };
         })
-        .controller('EmployeeAddController', function (EmployeeService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('EmployeeAddController', function (CompanyService, EmployeeService, $scope, $stateParams, $state, paginationLimit) {
 
             $scope.editableEmployee = {};
             $scope.$watch('editableEmployee.empNo', function (empNo) {
@@ -134,6 +257,7 @@ angular.module("stars.states.employee", [])
                     ;
                 });
             });
+            $scope.companyList = CompanyService.findALlList();
             $scope.searchReportingEmployees = function (empString) {
                 return EmployeeService.findByNameLike({
                     'name': empString
@@ -158,7 +282,7 @@ angular.module("stars.states.employee", [])
                 });
             };
         })
-        .controller('EmployeeEditController', function ($filter, UserService, EmployeeService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('EmployeeEditController', function (CompanyService, $filter, UserService, EmployeeService, $scope, $stateParams, $state, paginationLimit) {
             console.log("State Params :%O", $stateParams);
             EmployeeService.get({
                 'id': $stateParams.employeeId
@@ -175,6 +299,7 @@ angular.module("stars.states.employee", [])
                 });
                 $scope.editableEmployee = employeeObject;
             });
+            $scope.companyList = CompanyService.findALlList();
             $scope.searchReportingEmployees = function (empString) {
                 return EmployeeService.findByNameLike({
                     'name': empString

@@ -86,6 +86,16 @@ public class EmployeeRest {
         return employeeDAL.findByDepartmentHead(departmentHeadId);
     }
     
+    @RequestMapping(value = "/find/sfpl", method = RequestMethod.GET)
+    public List<Employee> findSfplEmployee(@RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
+        return employeeDAL.findSfplEmployee(offset);
+    }
+    
+    @RequestMapping(value = "/find/sos", method = RequestMethod.GET)
+    public List<Employee> findSosEmployee(@RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
+        return employeeDAL.findSosEmployee(offset);
+    }
+    
     @RequestMapping(value = "/find_all_list", method = RequestMethod.GET)
     public List<Employee> findAllList() {
         return employeeDAL.findAllList();

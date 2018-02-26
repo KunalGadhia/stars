@@ -38,6 +38,16 @@ public class UserRest {
     public List<User> findAll(@RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) throws SQLException {
         return userDAL.findAll(offset);
     }
+    
+    @RequestMapping(value = "/find/sfpl", method = RequestMethod.GET)
+    public List<User> findSfplUsers(@RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
+        return userDAL.findSfplUsers(offset);
+    }
+    
+    @RequestMapping(value = "/find/sos", method = RequestMethod.GET)
+    public List<User> findSosUsers(@RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
+        return userDAL.findSosUsers(offset);
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public User findById(@PathVariable("id") Integer id) throws SQLException {
@@ -75,6 +85,11 @@ public class UserRest {
     @RequestMapping(value = "/find/hod", method = RequestMethod.GET)
     public List<User> findHod() throws Exception {
         return userDAL.findHod();
+    }
+    
+    @RequestMapping(value = "/find/hod/company_id", method = RequestMethod.GET)
+    public List<User> findHodByCompanyId(@RequestParam("companyId") Integer companyId) throws Exception {
+        return userDAL.findHodByCompanyId(companyId);
     }
     
     @RequestMapping(value = "/find/user_like", method = RequestMethod.GET)

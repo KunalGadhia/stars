@@ -12,12 +12,14 @@ import java.util.Objects;
  * @author webdesign
  */
 public class User {
+
     private Integer id;
     private String username;
     private String password;
     private Role role;
     private String name;
     private Integer employeeId;
+    private Integer companyId;
     private String mobileNo;
 
     public Integer getId() {
@@ -68,6 +70,14 @@ public class User {
         this.employeeId = employeeId;
     }
 
+    public Integer getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
+    }
+
     public String getMobileNo() {
         return mobileNo;
     }
@@ -79,13 +89,14 @@ public class User {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 71 * hash + Objects.hashCode(this.id);
-        hash = 71 * hash + Objects.hashCode(this.username);
-        hash = 71 * hash + Objects.hashCode(this.password);
-        hash = 71 * hash + Objects.hashCode(this.role);
-        hash = 71 * hash + Objects.hashCode(this.name);
-        hash = 71 * hash + Objects.hashCode(this.employeeId);
-        hash = 71 * hash + Objects.hashCode(this.mobileNo);
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.username);
+        hash = 59 * hash + Objects.hashCode(this.password);
+        hash = 59 * hash + Objects.hashCode(this.role);
+        hash = 59 * hash + Objects.hashCode(this.name);
+        hash = 59 * hash + Objects.hashCode(this.employeeId);
+        hash = 59 * hash + Objects.hashCode(this.companyId);
+        hash = 59 * hash + Objects.hashCode(this.mobileNo);
         return hash;
     }
 
@@ -122,12 +133,15 @@ public class User {
         if (!Objects.equals(this.employeeId, other.employeeId)) {
             return false;
         }
+        if (!Objects.equals(this.companyId, other.companyId)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", name=" + name + ", employeeId=" + employeeId + ", mobileNo=" + mobileNo + '}';
+        return "User{" + "id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", name=" + name + ", employeeId=" + employeeId + ", companyId=" + companyId + ", mobileNo=" + mobileNo + '}';
     }
-            
+
 }

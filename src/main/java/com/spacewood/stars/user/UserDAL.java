@@ -30,6 +30,7 @@ public class UserDAL {
         public static final String ROLE = "role";
         public static final String NAME = "name";
         public static final String EMPLOYEE_ID = "employee_id";
+        public static final String COMPANY_ID = "company_id";
         public static final String MOBILE_NO = "mobile_no";
     }
 
@@ -49,14 +50,24 @@ public class UserDAL {
                         Columns.ROLE,
                         Columns.NAME,
                         Columns.EMPLOYEE_ID,
+                        Columns.COMPANY_ID,
                         Columns.MOBILE_NO
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
 
     public List<User> findAll(Integer offset) {
-
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE ORDER BY " + Columns.ID + " DESC LIMIT 10 OFFSET ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(User.class));
+    }
+
+    public List<User> findSfplUsers(Integer offset) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND company_id = 3 ORDER BY " + Columns.ID + " DESC LIMIT 10 OFFSET ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(User.class));
+    }
+
+    public List<User> findSosUsers(Integer offset) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND company_id = 4 ORDER BY " + Columns.ID + " DESC LIMIT 10 OFFSET ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(User.class));
     }
 
@@ -64,7 +75,7 @@ public class UserDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.ID + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(User.class));
     }
-    
+
     public User findByEmployeeId(Integer employeeId) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.EMPLOYEE_ID + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{employeeId}, new BeanPropertyRowMapper<>(User.class));
@@ -75,10 +86,15 @@ public class UserDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.USERNAME + " = ?";
         return jdbcTemplate.queryForObject(sqlQuery, new Object[]{username}, new BeanPropertyRowMapper<>(User.class));
     }
-    
-    public List<User> findHod() {        
+
+    public List<User> findHod() {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND role='ROLE_HOD'";
         return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(User.class));
+    }
+
+    public List<User> findHodByCompanyId(Integer companyId) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND role='ROLE_HOD' AND " + Columns.COMPANY_ID + " = ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{companyId}, new BeanPropertyRowMapper<>(User.class));
     }
 
     public List<User> findByNameLike(String username) {
@@ -94,6 +110,7 @@ public class UserDAL {
         parameters.put(Columns.ROLE, user.getRole().name());
         parameters.put(Columns.NAME, user.getName());
         parameters.put(Columns.EMPLOYEE_ID, user.getEmployeeId());
+        parameters.put(Columns.COMPANY_ID, user.getCompanyId());
         parameters.put(Columns.MOBILE_NO, user.getMobileNo());
         Number newId = insertUser.executeAndReturnKey(parameters);
         user = findById(newId.intValue());
@@ -112,6 +129,7 @@ public class UserDAL {
                 + Columns.ROLE + " = ?,"
                 + Columns.NAME + " = ?,"
                 + Columns.EMPLOYEE_ID + " = ?,"
+                + Columns.COMPANY_ID + " = ?,"
                 + Columns.MOBILE_NO + " = ? WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery,
                 new Object[]{
@@ -120,6 +138,7 @@ public class UserDAL {
                     user.getRole().name(),
                     user.getName(),
                     user.getEmployeeId(),
+                    user.getCompanyId(),
                     user.getMobileNo(),
                     user.getId()
                 });
