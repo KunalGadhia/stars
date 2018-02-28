@@ -39,6 +39,11 @@ public class UserRest {
         return userDAL.findAll(offset);
     }
     
+    @RequestMapping(value = "/find/user/company", method = RequestMethod.GET)
+    public List<User> findUsersByCompany(@RequestParam("companyId") Integer companyId, @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
+        return userDAL.findUsersByCompany(companyId, offset);
+    }
+    
     @RequestMapping(value = "/find/sfpl", method = RequestMethod.GET)
     public List<User> findSfplUsers(@RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
         return userDAL.findSfplUsers(offset);

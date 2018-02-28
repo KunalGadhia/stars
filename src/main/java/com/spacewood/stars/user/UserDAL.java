@@ -61,6 +61,11 @@ public class UserDAL {
         return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(User.class));
     }
 
+    public List<User> findUsersByCompany(Integer companyId, Integer offset) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.COMPANY_ID + " = ? ORDER BY " + Columns.ID + " DESC LIMIT 10 OFFSET ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{companyId, offset}, new BeanPropertyRowMapper<>(User.class));
+    }
+
     public List<User> findSfplUsers(Integer offset) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND company_id = 3 ORDER BY " + Columns.ID + " DESC LIMIT 10 OFFSET ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(User.class));

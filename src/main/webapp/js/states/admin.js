@@ -47,7 +47,13 @@ angular.module("stars.states.admin", [])
                 $scope.notificationUserObject = userObject;
             });
         })
-        .controller('AdminMasterMenu', function ($scope, UserService) {
+        .controller('AdminMasterMenu', function ($rootScope, $scope, UserService) {
+//            $scope.user = $rootScope.currentUser;
+//            UserService.findByUsername({
+//                'username': $scope.user.username
+//            }, function (userObject) {
+//                
+//            });
         })
         .controller('EmployeeMenu', function ($scope, UserService) {
         })

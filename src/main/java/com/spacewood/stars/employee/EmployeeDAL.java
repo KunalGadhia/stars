@@ -82,10 +82,15 @@ public class EmployeeDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND company_id = 3 ORDER BY " + Columns.ID + " DESC LIMIT 10 OFFSET ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(Employee.class));
     }
-    
+
     public List<Employee> findSosEmployee(Integer offset) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND company_id = 4 ORDER BY " + Columns.ID + " DESC LIMIT 10 OFFSET ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{offset}, new BeanPropertyRowMapper<>(Employee.class));
+    }
+
+    public List<Employee> findEmployeeByCompany(Integer companyId, Integer offset) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.COMPANY_ID + " = ? ORDER BY " + Columns.ID + " DESC LIMIT 10 OFFSET ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{companyId, offset}, new BeanPropertyRowMapper<>(Employee.class));
     }
 
     public List<Employee> findAllList() {
@@ -113,6 +118,12 @@ public class EmployeeDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(emp_no) LIKE?";
         String nameLike = "%" + empNo.toLowerCase() + "%";
         return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(Employee.class));
+    }
+
+    public List<Employee> findByNameLikeByCompany(Integer companyId, String name) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.COMPANY_ID + " = ? AND lower(emp_name) LIKE?";
+        String nameLike = "%" + name.toLowerCase() + "%";
+        return jdbcTemplate.query(sqlQuery, new Object[]{companyId, nameLike}, new BeanPropertyRowMapper<>(Employee.class));
     }
 
     public List<Employee> findByDepartmentHead(Integer departmentHeadId) {

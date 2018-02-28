@@ -28,180 +28,90 @@ angular.module("stars.states.employee", [])
         })
         .controller('EmployeeListController', function ($rootScope, CompanyService, EmployeeService, UserService, $scope, $stateParams, $state, paginationLimit) {
             $scope.user = $rootScope.currentUser;
-            UserService.findByUsername({
+            $scope.userObject = UserService.findByUsername({
                 'username': $scope.user.username
             }, function (userObject) {
                 if (userObject.role === "ROLE_HR") {
                     $scope.showHRBack = true;
                     $scope.showAdminBack = false;
-                    if (userObject.companyId === 3) {
-                        console.log("SFPL Login");
-                        if (
-                                $stateParams.offset === undefined ||
-                                isNaN($stateParams.offset) ||
-                                new Number($stateParams.offset) < 0)
-                        {
-                            $scope.currentOffset = 0;
-                        } else {
-                            $scope.currentOffset = new Number($stateParams.offset);
-                        }
-
-                        $scope.nextOffset = $scope.currentOffset + 10;
-                        $scope.nextEmployees = EmployeeService.query({
-                            'offset': $scope.nextOffset
-                        });
-                        $scope.employeeList = EmployeeService.findSfplEmployee({
-                            'offset': $scope.currentOffset
-                        }, function (employeeList) {
-                            angular.forEach($scope.employeeList, function (employee) {
-                                employee.reportingToObject = EmployeeService.get({
-                                    'id': employee.reportingTo
-                                });
-                                employee.departmentHeadObject = EmployeeService.get({
-                                    'id': employee.departmentHead
-                                });
-                            });
-                        });
-                        $scope.nextPage = function () {
-                            $scope.currentOffset += paginationLimit;
-                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                        };
-                        $scope.previousPage = function () {
-                            if ($scope.currentOffset <= 0) {
-                                return;
-                            }
-                            $scope.currentOffset -= paginationLimit;
-                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                        };
-                    } else if (userObject.companyId === 4) {
-                        console.log("SOS Login");
-                        if (
-                                $stateParams.offset === undefined ||
-                                isNaN($stateParams.offset) ||
-                                new Number($stateParams.offset) < 0)
-                        {
-                            $scope.currentOffset = 0;
-                        } else {
-                            $scope.currentOffset = new Number($stateParams.offset);
-                        }
-
-                        $scope.nextOffset = $scope.currentOffset + 10;
-                        $scope.nextEmployees = EmployeeService.query({
-                            'offset': $scope.nextOffset
-                        });
-                        $scope.employeeList = EmployeeService.findSosEmployee({
-                            'offset': $scope.currentOffset
-                        }, function (employeeList) {
-                            angular.forEach($scope.employeeList, function (employee) {
-                                employee.reportingToObject = EmployeeService.get({
-                                    'id': employee.reportingTo
-                                });
-                                employee.departmentHeadObject = EmployeeService.get({
-                                    'id': employee.departmentHead
-                                });
-                            });
-                        });
-                        $scope.nextPage = function () {
-                            $scope.currentOffset += paginationLimit;
-                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                        };
-                        $scope.previousPage = function () {
-                            if ($scope.currentOffset <= 0) {
-                                return;
-                            }
-                            $scope.currentOffset -= paginationLimit;
-                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                        };
+                    if (
+                            $stateParams.offset === undefined ||
+                            isNaN($stateParams.offset) ||
+                            new Number($stateParams.offset) < 0)
+                    {
+                        $scope.currentOffset = 0;
+                    } else {
+                        $scope.currentOffset = new Number($stateParams.offset);
                     }
+
+                    $scope.nextOffset = $scope.currentOffset + 10;
+
+                    $scope.nextEmployees = EmployeeService.findEmployeeByCompany({
+                        'companyId': userObject.companyId,
+                        'offset': $scope.nextOffset
+                    });
+
+                    $scope.employeeList = EmployeeService.findEmployeeByCompany({
+                        'companyId': userObject.companyId,
+                        'offset': $scope.currentOffset
+                    }, function (s) {
+                    });
+
+                    $scope.nextPage = function () {
+                        $scope.currentOffset += paginationLimit;
+                        $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                    };
+                    $scope.previousPage = function () {
+                        if ($scope.currentOffset <= 0) {
+                            return;
+                        }
+                        $scope.currentOffset -= paginationLimit;
+                        $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                    };
                 } else if (userObject.role === "ROLE_ADMIN") {
                     $scope.showHRBack = false;
                     $scope.showAdminBack = true;
-                    console.log("User object :%O", userObject);
-                    if (userObject.companyId === 3) {
-                        console.log("SFPL Login");
-                        if (
-                                $stateParams.offset === undefined ||
-                                isNaN($stateParams.offset) ||
-                                new Number($stateParams.offset) < 0)
-                        {
-                            $scope.currentOffset = 0;
-                        } else {
-                            $scope.currentOffset = new Number($stateParams.offset);
-                        }
-
-                        $scope.nextOffset = $scope.currentOffset + 10;
-                        $scope.nextEmployees = EmployeeService.query({
-                            'offset': $scope.nextOffset
-                        });
-                        $scope.employeeList = EmployeeService.findSfplEmployee({
-                            'offset': $scope.currentOffset
-                        }, function (employeeList) {
-                            angular.forEach($scope.employeeList, function (employee) {
-                                employee.reportingToObject = EmployeeService.get({
-                                    'id': employee.reportingTo
-                                });
-                                employee.departmentHeadObject = EmployeeService.get({
-                                    'id': employee.departmentHead
-                                });
-                            });
-                        });
-                        $scope.nextPage = function () {
-                            $scope.currentOffset += paginationLimit;
-                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                        };
-                        $scope.previousPage = function () {
-                            if ($scope.currentOffset <= 0) {
-                                return;
-                            }
-                            $scope.currentOffset -= paginationLimit;
-                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                        };
-                    } else if (userObject.companyId === 4) {
-                        console.log("SOS Login");
-                        if (
-                                $stateParams.offset === undefined ||
-                                isNaN($stateParams.offset) ||
-                                new Number($stateParams.offset) < 0)
-                        {
-                            $scope.currentOffset = 0;
-                        } else {
-                            $scope.currentOffset = new Number($stateParams.offset);
-                        }
-
-                        $scope.nextOffset = $scope.currentOffset + 10;
-                        $scope.nextEmployees = EmployeeService.query({
-                            'offset': $scope.nextOffset
-                        });
-                        $scope.employeeList = EmployeeService.findSosEmployee({
-                            'offset': $scope.currentOffset
-                        }, function (employeeList) {
-                            angular.forEach($scope.employeeList, function (employee) {
-                                employee.reportingToObject = EmployeeService.get({
-                                    'id': employee.reportingTo
-                                });
-                                employee.departmentHeadObject = EmployeeService.get({
-                                    'id': employee.departmentHead
-                                });
-                            });
-                        });
-                        $scope.nextPage = function () {
-                            $scope.currentOffset += paginationLimit;
-                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                        };
-                        $scope.previousPage = function () {
-                            if ($scope.currentOffset <= 0) {
-                                return;
-                            }
-                            $scope.currentOffset -= paginationLimit;
-                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                        };
+                    if (
+                            $stateParams.offset === undefined ||
+                            isNaN($stateParams.offset) ||
+                            new Number($stateParams.offset) < 0)
+                    {
+                        $scope.currentOffset = 0;
+                    } else {
+                        $scope.currentOffset = new Number($stateParams.offset);
                     }
 
+                    $scope.nextOffset = $scope.currentOffset + 10;
+
+                    $scope.nextEmployees = EmployeeService.findEmployeeByCompany({
+                        'companyId': userObject.companyId,
+                        'offset': $scope.nextOffset
+                    });
+
+                    $scope.employeeList = EmployeeService.findEmployeeByCompany({
+                        'companyId': userObject.companyId,
+                        'offset': $scope.currentOffset
+                    }, function (s) {
+                    });
+
+                    $scope.nextPage = function () {
+                        $scope.currentOffset += paginationLimit;
+                        $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                    };
+                    $scope.previousPage = function () {
+                        if ($scope.currentOffset <= 0) {
+                            return;
+                        }
+                        $scope.currentOffset -= paginationLimit;
+                        $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                    };
                 }
             });
 
             $scope.searchEmployees = function (empString) {
-                return EmployeeService.findByNameLike({
+                console.log("User Object :%O", $scope.userObject);
+                return EmployeeService.findByNameLikeByCompany({
+                    'companyId': $scope.userObject.companyId,
                     'name': empString
                 }).$promise;
             };

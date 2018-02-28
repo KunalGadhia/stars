@@ -101,9 +101,14 @@ angular.module("stars.states.reports", [])
 //                'controller': 'LogoutController'
 //            });
         })
-        .controller('AdminForm1Controller', function ($state, KraDetailsService, EmployeeService, $scope, $rootScope, UserService) {
+        .controller('AdminForm1Controller', function ($rootScope, $state, KraDetailsService, EmployeeService, $scope, $rootScope, UserService) {
+            $scope.user = $rootScope.currentUser;
+            $scope.userObject = UserService.findByUsername({
+                'username': $scope.user.username
+            });
             $scope.searchEmployees = function (empString) {
-                return EmployeeService.findByNameLike({
+                return EmployeeService.findByNameLikeByCompany({
+                    'companyId': $scope.userObject.companyId,
                     'name': empString
                 }).$promise;
             };
@@ -112,9 +117,14 @@ angular.module("stars.states.reports", [])
             };
 
         })
-        .controller('AdminForm2Controller', function ($scope, UserService, EmployeeService) {
+        .controller('AdminForm2Controller', function ($rootScope, $scope, UserService, EmployeeService) {
+            $scope.user = $rootScope.currentUser;
+            $scope.userObject = UserService.findByUsername({
+                'username': $scope.user.username
+            });
             $scope.searchEmployees = function (empString) {
-                return EmployeeService.findByNameLike({
+                return EmployeeService.findByNameLikeByCompany({
+                    'companyId': $scope.userObject.companyId,
                     'name': empString
                 }).$promise;
             };
@@ -122,9 +132,14 @@ angular.module("stars.states.reports", [])
                 $scope.searchEmployeeId = employee.id;
             };
         })
-        .controller('AdminForm3Controller', function (AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
+        .controller('AdminForm3Controller', function ($rootScope, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
+            $scope.user = $rootScope.currentUser;
+            $scope.userObject = UserService.findByUsername({
+                'username': $scope.user.username
+            });
             $scope.searchEmployees = function (empString) {
-                return EmployeeService.findByNameLike({
+                return EmployeeService.findByNameLikeByCompany({
+                    'companyId': $scope.userObject.companyId,
                     'name': empString
                 }).$promise;
             };
@@ -132,9 +147,14 @@ angular.module("stars.states.reports", [])
                 $scope.searchEmployeeId = employee.id;
             };
         })
-        .controller('AdminForm4Controller', function (AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
+        .controller('AdminForm4Controller', function ($rootScope, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
+            $scope.user = $rootScope.currentUser;
+            $scope.userObject = UserService.findByUsername({
+                'username': $scope.user.username
+            });
             $scope.searchEmployees = function (empString) {
-                return EmployeeService.findByNameLike({
+                return EmployeeService.findByNameLikeByCompany({
+                    'companyId': $scope.userObject.companyId,
                     'name': empString
                 }).$promise;
             };
@@ -142,38 +162,83 @@ angular.module("stars.states.reports", [])
                 $scope.searchEmployeeId = employee.id;
             };
         })
-        .controller('AdminForm5Controller', function (AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
-            $scope.hodList = UserService.findHod(function (hodList) {
-                angular.forEach($scope.hodList, function (hodObject) {
-                    hodObject.employeeObject = EmployeeService.get({
-                        'id': hodObject.employeeId
+        .controller('AdminForm5Controller', function ($rootScope, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
+            $scope.user = $rootScope.currentUser;
+            $scope.userObjectPromise = UserService.findByUsername({
+                'username': $scope.user.username
+            }, function (userObject) {
+                $scope.userObject = userObject;
+            });
+
+            $scope.userObjectPromise.$promise.then(function (user) {
+                $scope.hodList = UserService.findHodByCompanyId({
+                    'companyId': $scope.userObject.companyId
+                }, function (hodList) {
+                    angular.forEach($scope.hodList, function (hodObject) {
+                        hodObject.employeeObject = EmployeeService.get({
+                            'id': hodObject.employeeId
+                        });
+                    });
+                });
+            });
+
+        })
+        .controller('AdminForm6Controller', function ($rootScope, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
+            $scope.user = $rootScope.currentUser;
+            $scope.userObjectPromise = UserService.findByUsername({
+                'username': $scope.user.username
+            }, function (userObject) {
+                $scope.userObject = userObject;
+            });
+
+            $scope.userObjectPromise.$promise.then(function (user) {
+                $scope.hodList = UserService.findHodByCompanyId({
+                    'companyId': $scope.userObject.companyId
+                }, function (hodList) {
+                    angular.forEach($scope.hodList, function (hodObject) {
+                        hodObject.employeeObject = EmployeeService.get({
+                            'id': hodObject.employeeId
+                        });
                     });
                 });
             });
         })
-        .controller('AdminForm6Controller', function (AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
-            $scope.hodList = UserService.findHod(function (hodList) {
-                angular.forEach($scope.hodList, function (hodObject) {
-                    hodObject.employeeObject = EmployeeService.get({
-                        'id': hodObject.employeeId
+        .controller('AdminForm7Controller', function ($rootScope, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
+            $scope.user = $rootScope.currentUser;
+            $scope.userObjectPromise = UserService.findByUsername({
+                'username': $scope.user.username
+            }, function (userObject) {
+                $scope.userObject = userObject;
+            });
+
+            $scope.userObjectPromise.$promise.then(function (user) {
+                $scope.hodList = UserService.findHodByCompanyId({
+                    'companyId': $scope.userObject.companyId
+                }, function (hodList) {
+                    angular.forEach($scope.hodList, function (hodObject) {
+                        hodObject.employeeObject = EmployeeService.get({
+                            'id': hodObject.employeeId
+                        });
                     });
                 });
             });
         })
-        .controller('AdminForm7Controller', function (AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
-            $scope.hodList = UserService.findHod(function (hodList) {
-                angular.forEach($scope.hodList, function (hodObject) {
-                    hodObject.employeeObject = EmployeeService.get({
-                        'id': hodObject.employeeId
-                    });
-                });
+        .controller('AdminForm8Controller', function ($rootScope, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
+            $scope.user = $rootScope.currentUser;
+            $scope.userObjectPromise = UserService.findByUsername({
+                'username': $scope.user.username
+            }, function (userObject) {
+                $scope.userObject = userObject;
             });
-        })
-        .controller('AdminForm8Controller', function (AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
-            $scope.hodList = UserService.findHod(function (hodList) {
-                angular.forEach($scope.hodList, function (hodObject) {
-                    hodObject.employeeObject = EmployeeService.get({
-                        'id': hodObject.employeeId
+
+            $scope.userObjectPromise.$promise.then(function (user) {
+                $scope.hodList = UserService.findHodByCompanyId({
+                    'companyId': $scope.userObject.companyId
+                }, function (hodList) {
+                    angular.forEach($scope.hodList, function (hodObject) {
+                        hodObject.employeeObject = EmployeeService.get({
+                            'id': hodObject.employeeId
+                        });
                     });
                 });
             });

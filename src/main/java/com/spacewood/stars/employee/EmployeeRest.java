@@ -76,6 +76,11 @@ public class EmployeeRest {
         return employeeDAL.findByNameLike(name);
     }
     
+    @RequestMapping(value = "/find/name_like/company", method = RequestMethod.GET)
+    public List<Employee> findByNameLikeByCompany(@RequestParam("companyId") Integer companyId, @RequestParam("name") String name) {
+        return employeeDAL.findByNameLikeByCompany(companyId, name);
+    }
+    
     @RequestMapping(value = "/find/emp_no_like", method = RequestMethod.GET)
     public List<Employee> findByEmpNumLike(@RequestParam("empNo") String empNo) {
         return employeeDAL.findByEmpNumLike(empNo);
@@ -94,6 +99,11 @@ public class EmployeeRest {
     @RequestMapping(value = "/find/sos", method = RequestMethod.GET)
     public List<Employee> findSosEmployee(@RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
         return employeeDAL.findSosEmployee(offset);
+    }
+    
+    @RequestMapping(value = "/find/employee/company", method = RequestMethod.GET)
+    public List<Employee> findEmployeeByCompany(@RequestParam("companyId") Integer companyId, @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset) {
+        return employeeDAL.findEmployeeByCompany(companyId, offset);
     }
     
     @RequestMapping(value = "/find_all_list", method = RequestMethod.GET)

@@ -5,13 +5,22 @@
  */
 angular.module("stars.services.employee", []);
 angular.module("stars.services.employee")
-        .factory('EmployeeService', function ($resource, restRoot, contextPath) {            
+        .factory('EmployeeService', function ($resource, restRoot, contextPath) {
             return $resource(restRoot + '/employee/:id', {'id': '@id'}, {
-                
+
                 'findByNameLike': {
                     'method': 'GET',
                     'url': restRoot + '/employee/find/user_like',
                     'params': {
+                        'name': '@name'
+                    },
+                    'isArray': true
+                },
+                'findByNameLikeByCompany': {
+                    'method': 'GET',
+                    'url': restRoot + '/employee/find/name_like/company',
+                    'params': {
+                        'companyId': '@companyId',
                         'name': '@name'
                     },
                     'isArray': true
@@ -28,6 +37,15 @@ angular.module("stars.services.employee")
                     'method': 'GET',
                     'url': restRoot + '/employee/find/sos',
                     'params': {
+                        'offset': '@offset'
+                    },
+                    'isArray': true
+                },
+                'findEmployeeByCompany': {
+                    'method': 'GET',
+                    'url': restRoot + '/employee/find/employee/company',
+                    'params': {
+                        'companyId': '@companyId',
                         'offset': '@offset'
                     },
                     'isArray': true

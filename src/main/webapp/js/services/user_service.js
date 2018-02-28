@@ -50,6 +50,15 @@ angular.module("stars.services.user")
                     },
                     'isArray': false
                 },
+                'findUsersByCompany': {
+                    'method': 'GET',
+                    'url': restRoot + '/user/find/user/company',
+                    'params': {
+                        'companyId': '@companyId',
+                        'offset': '@offset'
+                    },
+                    'isArray': true
+                },
                 'findSfplUsers': {
                     'method': 'GET',
                     'url': restRoot + '/user/find/sfpl',

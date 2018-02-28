@@ -35,165 +35,90 @@ angular.module("stars.states.user", [])
                 if (userObject.role === "ROLE_HR") {
                     $scope.showHRBack = true;
                     $scope.showAdminBack = false;
-                    if (userObject.companyId === 3) {
-                        if (
-                                $stateParams.offset === undefined ||
-                                isNaN($stateParams.offset) ||
-                                new Number($stateParams.offset) < 0)
-                        {
-                            $scope.currentOffset = 0;
-                        } else {
-                            $scope.currentOffset = new Number($stateParams.offset);
-                        }
 
-                        $scope.nextOffset = $scope.currentOffset + 10;
-
-                        $scope.nextUsers = UserService.query({
-                            'offset': $scope.nextOffset
-                        });
-                        $scope.users = UserService.findSfplUsers({
-                            'offset': $scope.currentOffset
-                        }, function (userList) {
-                            console.log("S :%O", userList);
-                            angular.forEach($scope.users, function (user) {
-                                user.employee = EmployeeService.get({
-                                    'id': user.employeeId
-                                });
-                            });
-                        });
-
-                        $scope.nextPage = function () {
-                            $scope.currentOffset += paginationLimit;
-                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                        };
-                        $scope.previousPage = function () {
-                            if ($scope.currentOffset <= 0) {
-                                return;
-                            }
-                            $scope.currentOffset -= paginationLimit;
-                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                        };
-                    } else if (userObject.companyId === 4) {
-                        if (
-                                $stateParams.offset === undefined ||
-                                isNaN($stateParams.offset) ||
-                                new Number($stateParams.offset) < 0)
-                        {
-                            $scope.currentOffset = 0;
-                        } else {
-                            $scope.currentOffset = new Number($stateParams.offset);
-                        }
-
-                        $scope.nextOffset = $scope.currentOffset + 10;
-
-                        $scope.nextUsers = UserService.query({
-                            'offset': $scope.nextOffset
-                        });
-                        $scope.users = UserService.findSosUsers({
-                            'offset': $scope.currentOffset
-                        }, function (userList) {
-                            console.log("S :%O", userList);
-                            angular.forEach($scope.users, function (user) {
-                                user.employee = EmployeeService.get({
-                                    'id': user.employeeId
-                                });
-                            });
-                        });
-
-                        $scope.nextPage = function () {
-                            $scope.currentOffset += paginationLimit;
-                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                        };
-                        $scope.previousPage = function () {
-                            if ($scope.currentOffset <= 0) {
-                                return;
-                            }
-                            $scope.currentOffset -= paginationLimit;
-                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                        };
+                    if (
+                            $stateParams.offset === undefined ||
+                            isNaN($stateParams.offset) ||
+                            new Number($stateParams.offset) < 0)
+                    {
+                        $scope.currentOffset = 0;
+                    } else {
+                        $scope.currentOffset = new Number($stateParams.offset);
                     }
+
+                    $scope.nextOffset = $scope.currentOffset + 10;
+
+                    $scope.nextUsers = UserService.findUsersByCompany({
+                        'companyId': userObject.companyId,
+                        'offset': $scope.nextOffset
+                    });
+                    $scope.users = UserService.findUsersByCompany({
+                        'companyId': userObject.companyId,
+                        'offset': $scope.currentOffset
+                    }, function (userList) {
+                        console.log("S :%O", userList);
+                        angular.forEach($scope.users, function (user) {
+                            user.employee = EmployeeService.get({
+                                'id': user.employeeId
+                            });
+                        });
+                    });
+
+                    $scope.nextPage = function () {
+                        $scope.currentOffset += paginationLimit;
+                        $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                    };
+                    $scope.previousPage = function () {
+                        if ($scope.currentOffset <= 0) {
+                            return;
+                        }
+                        $scope.currentOffset -= paginationLimit;
+                        $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                    };
+
                 } else if (userObject.role === "ROLE_ADMIN") {
                     $scope.showHRBack = false;
                     $scope.showAdminBack = true;
-                    if (userObject.companyId === 3) {
-                        console.log("SFPL Login");
-                        if (
-                                $stateParams.offset === undefined ||
-                                isNaN($stateParams.offset) ||
-                                new Number($stateParams.offset) < 0)
-                        {
-                            $scope.currentOffset = 0;
-                        } else {
-                            $scope.currentOffset = new Number($stateParams.offset);
-                        }
 
-                        $scope.nextOffset = $scope.currentOffset + 10;
-
-                        $scope.nextUsers = UserService.query({
-                            'offset': $scope.nextOffset
-                        });
-                        $scope.users = UserService.findSfplUsers({
-                            'offset': $scope.currentOffset
-                        }, function (userList) {
-                            console.log("S :%O", userList);
-                            angular.forEach($scope.users, function (user) {
-                                user.employee = EmployeeService.get({
-                                    'id': user.employeeId
-                                });
-                            });
-                        });
-
-                        $scope.nextPage = function () {
-                            $scope.currentOffset += paginationLimit;
-                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                        };
-                        $scope.previousPage = function () {
-                            if ($scope.currentOffset <= 0) {
-                                return;
-                            }
-                            $scope.currentOffset -= paginationLimit;
-                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                        };
-                    } else if (userObject.companyId === 4) {
-                        console.log("SOS Login");
-                        if (
-                                $stateParams.offset === undefined ||
-                                isNaN($stateParams.offset) ||
-                                new Number($stateParams.offset) < 0)
-                        {
-                            $scope.currentOffset = 0;
-                        } else {
-                            $scope.currentOffset = new Number($stateParams.offset);
-                        }
-
-                        $scope.nextOffset = $scope.currentOffset + 10;
-
-                        $scope.nextUsers = UserService.query({
-                            'offset': $scope.nextOffset
-                        });
-                        $scope.users = UserService.findSosUsers({
-                            'offset': $scope.currentOffset
-                        }, function (userList) {
-                            console.log("S :%O", userList);
-                            angular.forEach($scope.users, function (user) {
-                                user.employee = EmployeeService.get({
-                                    'id': user.employeeId
-                                });
-                            });
-                        });
-
-                        $scope.nextPage = function () {
-                            $scope.currentOffset += paginationLimit;
-                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                        };
-                        $scope.previousPage = function () {
-                            if ($scope.currentOffset <= 0) {
-                                return;
-                            }
-                            $scope.currentOffset -= paginationLimit;
-                            $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                        };
+                    if (
+                            $stateParams.offset === undefined ||
+                            isNaN($stateParams.offset) ||
+                            new Number($stateParams.offset) < 0)
+                    {
+                        $scope.currentOffset = 0;
+                    } else {
+                        $scope.currentOffset = new Number($stateParams.offset);
                     }
+
+                    $scope.nextOffset = $scope.currentOffset + 10;
+
+                    $scope.nextUsers = UserService.findUsersByCompany({
+                        'companyId': userObject.companyId,
+                        'offset': $scope.nextOffset
+                    });
+                    $scope.users = UserService.findUsersByCompany({
+                        'companyId': userObject.companyId,
+                        'offset': $scope.currentOffset
+                    }, function (userList) {
+                        console.log("S :%O", userList);
+                        angular.forEach($scope.users, function (user) {
+                            user.employee = EmployeeService.get({
+                                'id': user.employeeId
+                            });
+                        });
+                    });
+
+                    $scope.nextPage = function () {
+                        $scope.currentOffset += paginationLimit;
+                        $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                    };
+                    $scope.previousPage = function () {
+                        if ($scope.currentOffset <= 0) {
+                            return;
+                        }
+                        $scope.currentOffset -= paginationLimit;
+                        $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                    };
                 }
             });
 
