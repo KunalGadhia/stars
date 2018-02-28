@@ -145,7 +145,7 @@ angular.module("stars.states.employee", [])
                 });
             };
         })
-        .controller('EmployeeAddController', function (CompanyService, EmployeeService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('EmployeeAddController', function ($rootScope, UserService, CompanyService, EmployeeService, $scope, $stateParams, $state, paginationLimit) {
 
             $scope.editableEmployee = {};
             $scope.$watch('editableEmployee.empNo', function (empNo) {
@@ -167,9 +167,14 @@ angular.module("stars.states.employee", [])
                     ;
                 });
             });
+            $scope.user = $rootScope.currentUser;
+            $scope.userObject = UserService.findByUsername({
+                'username': $scope.user.username
+            });
             $scope.companyList = CompanyService.findALlList();
             $scope.searchReportingEmployees = function (empString) {
-                return EmployeeService.findByNameLike({
+                return EmployeeService.findByNameLikeByCompany({
+                    'companyId': $scope.userObject.companyId,
                     'name': empString
                 }).$promise;
             };
@@ -177,7 +182,8 @@ angular.module("stars.states.employee", [])
                 $scope.editableEmployee.reportingTo = employee.id;
             };
             $scope.searchHeadEmployees = function (empString) {
-                return EmployeeService.findByNameLike({
+                return EmployeeService.findByNameLikeByCompany({
+                    'companyId': $scope.userObject.companyId,
                     'name': empString
                 }).$promise;
             };
@@ -192,7 +198,7 @@ angular.module("stars.states.employee", [])
                 });
             };
         })
-        .controller('EmployeeEditController', function (CompanyService, $filter, UserService, EmployeeService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('EmployeeEditController', function ($rootScope, CompanyService, $filter, UserService, EmployeeService, $scope, $stateParams, $state, paginationLimit) {
             console.log("State Params :%O", $stateParams);
             EmployeeService.get({
                 'id': $stateParams.employeeId
@@ -209,9 +215,14 @@ angular.module("stars.states.employee", [])
                 });
                 $scope.editableEmployee = employeeObject;
             });
+            $scope.user = $rootScope.currentUser;
+            $scope.userObject = UserService.findByUsername({
+                'username': $scope.user.username
+            });
             $scope.companyList = CompanyService.findALlList();
             $scope.searchReportingEmployees = function (empString) {
-                return EmployeeService.findByNameLike({
+                return EmployeeService.findByNameLikeByCompany({
+                    'companyId': $scope.userObject.companyId,
                     'name': empString
                 }).$promise;
             };
@@ -219,7 +230,8 @@ angular.module("stars.states.employee", [])
                 $scope.editableEmployee.reportingTo = employee.id;
             };
             $scope.searchHeadEmployees = function (empString) {
-                return EmployeeService.findByNameLike({
+                return EmployeeService.findByNameLikeByCompany({
+                    'companyId': $scope.userObject.companyId,
                     'name': empString
                 }).$promise;
             };

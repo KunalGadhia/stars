@@ -123,7 +123,7 @@ angular.module("stars.states.user", [])
             });
 
         })
-        .controller('UserAddController', function (CompanyService, UserService, EmployeeService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('UserAddController', function ($rootScope, CompanyService, UserService, EmployeeService, $scope, $stateParams, $state, paginationLimit) {
 
             $scope.editableUser = {};
 
@@ -143,6 +143,12 @@ angular.module("stars.states.user", [])
                     ;
                 });
             });
+
+            $scope.user = $rootScope.currentUser;
+            $scope.userObject = UserService.findByUsername({
+                'username': $scope.user.username
+            });
+
             $scope.companyList = CompanyService.findALlList();
             $scope.$watch('editableUser.employeeId', function (employeeId) {
                 UserService.findByEmployeeId({'employeeId': employeeId}).$promise.catch(function (response) {
@@ -172,7 +178,8 @@ angular.module("stars.states.user", [])
             };
 
             $scope.searchEmployees = function (empString) {
-                return EmployeeService.findByNameLike({
+                return EmployeeService.findByNameLikeByCompany({
+                    'companyId': $scope.userObject.companyId,
                     'name': empString
                 }).$promise;
             };
@@ -181,7 +188,7 @@ angular.module("stars.states.user", [])
             };
 
         })
-        .controller('UserEditController', function (CompanyService, UserService, EmployeeService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('UserEditController', function ($rootScope, CompanyService, UserService, EmployeeService, $scope, $stateParams, $state, paginationLimit) {
             $scope.editableUser = {};
             $scope.saveUser = function (User) {
                 User.$save(function () {
@@ -197,9 +204,16 @@ angular.module("stars.states.user", [])
                 $scope.editableUser = user;
 
             });
+
+            $scope.user = $rootScope.currentUser;
+            $scope.userObject = UserService.findByUsername({
+                'username': $scope.user.username
+            });
+
             $scope.companyList = CompanyService.findALlList();
             $scope.searchEmployees = function (empString) {
-                return EmployeeService.findByNameLike({
+                return EmployeeService.findByNameLikeByCompany({
+                    'companyId': $scope.userObject.companyId,
                     'name': empString
                 }).$promise;
             };
