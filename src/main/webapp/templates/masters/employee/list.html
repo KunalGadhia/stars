@@ -46,6 +46,25 @@
                         <i class="fa fa-times"></i>
                     </button>
                 </div>
+            </div>            
+        </form>
+        <hr>        
+        <form ng-submit="searchEmpByHod(hodId)">
+            <div class="row">
+                <div class="col-sm-9">
+                    <select class="form-control" ng-model='hodId'>
+                        <option value="">Filter By Department Head's</option>
+                        <option ng-repeat='hod in hodList' value='{{hod.employeeId}}'>{{hod.name}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary pull-right">Search Employee</button>
+                </div>
+                <div class="col-sm-1">
+                    <button type="button" class="btn btn-primary pull-left" ng-click="clearSearch()">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
             </div>
         </form>
     </div>

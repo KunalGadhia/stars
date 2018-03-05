@@ -55,6 +55,14 @@ angular.module("stars.states.employee", [])
                         'companyId': userObject.companyId,
                         'offset': $scope.currentOffset
                     }, function (s) {
+                        angular.forEach($scope.employeeList, function (employee) {
+                            employee.reportingToObject = EmployeeService.get({
+                                'id': employee.reportingTo
+                            });
+                            employee.departmentHeadObject = EmployeeService.get({
+                                'id': employee.departmentHead
+                            });
+                        });
                     });
 
                     $scope.nextPage = function () {
@@ -92,8 +100,20 @@ angular.module("stars.states.employee", [])
                         'companyId': userObject.companyId,
                         'offset': $scope.currentOffset
                     }, function (s) {
+                        angular.forEach($scope.employeeList, function (employee) {
+                            employee.reportingToObject = EmployeeService.get({
+                                'id': employee.reportingTo
+                            });
+                            employee.departmentHeadObject = EmployeeService.get({
+                                'id': employee.departmentHead
+                            });
+                        });
                     });
-
+                    UserService.findHodByCompanyId({
+                        'companyId': userObject.companyId
+                    }, function (hodList) {                        
+                        $scope.hodList = hodList;
+                    });
                     $scope.nextPage = function () {
                         $scope.currentOffset += paginationLimit;
                         $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
@@ -128,12 +148,16 @@ angular.module("stars.states.employee", [])
                     $scope.employeeList.push(employeeObject);
                 });
             };
-            $scope.clearSearch = function () {
-                $scope.searchEmployeeId = '';
-                $scope.employeeObject = {};
-                $scope.employeeList = EmployeeService.query({
-                    'offset': $scope.currentOffset
-                }, function (employeeList) {
+            $scope.clearSearch = function () {                              
+                $state.go('admin.masters_employee', null, {'reload': true});
+            };
+            $scope.searchEmpByHod = function (employeeId) {
+                console.log("Employee Id :%O", employeeId);
+                $scope.employeeList = [];
+                $scope.employeeList = EmployeeService.findByDepartmentHead({
+                    'departmentHeadId': employeeId
+                }, function (employeeObject) {
+
                     angular.forEach($scope.employeeList, function (employee) {
                         employee.reportingToObject = EmployeeService.get({
                             'id': employee.reportingTo
@@ -143,7 +167,7 @@ angular.module("stars.states.employee", [])
                         });
                     });
                 });
-            };
+            };           
         })
         .controller('EmployeeAddController', function ($rootScope, UserService, CompanyService, EmployeeService, $scope, $stateParams, $state, paginationLimit) {
 
