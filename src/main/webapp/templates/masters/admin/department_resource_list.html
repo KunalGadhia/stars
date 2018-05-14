@@ -29,19 +29,19 @@
         </thead>
         <tbody>
             <tr ng-repeat="employee in resourcesList">
-                <td class="text-right">{{ currentOffset + $index + 1}}</td>
-                <td>{{ employee.empName}}</td>   
-                <td>{{ employee.grade}}</td>  
-                <td>{{ employee.designation}}</td>  
-                <td>{{ employee.empDoj | date}}</td>
-                <td>{{ employee.empDob | date}}</td>
-                <td>{{ employee.eduQual}}</td>
-                <td>{{ employee.location}}</td>
-                <td ng-if="employee.complete === true"><label class="label label-success">Complete</label></td>
-                <td ng-if="employee.inProgress === true"><label class="label label-warning">Partial Complete ({{employee.totalWeightage}} %)</label></td>
-                <td ng-if="employee.notStarted === true"><label class="label label-danger">Not Started</label></td>
+                <td data-title="" class="text-right">{{ currentOffset + $index + 1}}</td>
+                <td data-title="">{{ employee.empName}}</td>   
+                <td data-title="">{{ employee.grade}}</td>  
+                <td data-title="">{{ employee.designation}}</td>  
+                <td data-title="">{{ employee.empDoj | date}}</td>
+                <td data-title="">{{ employee.empDob | date}}</td>
+                <td data-title="">{{ employee.eduQual}}</td>
+                <td data-title="">{{ employee.location}}</td>
+                <td data-title="" ng-if="employee.complete === true"><label class="label label-success">Complete</label></td>
+                <td data-title="" ng-if="employee.inProgress === true"><label class="label label-warning">Partial Complete ({{employee.totalWeightage}} %)</label></td>
+                <td data-title="" ng-if="employee.notStarted === true"><label class="label label-danger">Not Started</label></td>
                 <!--<td>{{ user.mobileNo}}</td>-->                
-                <td class="text-right">
+                <td data-title="" class="text-right">
                     <a data-ui-sref="admin.department_resource_list.update_additional_details({ employeeId: employee.id })"
                        class="btn btn-primary" ng-show="employee.showUpdateButton">
                         Update Additional Details &nbsp;

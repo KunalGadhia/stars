@@ -106,6 +106,11 @@ public class EmployeeRest {
         return employeeDAL.findEmployeeByCompany(companyId, offset);
     }
     
+    @RequestMapping(value = "/find/company", method = RequestMethod.GET)
+    public List<Employee> findByCompany(@RequestParam("companyId") Integer companyId) {
+        return employeeDAL.findByCompany(companyId);
+    }
+    
     @RequestMapping(value = "/find_all_list", method = RequestMethod.GET)
     public List<Employee> findAllList() {
         return employeeDAL.findAllList();

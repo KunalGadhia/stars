@@ -1,7 +1,405 @@
-.no-padding{
-        padding-left:0px;
-        padding-right:0px;
+
+/*-- navbar menu --*/
+.navBrand a.navbar-brand{
+    float: none !important;
 }
+.navBrand strong{
+    margin-left: -15px;
+}
+.panelToggle{
+    display: none;
+}
+ul.menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    float: right;
+}
+ul.menu li {
+    font-size: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    float: left;
+    transition: .3s;
+    -webkit-transform: translateZ(0);
+      -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+         -o-transform: translateZ(0);
+          transform: translateZ(0);
+}
+ul.menu li a{
+    padding: 10px 10px;
+}
+ul.menu li:hover {
+    transition: .3s;
+}
+ul.menu li:hover a {
+    color: #ffb300;
+    text-decoration: none;
+}
+.block {
+    width: 306px;
+    height: 230px;
+}
+.headerPadding{
+    padding-top: 40px;
+}
+.no-padding{
+    padding-left:0px;
+    padding-right:0px;
+}
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+/*-- testimonial --*/
+ .itemCaption{
+    text-align: center;
+    padding: 10px;
+ }
+ .itemCaption img{
+    border-radius: 50%;
+    box-shadow: 0px 0px 1px 4px rgba(255, 179, 0, 0.8), 0px 0px 2px 8px rgba(255, 179, 0, 0.4);
+    margin-bottom: 15px;
+ }
+ .itemCaption p:nth-child(2){
+    font-size: 16px;
+    font-weight: 600;
+ }
+ .itemCaption p:nth-child(2):before,
+ .itemCaption p:nth-child(2):after{
+     font-family: FontAwesome;
+     font-size: 20px;
+     position: relative;
+     color: #ffb300;
+ }
+ .itemCaption p:nth-child(2):after{
+    content: '\f10e';
+    top: 10px;
+    right: -10px;
+ }
+ .itemCaption p:nth-child(2):before{
+    content: '\f10d';
+    top: -5px;
+    left: -10px;
+ }
+ .itemCaption p:nth-child(3){
+    font-size: 18px;
+    font-style: italic;
+ }
+ .itemCaption p:last-child{
+     font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+ }
+ .testimo .carousel-control.left,
+ .testimo .carousel-control.right{
+     top: 110px !important;
+     background: transparent;
+ }
+ .testimo .carousel-control .glyphicon-chevron-right,
+ .carousel-control .icon-next{
+     right: 0 !important;
+ }
+ .testimo .carousel-indicators li{
+    background: #ffb300;
+    width: 14px;
+    height: 14px;
+ }
+ .testimo .carousel-indicators .active{
+    background: #000;
+    width: 16px;
+    height: 16px;
+    -webkit-transition: 0.5s; /* Safari */
+    transition: width 0.5s;
+ }
+ .testimo .carousel-indicators {
+    bottom: -30px;
+}
+
+/*-- hod menu --*/
+.hodMenu{
+    height: auto;
+    border-left: 1px solid;
+}
+.hodMenu:nth-of-type(1){
+    border-left: none;
+}
+
+.profileTitle{
+    margin-left: 30px;
+    border-bottom: 2px solid #000;
+}
+.profBotDiv{
+    border-right: 1px solid;
+}
+.profBotDiv:nth-of-type(3){
+    border-right: none;
+}
+/*xs*/
+@media (max-width: 320px){
+    td{
+        padding-left: 115px !important;
+        font-size: 12px;
+    }
+    .panel .form-group {
+        width: 70%;
+    }
+    table .btn{
+        font-size: 12px;
+    }
+}
+@media (max-width: 480px){
+    .navbar-brand>img{
+        margin: 0 auto;
+    }
+    .navBrand{
+        text-align: center;
+    }
+    .testimo{
+        padding-top: 35px;
+    }
+    .panel .panel-heading h4 {
+        margin: 45px 0 0 0 !important;
+    }
+    .panel .form-group{
+        margin-bottom: 20px !important;
+        width: 60%;
+        margin: 0 auto;
+        border: 1px solid #000;
+        padding: 10px;
+        border-radius: 15px;
+        box-shadow: 2px 2px 5px 0px #777;
+    }
+    .panel .panel-body div.col-xs-6{
+        width: 100%;
+    }
+    .icon_ht {
+        height: 130px !important;
+        margin-bottom: 10px;
+    }
+    .form-group span{
+        font-size: 16px;
+        color: #000;
+    }
+    .panel-body {
+        padding: 0 15px;
+    }
+    hr.ng-scope{
+        margin: 0;
+    }
+    .modal-header{
+        margin-bottom: 15px;
+    }
+    .footer-ul:nth-child(5){
+        padding-top: 20px !important;
+    }
+    footer img{
+        max-width: 60% !important;
+    }
+    .menuDiv {
+        width: 80% !important;
+    }
+    /*-- table responsive --*/
+    .panel{
+        border: none;
+    }
+    table, thead, tbody, th, td, tr { 
+	display: block; 
+    }
+    thead tr{
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    tr{
+        border: 1px solid #777;
+        margin: 10px 0;
+    }
+    .table-striped>tbody>tr:nth-of-type(odd) {
+        background-color: #fff;
+    }
+    td:nth-of-type(odd) { 
+        background: #eee; 
+    }
+    td{
+        border: none;
+        border-top: none !important;
+        position: relative;
+        padding-left: 50%;
+        padding-left: 130px !important;
+    }
+    td.text-right{
+        text-align: left !important;
+    }
+    td:before {
+        content: attr(data-title);
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 600;
+    }
+    .evaluateTable td{
+        padding-left: 165px !important;
+    }
+    
+    .profile-image{
+        height: 90px;
+    }
+    .text h2 {
+        padding: 5px 0 !important;
+        font-size: 16px !important;
+    }
+    .modal-header{
+        border-bottom: none;
+    }
+    .profileTitle {
+        margin-left: 15px;
+    }
+}
+
+@media (max-width: 767px){
+    ul.menu li span{
+        display:none;
+    }
+    ul.menu li {
+        width: 100%;
+        text-align: left;
+    }
+    ul.menu{
+        float: none;
+    }
+    .panelToggle {
+        display: block;
+        width: 100%;
+        box-shadow: none !important;
+    }
+    .resp-nav {
+        display: none;
+        width: 100%;
+    }
+    button.toggle-button {
+        background: none;
+        border: 0;
+        color: inherit;
+        /* cursor: default; */
+        font: inherit;
+        line-height: normal;
+        overflow: visible;
+        padding: 0;
+        -webkit-appearance: button; /* for input */
+        -webkit-user-select: none; /* for button */
+           -moz-user-select: none;
+            -ms-user-select: none;
+    }
+    button::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+    .toggle-button {
+        margin: 0 0 0 50px;
+        position: relative;
+        font-size: 24px;
+    }
+    .toggle-button::before {
+        content: "";
+        position: absolute;
+        left: -50px;
+        top: 5px;
+        width: 40px;
+        height: 3px;
+        background: #000;
+        box-shadow: 0 7px 0 0 #ffb300,0 14px 0 0 #000;
+    }
+    .toggle-button span {
+      text-transform: uppercase;
+    }
+    
+    .itemCaption p:nth-child(2){
+        font-size: 14px;
+        font-weight: 600;
+        text-align: justify;
+    }
+    /*-- inner page --*/
+    #main-content .col-xs-6{
+        padding: 0;
+    }
+    .panel .panel-heading h4{
+        margin: 5px 0;
+    }    
+    .hodMenu{
+        border-left:none;
+        margin-bottom: 30px;
+    }
+    .menuDiv{
+        text-align: center;
+        width: 50%;
+        margin: 0 auto;
+        border: 1px solid #eee;
+        box-shadow: 0px 15px 10px -15px #111;
+    }
+    .image{
+        height: auto;
+    }
+    .overlay,
+    .overlay .text{
+        position: unset;
+        opacity: 1;
+    }
+    .text h2{
+        padding: 10px 0;
+        font-size: 20px;
+    }
+    .overlay{
+        height: auto;
+        width: auto;
+    }
+    .text{
+        transform: unset;
+    }
+    footer {
+        margin: 20px 0px 0px 0px;
+    }
+    .footer-ul{
+        height: auto;
+        border-bottom: 2px solid #636061;
+        padding: 10px 0px;
+    }
+    .b-right {
+        border-right: 0px solid #636061;
+        border-bottom: 0px solid #636061;
+    }
+    
+    .profBotDiv{
+        border-left: none;
+        border-right: none;
+        text-align: center;
+        
+    }
+    .profBotDiv .container{
+        border: 1px solid #eee;
+        box-shadow: 0px 15px 10px -15px #111;
+        padding: 0;
+        margin: 15px 0
+    }
+}
+
+/*sm*/
+@media (min-width: 768px) and (max-width: 991px) {
+    .testiDiv.active > div:first-child + div { 
+        display:block; 
+    }
+    .image{
+        height: 200px;
+    }
+}
+
+
+
 
 /*
 To change this license header, choose License Headers in Project Properties.
@@ -1607,4 +2005,18 @@ tcb-testimonial-carousel
 .DemandIndicatorTable tbody tr td{
     text-align: center;
 }
+
+.container {
+    position: relative;
+    width: 50%;
+}
 */
+
+/*
+ *-- new added css --
+ */
+
+.topSubTitle{
+    margin-top: 15px;
+    margin-left: 15px;
+}

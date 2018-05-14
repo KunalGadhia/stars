@@ -50,6 +50,14 @@ angular.module("stars.services.employee")
                     },
                     'isArray': true
                 },
+                'findByCompany': {
+                    'method': 'GET',
+                    'url': restRoot + '/employee/find/company',
+                    'params': {
+                        'companyId': '@companyId'                        
+                    },
+                    'isArray': true
+                },
                 'findByEmpNumLike': {
                     'method': 'GET',
                     'url': restRoot + '/employee/find/emp_no_like',

@@ -21,25 +21,19 @@
         <script src="${pageContext.request.contextPath}/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>  
         <script src="${pageContext.request.contextPath}/webjars/angular-ui-router/0.2.15/angular-ui-router.js"></script>  
         <script src="${pageContext.request.contextPath}/webjars/angular-ui-bootstrap/1.2.5/ui-bootstrap-tpls.min.js"></script>
-        <script src="${pageContext.request.contextPath}/webjars/underscorejs/1.5.1/underscore.min.js"></script>        
-        <!--<script src="${pageContext.request.contextPath}/webjars/jquery/2.1.4/jquery.min.js"></script>--> 
+        <script src="${pageContext.request.contextPath}/webjars/underscorejs/1.5.1/underscore.min.js"></script>                
         <script src="${pageContext.request.contextPath}/js/lib/angular-google-map.js"></script>
-        <script src="${pageContext.request.contextPath}/js/lib/angular-simple-logger.js"></script>        
-        <!--        <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places&region=IN&key=AIzaSyBEYDdJx8BB-fQa_H2qKoUO84oUrH8BFQE"></script>
-                <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>-->
+        <script src="${pageContext.request.contextPath}/js/lib/angular-simple-logger.js"></script>                
         <script src="${pageContext.request.contextPath}/js/lib/fusioncharts.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/fusioncharts.charts.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/fusioncharts.theme.fint.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/ng-google-chart.js"></script>
-<!--        <script src="${pageContext.request.contextPath}/js/lib/calcumateemi.js"></script>
-        <script src="${pageContext.request.contextPath}/js/lib/googleMap.js"></script>-->
         <script src="${pageContext.request.contextPath}/js/lib/jquery.flexslider-min.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/scripts.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/wow.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/lodash.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/moment.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/lib/angular.filter.min.js"></script>
-        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>-->
+        <script src="${pageContext.request.contextPath}/js/lib/angular.filter.min.js"></script>        
         <script src="${pageContext.request.contextPath}/js/lib/angular-bootstrap-lightbox.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/ngComboDatePicker.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/lib/ngComboDatePicker.js"></script>
@@ -223,12 +217,7 @@
                 content: "✖";
             }
         </style>
-        <style>            
-            .container {
-                position: relative;
-                width: 50%;
-            }
-
+        <style>
             .image {
                 display: block;
                 width: 100%;
@@ -314,39 +303,16 @@
                 background: #4CAF50;
                 cursor: pointer;
             }
-        </style>
-
-        <!-- Internal JS Files -->
-<!--        <script>
-            (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                    m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-            ga('create', 'UA-41214428-1', 'auto');
-            ga('send', 'pageview');
-        </script>-->
+        </style>        
 
         <script type="application/ld+json">
             {"@context":"http:\/\/schema.org","@type":"WebSite","@id":"#website","url":"https:\/\/spacewood.in\/","name":"Modular Kitchens, Wardrobes, Living Room, Bedroom Interior Designers - Spacewood.in - Spacewood","potentialAction":{"@type":"SearchAction","target":"https:\/\/spacewood.in\/?s={search_term_string}","query-input":"required name=search_term_string"}}
         </script>
 
-        <!-- External JS Libraries -->
-        <!--<script async="" src="https://www.google-analytics.com/analytics.js"></script>-->
+        <!-- External JS Libraries -->        
         <script href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script href="${pageContext.request.contextPath}/js/scrollbar.min.js"></script>
         <script href="${pageContext.request.contextPath}/js/emojisetting.js"></script>
-<!--        <script src="https://spacewood.in/wp-includes/js/twemoji.js?ver=4.8.2" type="text/javascript" defer=""></script>
-        <script src="https://spacewood.in/wp-includes/js/wp-emoji.js?ver=4.8.2" type="text/javascript" defer=""></script>
-        <script type="text/javascript" src="https://spacewood.in/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
-        <script type="text/javascript" src="https://spacewood.in/wp-includes/js/jquery/jquery-migrate.js?ver=1.4.1"></script>-->
-        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
         <!-- Icons & Images -->
@@ -368,7 +334,6 @@
         <script src="${pageContext.request.contextPath}/js/app.js"></script>
         <script src="${pageContext.request.contextPath}/js/auth.js"></script>
         <script src="${pageContext.request.contextPath}/js/filters.js"></script>
-<!--        <script src="${pageContext.request.contextPath}/js/directives/datetime_picker.js"></script>
         
         <!--states-->
         <script src="${pageContext.request.contextPath}/js/states.js"></script>
@@ -376,37 +341,12 @@
         <script src="${pageContext.request.contextPath}/js/states/user.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/kra.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/profile.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/evaluate.js"></script>
-        <!--<script src="${pageContext.request.contextPath}/js/states/evaluate.js"></script>-->
+        <script src="${pageContext.request.contextPath}/js/states/evaluate.js"></script>        
         <script src="${pageContext.request.contextPath}/js/states/admin_menu.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/reports.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/employee.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/hr_menu.js"></script>
-<!--        <script src="${pageContext.request.contextPath}/js/states/employee.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/notification.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/party.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/segment.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/sale_type.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/order.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/department.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/reason.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/kitchen_component.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/raw_material.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/standard_carcass_dimension.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/color.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/standard_carcass_price.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/color_constraint.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/finish_price.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/section_profile.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/carcass_subtype.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/panel_material_thickness.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/handle_price.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/shutter_finish_price.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/user.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/shutter_handle_mapping.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/filler_finish_price.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/drawer_handle_mapping.js"></script>
-        <script src="${pageContext.request.contextPath}/js/states/rate_contract.js"></script>-->
+        <script src="${pageContext.request.contextPath}/js/states/tag.js"></script>
 
         <!--Services-->
         <script src="${pageContext.request.contextPath}/js/services/user_service.js"></script>
@@ -415,51 +355,9 @@
         <script src="${pageContext.request.contextPath}/js/services/form2_details_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/additional_details_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/company_service.js"></script>
-<!--        <script src="${pageContext.request.contextPath}/js/services/notification_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/party_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/segment_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/sale_type_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/order_head_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/department_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/reason_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/kitchen_component_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/raw_material_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/order_details_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/standard_carcass_dimension_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/color_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/standard_carcass_price_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/carcass_order_details_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/color_constraint_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/finish_price_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/section_profile_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/carcass_subtype_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/panel_material_thickness_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/panel_order_details_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/filler_order_details_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/pelmet_order_details_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/cornice_order_details_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/handle_price_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/handle_order_details_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/shutter_order_details_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/shutter_finish_price_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/drawer_order_details_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/shutter_handle_mapping_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/filler_finish_price_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/drawer_handle_mapping_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/rate_contract_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/rate_contract_detail_service.js"></script>
-        <script src="${pageContext.request.contextPath}/js/services/erp_integration_service.js"></script>-->
-
+        <script src="${pageContext.request.contextPath}/js/services/tag_service.js"></script>
     </head>
     <body style="font-family: 'Roboto', sans-serif;">
-        <div data-ui-view></div>
-        <!--<h1>Hello World!</h1>-->
-    </body>
-    <!--    <head>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>JSP Page</title>
-        </head>
-        <body>
-            <h1>Hello World!</h1>
-        </body>-->
+        <div data-ui-view></div>        
+    </body>    
 </html>

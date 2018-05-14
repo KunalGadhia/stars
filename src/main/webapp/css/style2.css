@@ -561,6 +561,7 @@ article.post h2.headingtwo {
     cursor:pointer;
     position:relative;
     line-height:0px;
+    width: 393.333px;
 }
 .nbs-flexisel-item img {
     /* max-width: 100%; */
@@ -1363,6 +1364,8 @@ header.carousel .fill {
 
 footer {
     margin: 50px 0px 0px 0px;
+    background-color: #231f20;
+    padding: 15px 0;
 }
 footer p{
     font-size:16px;

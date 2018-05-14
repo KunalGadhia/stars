@@ -45,6 +45,11 @@ angular.module("stars.states.reports", [])
                 'templateUrl': templateRoot + '/masters/reports/form8.html',
                 'controller': 'AdminForm8Controller'
             });
+            $stateProvider.state('admin.report9', {
+                'url': '/admin_report9',
+                'templateUrl': templateRoot + '/masters/reports/form9.html',
+                'controller': 'AdminForm9Controller'
+            });
             $stateProvider.state('report1_details', {
                 'url': '/:employeeId/report1_details',
                 'templateUrl': templateRoot + '/masters/reports/form1_report.html',
@@ -84,6 +89,11 @@ angular.module("stars.states.reports", [])
                 'url': '/:employeeId/report8_details',
                 'templateUrl': templateRoot + '/masters/reports/form8_report.html',
                 'controller': 'Report8Details'
+            });
+            $stateProvider.state('report9_details', {
+                'url': '/:companyId/report9_details',
+                'templateUrl': templateRoot + '/masters/reports/form9_report.html',
+                'controller': 'Report9Details'
             });
 //            $stateProvider.state('admin.department_resource_list.update_additional_details', {
 //                'url': '/:employeeId/update_additional_details',
@@ -243,6 +253,14 @@ angular.module("stars.states.reports", [])
                 });
             });
         })
+        .controller('AdminForm9Controller', function ($rootScope, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
+            $scope.user = $rootScope.currentUser;
+            UserService.findByUsername({
+                'username': $scope.user.username
+            }, function (userObject) {
+                $scope.companyId = userObject.companyId;
+            });
+        })
         .controller('Report1Details', function (KraDetailsService, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
             $scope.kraEmployeeObject = EmployeeService.get({
                 'id': $stateParams.employeeId
@@ -362,21 +380,29 @@ angular.module("stars.states.reports", [])
                     $scope.form1DetailsPromise = KraDetailsService.findByEmployeeId({
                         'employeeId': resourceData.id
                     }, function (kraDetailsList) {
-                        var a = 0;
-                        angular.forEach(kraDetailsList, function (kraDetail) {
+                        if (kraDetailsList.length !== 0) {
+                            var a = 0;
+                            angular.forEach(kraDetailsList, function (kraDetail) {
 
-                            a = a + kraDetail.ratingScore;
-                            resourceData.ratingForm1 = a;
-                        });
+                                a = a + kraDetail.ratingScore;
+                                resourceData.ratingForm1 = a;
+                            });
+                        } else {
+                            resourceData.ratingForm1 = 0;
+                        }
                     });
                     $scope.form2DetailsPromise = Form2DetailsService.findByEmployeeId({
                         'employeeId': resourceData.id
                     }, function (form2DetailsList) {
-                        var b = 0;
-                        angular.forEach(form2DetailsList, function (form2Detail) {
-                            b = b + form2Detail.ratingScore;
-                            resourceData.ratingForm2 = b;
-                        });
+                        if (form2DetailsList.length !== 0) {
+                            var b = 0;
+                            angular.forEach(form2DetailsList, function (form2Detail) {
+                                b = b + form2Detail.ratingScore;
+                                resourceData.ratingForm2 = b;
+                            });
+                        } else {
+                            resourceData.ratingForm2 = 0;
+                        }
                     });
                     $scope.form1DetailsPromise.$promise.then(function (form1Details) {
                         $scope.form2DetailsPromise.$promise.then(function (form2Details) {
@@ -399,26 +425,44 @@ angular.module("stars.states.reports", [])
                     $scope.form1DetailsPromise = KraDetailsService.findByEmployeeId({
                         'employeeId': resourceData.id
                     }, function (kraDetailsList) {
-                        var a = 0;
-                        angular.forEach(kraDetailsList, function (kraDetail) {
+                        if (kraDetailsList.length !== 0) {
+                            var a = 0;
+                            angular.forEach(kraDetailsList, function (kraDetail) {
 
-                            a = a + kraDetail.ratingScore;
-                            resourceData.ratingForm1 = a;
-                        });
+                                a = a + kraDetail.ratingScore;
+                                resourceData.ratingForm1 = a;
+                            });
+                        } else {
+                            resourceData.ratingForm1 = 0;
+                        }
                     });
                     $scope.form2DetailsPromise = Form2DetailsService.findByEmployeeId({
                         'employeeId': resourceData.id
                     }, function (form2DetailsList) {
-                        var b = 0;
-                        angular.forEach(form2DetailsList, function (form2Detail) {
-                            b = b + form2Detail.ratingScore;
-                            resourceData.ratingForm2 = b;
-                        });
+                        if (form2DetailsList.length !== 0) {
+                            var b = 0;
+                            angular.forEach(form2DetailsList, function (form2Detail) {
+                                b = b + form2Detail.ratingScore;
+                                resourceData.ratingForm2 = b;
+                            });
+                        } else {
+                            resourceData.ratingForm2 = 0;
+                        }
                     });
                     $scope.additionalDetailPromise = AdditionalDetailsService.findByEmployeeId({
                         'employeeId': resourceData.id
                     }, function (additionalDetailsObject) {
-                        resourceData.correctionFactor = additionalDetailsObject.correctionFactor;
+                        if (additionalDetailsObject.correctionFactor !== null) {
+                            resourceData.correctionFactor = additionalDetailsObject.correctionFactor;
+                        } else {
+                            resourceData.correctionFactor = 0;
+                        }
+                    }, function errorCallback(response) {
+                        if (response.status === 500) {
+                            resourceData.correctionFactor = 0;
+                        } else if (response.status === 400) {
+                            resourceData.correctionFactor = 0;
+                        }
                     });
                     $scope.form1DetailsPromise.$promise.then(function (form1Details) {
                         $scope.form2DetailsPromise.$promise.then(function (form2Details) {
@@ -441,12 +485,16 @@ angular.module("stars.states.reports", [])
                     $scope.form1DetailsPromise = KraDetailsService.findByEmployeeId({
                         'employeeId': resourceData.id
                     }, function (kraDetailsList) {
-                        var a = 0;
-                        angular.forEach(kraDetailsList, function (kraDetail) {
+                        if (kraDetailsList.length !== 0) {
+                            var a = 0;
+                            angular.forEach(kraDetailsList, function (kraDetail) {
 
-                            a = a + kraDetail.ratingScore;
-                            resourceData.ratingForm1 = a;
-                        });
+                                a = a + kraDetail.ratingScore;
+                                resourceData.ratingForm1 = a;
+                            });
+                        } else {
+                            resourceData.ratingForm1 = 0;
+                        }
                     });
                     $scope.form1DetailsPromise.$promise.then(function (form1Details) {
                         resourceData.totalScore = (resourceData.ratingForm1);
@@ -467,11 +515,15 @@ angular.module("stars.states.reports", [])
                     $scope.form2DetailsPromise = Form2DetailsService.findByEmployeeId({
                         'employeeId': resourceData.id
                     }, function (form2DetailsList) {
-                        var b = 0;
-                        angular.forEach(form2DetailsList, function (form2Detail) {
-                            b = b + form2Detail.ratingScore;
-                            resourceData.ratingForm2 = b;
-                        });
+                        if (form2DetailsList.length !== 0) {
+                            var b = 0;
+                            angular.forEach(form2DetailsList, function (form2Detail) {
+                                b = b + form2Detail.ratingScore;
+                                resourceData.ratingForm2 = b;
+                            });
+                        } else {
+                            resourceData.ratingForm2 = 0;
+                        }
                     });
 
                     $scope.form2DetailsPromise.$promise.then(function (form2Details) {
@@ -480,4 +532,71 @@ angular.module("stars.states.reports", [])
                     });
                 });
             });
+        })
+        .controller('Report9Details', function ($rootScope, Form2DetailsService, KraDetailsService, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
+//            $scope.user = $rootScope.currentUser;
+//            UserService.findByUsername({
+//                'username': $scope.user.username
+//            }, function (userObject) {
+            $scope.resourcesList = EmployeeService.findByCompany({
+                'companyId': $stateParams.companyId
+            }, function (resourcesList) {
+                $scope.mainResourceList = [];
+                angular.forEach($scope.resourcesList, function (resourceData) {
+                    $scope.form1DetailsPromise = KraDetailsService.findByEmployeeId({
+                        'employeeId': resourceData.id
+                    }, function (kraDetailsList) {
+                        if (kraDetailsList.length !== 0) {
+                            var a = 0;
+                            angular.forEach(kraDetailsList, function (kraDetail) {
+
+                                a = a + kraDetail.ratingScore;
+                                resourceData.ratingForm1 = a;
+                            });
+                        } else {
+                            resourceData.ratingForm1 = 0;
+                        }
+                    });
+                    $scope.form2DetailsPromise = Form2DetailsService.findByEmployeeId({
+                        'employeeId': resourceData.id
+                    }, function (form2DetailsList) {
+                        if (form2DetailsList.length !== 0) {
+                            var b = 0;
+                            angular.forEach(form2DetailsList, function (form2Detail) {
+                                b = b + form2Detail.ratingScore;
+                                resourceData.ratingForm2 = b;
+                            });
+                        } else {
+                            resourceData.ratingForm2 = 0;
+                        }
+                    });
+                    $scope.additionalDetailPromise = AdditionalDetailsService.findByEmployeeId({
+                        'employeeId': resourceData.id
+                    }, function (additionalDetailsObject) {
+                        if (additionalDetailsObject.correctionFactor !== null) {
+                            resourceData.noComment = additionalDetailsObject.noComment;
+                            resourceData.hodComment = additionalDetailsObject.hodComment;
+                            resourceData.correctionFactor = additionalDetailsObject.correctionFactor;
+                        } else {
+                            resourceData.noComment = additionalDetailsObject.noComment;
+                            resourceData.hodComment = additionalDetailsObject.hodComment;
+                            resourceData.correctionFactor = 0;
+                        }
+                    }, function errorCallback(response) {
+                        if (response.status === 500) {
+                            resourceData.correctionFactor = 0;
+                        } else if (response.status === 400) {
+                            resourceData.correctionFactor = 0;
+                        }
+                    });
+                    $scope.form1DetailsPromise.$promise.then(function (form1Details) {
+                        $scope.form2DetailsPromise.$promise.then(function (form2Details) {
+                            resourceData.totalScore = (resourceData.ratingForm1 + resourceData.ratingForm2 + resourceData.correctionFactor);
+                            $scope.mainResourceList.push(resourceData);
+                        });
+                    });
+                });
+            });
+//            });
+
         });

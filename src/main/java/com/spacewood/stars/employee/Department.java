@@ -38,5 +38,14 @@ public enum Department {
     QAD,
     SALES,
     STORES,
-    STORES_T48
+    STORES_T48,
+    DESIGN,
+    INSTALLATION,
+    IT_AND_AUTOMATION,
+    N34_STORES,
+    OFFICE_CC,
+    P_AND_A,
+    PROJECTS,
+    T39_PRODUCTION,
+    T39_STORES
 }

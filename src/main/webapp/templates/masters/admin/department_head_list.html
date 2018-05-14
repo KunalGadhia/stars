@@ -25,12 +25,12 @@
         </thead>
         <tbody>
             <tr ng-repeat="hod in hodList">
-                <td class="text-right">{{ currentOffset + $index + 1}}</td>
-                <td>{{ hod.employeeObject.empNo}}</td>   
-                <td>{{ hod.employeeObject.empName}}</td>  
-                <td>{{ hod.employeeObject.department}}</td>  
-                <td>{{ hod.employeeObject.designation}}</td>
-                <td class="text-right">
+                <td data-title="#" class="text-right">{{ currentOffset + $index + 1}}</td>
+                <td data-title="Employee Number">{{ hod.employeeObject.empNo}}</td>   
+                <td data-title="Employee Name">{{ hod.employeeObject.empName}}</td>  
+                <td data-title="Department">{{ hod.employeeObject.department}}</td>  
+                <td data-title="Designation">{{ hod.employeeObject.designation}}</td>
+                <td data-title="Actions" class="text-right">
                     <a data-ui-sref="admin.department_resource_list({ employeeId: hod.employeeId })"
                        class="btn btn-primary">
                         Show Resources &nbsp;
@@ -39,7 +39,7 @@
                 </td>                 
             </tr>
         </tbody>        
-    </table>      
+    </table>
 </div>
 
 <div data-ui-view=""></div>

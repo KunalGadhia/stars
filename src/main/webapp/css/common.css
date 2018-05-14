@@ -7,7 +7,12 @@ and open the template in the editor.
     Created on : Oct 25, 2017, 11:40:10 AM
     Author     : Kunal Gadhia
 */
-
+@media only screen and (max-width:320px){
+   .nbs-flexisel-item {
+        width: 300.333px !important;
+    } 
+}
+    
 @media (min-width:320px) { 
     select, input[type="text"], input[type="email"], textarea, input[type="tel"], textarea, input[type="number"] {
         border: 1px solid #d6d6d6;
@@ -22,7 +27,9 @@ and open the template in the editor.
         /*overflow-y: scroll !important;*/
         width: 100% !important;
     }
-
+    .nbs-flexisel-item {
+        width: 300.333px !important;
+    }
     #wpsl-gmap {
         max-height: 320px !important;
         width:100% !important;
@@ -40,12 +47,18 @@ and open the template in the editor.
 
     }
     .main-text{
-        position: absolute;
-        top: 188px;
-        width: 96.66666666666666%;
+        position: unset;
         color: #FFF;
     }
-
+    .logIn{
+        padding-top:60px !important;
+    }
+    .topSubTitle{
+        margin-left: 0px !important;
+    }
+    .nbs-flexisel-inner ul{
+        padding: 0;
+    }
     .inner-banner-heading {
         color: #fff;
         font-size: 22px;
@@ -165,17 +178,11 @@ and open the template in the editor.
     .b-right{
         border-bottom: 2px solid #636061;
         border-right: 0px solid #636061;
-        padding-bottom: 20px;
-        padding-top: 20px;
     }
-    .footer-po{
-        position: relative;
-        top: -152px;
+    .footer-bg{
+        padding-top: 0;
     }
-    .footer-hr-position{
-        position: relative !important;
-        top: -168px !important;
-    }.mt264{
+    .mt264{
         position:relative;
         bottom: 22px;
         top: -192px;
@@ -410,6 +417,17 @@ and open the template in the editor.
     }
 
 }
+@media only screen and (max-widht:425px){
+    .nbs-flexisel-item {
+        width: 405.333px !important;
+    }
+    .footer-bg{
+        padding-top: 200px;
+    }
+}
+@media only screen and (max-widht:375px){
+    
+}
 @media (min-width:481px) { 
     select, input[type="text"], input[type="email"], textarea, input[type="tel"], textarea, input[type="number"] {
         border: 1px solid #d6d6d6;
@@ -546,14 +564,7 @@ and open the template in the editor.
         padding-bottom: 0px;
         padding-top: 0px;
     }
-    .footer-po{
-        position: relative;
-        top: -152px;
-    }
-    .footer-hr-position{
-        position: relative !important;
-        top: -168px !important;
-    }.mt264{
+    .mt264{
         position:relative;
         bottom: 22px;
         top: -192px;
@@ -767,6 +778,31 @@ and open the template in the editor.
     }
 
 }
+/*
+ *-- responsive css --
+ */
+@media only screen and (max-width: 768px){
+    .white-bg{
+        top: 50px;
+    }
+    .test-text{
+        margin: 28px 13px 35px 16px !important;
+    }
+ 
+}
+@media only screen and (max-width: 767px) and (min-widht: 480px){
+    .container{
+        position: unset !important;
+        width: 100% !important;
+    }
+    .nbs-flexisel-item {
+        width: 405.333px !important;
+    }
+    .titleTest .row{
+        margin-right: 0px; 
+        margin-left: 0px; 
+    }
+}
 @media (min-width:641px) { 
     select, input[type="text"], input[type="email"], textarea, input[type="tel"], textarea, input[type="number"] {
         border: 1px solid #d6d6d6;
@@ -787,6 +823,9 @@ and open the template in the editor.
         max-height:660px !important;
 
     }
+    .nbs-flexisel-item {
+        width: 300.333px !important;
+    }
     .clear{
         clear:none;
     }
@@ -794,7 +833,7 @@ and open the template in the editor.
         padding-top: 0px;
     }
     .main-text{
-        position: absolute;
+        position: unset;
         top: 0px;
         width: 96.66666666666666%;
         color: #FFF;
@@ -910,14 +949,10 @@ and open the template in the editor.
         padding-bottom: 0px;
         padding-top: 0px;
     }
-    .footer-po{
-        position: relative;
-        top: -152px;
+    .footer-bg {
+        padding-top: 0px;
     }
-    .footer-hr-position{
-        position: relative !important;
-        top: -168px !important;
-    }.mt264{
+    .mt264{
         position:relative;
         bottom: 22px;
         top: -192px;
@@ -952,7 +987,7 @@ and open the template in the editor.
         color: #636363 !important;
         font-weight: normal!important;
         line-height: 15px !important;
-        margin: 28px 13px 13px 16px !important;
+        margin: 28px 13px 35px 16px !important;
         height: 125px !important;
     }
     .authar {
@@ -1247,6 +1282,9 @@ and open the template in the editor.
         color:#fff !important;
         text-transform: lowercase !important;
     }
+    .nbs-flexisel-item {
+        width: 250.333px;
+    }
     .footer-ul{
         font-size: 15px;
         color: #fff;
@@ -1263,14 +1301,7 @@ and open the template in the editor.
         padding-bottom: 0px;
         padding-top: 0px;
     }
-    .footer-po{
-        position: relative;
-        top: -152px;
-    }
-    .footer-hr-position{
-        position: relative !important;
-        top: -168px !important;
-    }.mt264{
+    .mt264{
         position:relative;
         bottom: 22px;
         top: -192px;
@@ -1479,6 +1510,7 @@ and open the template in the editor.
     }
 
 }
+
 @media (min-width:1025px) {
     select, input[type="text"], input[type="email"], textarea, input[type="tel"], textarea, input[type="number"] {
         border: 1px solid #d6d6d6;
@@ -1492,7 +1524,9 @@ and open the template in the editor.
         max-height:660px !important;
         width:70% !important;
     }
-
+    .nbs-flexisel-item {
+        width: 393.333px !important;
+    }
     #wpsl-result-list{
         width:30% !important;
         /*overflow-y:scroll !important;*/
@@ -1623,14 +1657,7 @@ and open the template in the editor.
         padding-bottom: 0px;
         padding-top: 0px;
     }
-    .footer-po{
-        position: relative;
-        top: -152px;
-    }
-    .footer-hr-position{
-        position: relative !important;
-        top: -168px !important;
-    }.mt264{
+    .mt264{
         position:relative;
         bottom: 22px;
         top: -192px;
@@ -1837,6 +1864,12 @@ and open the template in the editor.
     }
 
 }
+
+@media only screen and (max-width:1024px) {
+    .nbs-flexisel-item{
+        width: 320.333px;
+    } 
+}
 @media (min-width:1281px) {
     select, input[type="text"], input[type="email"], textarea, input[type="tel"], textarea, input[type="number"] {
         border: 1px solid #d6d6d6;
@@ -2019,14 +2052,7 @@ and open the template in the editor.
         padding-bottom: 20px;
         padding-top: 0px;
     }
-    .footer-po{
-        position: relative;
-        top: -152px;
-    }
-    .footer-hr-position{
-        position: relative !important;
-        top: -168px !important;
-    }.mt264{
+    .mt264{
         position:relative;
         bottom: 22px;
         top: -192px;
@@ -2234,6 +2260,12 @@ and open the template in the editor.
     }.copyright-css{
         display:none
     }
-
-
+}
+@media only screen and (min-width: 768px){
+    .main-text {
+        position: absolute;
+        padding-top: 50px;
+        width: 100%;
+        top: 8px;
+    }
 }

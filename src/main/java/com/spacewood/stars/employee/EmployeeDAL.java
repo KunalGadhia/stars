@@ -92,6 +92,11 @@ public class EmployeeDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.COMPANY_ID + " = ? ORDER BY " + Columns.ID + " DESC LIMIT 10 OFFSET ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{companyId, offset}, new BeanPropertyRowMapper<>(Employee.class));
     }
+    
+    public List<Employee> findByCompany(Integer companyId) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.COMPANY_ID + " = ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{companyId}, new BeanPropertyRowMapper<>(Employee.class));
+    }
 
     public List<Employee> findAllList() {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE";

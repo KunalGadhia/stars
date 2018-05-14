@@ -1,0 +1,49 @@
+<div class="modal modal-stars">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="saveTag(editableTag)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-user"></i>
+                        Tag Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Tag Name</label>
+                                <input type="text" class="form-control" ng-model="editableTag.tagName" required="">
+                            </div>
+                        </div>
+<!--                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="text" class="form-control" ng-model="editableUser.password" required="">
+                            </div>
+                        </div>-->
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 text-danger" ng-show="editableTag.repeatTag">
+                            Found Records For Above Entered Name
+                        </div>
+                        <div class="col-sm-6 text-danger">                            
+                        </div>
+                    </div>                    
+                    <div class="modal-footer">
+                        <button class="btn btn-lg btn-primary" ng-disabled="editableTag.repeatTag">
+                            <i class="fa fa-save"></i>
+                            Save
+                        </button>
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class="btn btn-link" >
+                            cancel
+                        </button>				
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

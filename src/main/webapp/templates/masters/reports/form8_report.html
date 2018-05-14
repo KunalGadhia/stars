@@ -53,6 +53,7 @@
         <thead>
             <tr>
                 <th class="text-right">Ranking</th>
+                <th>Employee Code</th>
                 <th>Employee Name</th>
                 <th>Grade</th>
                 <th>Designation</th>
@@ -66,6 +67,7 @@
         <tbody>
             <tr ng-repeat="employee in resourcesList | orderBy : '-totalScore'">
                 <td class="text-right">{{ currentOffset + $index + 1}}</td>
+                <td>{{ employee.empNo}}</td>
                 <td>{{ employee.empName}}</td>   
                 <td>{{ employee.grade}}</td>  
                 <td>{{ employee.designation}}</td>  

@@ -40,13 +40,13 @@
         </thead>
         <tbody>
             <tr ng-repeat="kraDetail in kraDetailsList">
-                <td class="text-right">{{ currentOffset + $index + 1}}</td>
-                <td>{{ kraDetail.kraParameter}}</td>   
-                <td>{{ kraDetail.performanceObjective}}</td>  
-                <td>{{ kraDetail.measurableTarget}}</td>  
-                <td>{{ kraDetail.weightage}} %</td>
+                <td data-title="#" class="text-right">{{ currentOffset + $index + 1}}</td>
+                <td data-title="KRA Parameter">{{ kraDetail.kraParameter}}</td>   
+                <td data-title="Performance Objective">{{ kraDetail.performanceObjective}}</td>  
+                <td data-title="Measurable Target">{{ kraDetail.measurableTarget}}</td>  
+                <td data-title="Weightage">{{ kraDetail.weightage}} %</td>
                 <!--<td>{{ user.mobileNo}}</td>-->                
-                <td class="text-right">
+                <td data-title="Actions" class="text-right">
                     <a data-ui-sref="admin.kra_employeelist.editForm1({ kraDetailId: kraDetail.id })"
                        class="btn btn-primary" ng-disabled="kraDetail.rating !== null">
                         <i class="fa fa-pencil"></i>
@@ -62,7 +62,7 @@
             <tr>
                 <td colspan="3"></td>
                 <td>Total Weightage %</td>
-                <td>{{ kraDetailsList | total:'weightage'}} %</td>
+                <td data-title="Total Weightage">{{ kraDetailsList | total:'weightage'}} %</td>
                 <td></td>
             </tr>
             <!--            <tr>

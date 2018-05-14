@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover evaluateTable">
         <thead>
             <tr>
                 <th class="text-right">#</th>
@@ -28,16 +28,16 @@
         </thead>
         <tbody>
             <tr ng-repeat="employee in resourcesList">
-                <td class="text-right">{{ currentOffset + $index + 1}}</td>
-                <td>{{ employee.empName}}</td>   
-                <td>{{ employee.grade}}</td>  
-                <td>{{ employee.designation}}</td>  
-                <td>{{ employee.empDoj | date}}</td>
-                <td>{{ employee.empDob | date}}</td>
-                <td>{{ employee.eduQual}}</td>
-                <td>{{ employee.location}}</td>
+                <td data-title="#" class="text-right">{{ currentOffset + $index + 1}}</td>
+                <td data-title="Employee Name">{{ employee.empName}}</td>   
+                <td data-title="Grade">{{ employee.grade}}</td>  
+                <td data-title="Designation">{{ employee.designation}}</td>  
+                <td data-title="DOJ">{{ employee.empDoj | date}}</td>
+                <td data-title="DOB">{{ employee.empDob | date}}</td>
+                <td data-title="Education Qualification">{{ employee.eduQual}}</td>
+                <td data-title="Location">{{ employee.location}}</td>
                 <!--<td>{{ user.mobileNo}}</td>-->                
-                <td class="text-right">
+                <td data-title="Actions" class="text-right">
                     <a data-ui-sref="admin.resourcekra_list({ employeeId: employee.id })"
                        class="btn btn-primary">
                         Evaluate KRA &nbsp;

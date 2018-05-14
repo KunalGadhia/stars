@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserService implements UserDetailsService {
-    
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
@@ -54,7 +54,7 @@ public class UserService implements UserDetailsService {
             System.out.println("Inside Try??");
             User user = userDAL.findByUsername(string);
             logger.debug("Get this object :{}", user);
-            System.out.println("What is the role of an user :"+user.getRole().name());
+            System.out.println("What is the role of an user :" + user.getRole().name());
             SimpleGrantedAuthority sga = new SimpleGrantedAuthority(user.getRole().name());
 
             List<SimpleGrantedAuthority> authorities = new ArrayList<>();
@@ -64,6 +64,7 @@ public class UserService implements UserDetailsService {
                     user.getUsername(),
                     user.getPassword(),
                     roleHierarchy.getReachableGrantedAuthorities(authorities));
+            System.out.println("User Details in STars :{}" + ud);;
             return ud;
         } catch (EmptyResultDataAccessException se) {
             System.out.println("Getting ANy Exception??");
@@ -71,5 +72,5 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("SQL Error", se);
         }
     }
-    
+
 }
