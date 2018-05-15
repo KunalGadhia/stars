@@ -57,7 +57,7 @@ public class TagRest {
         return tagDAL.findByName(name);
     }
     
-    @RequestMapping(value = "/find/user_like", method = RequestMethod.GET)
+    @RequestMapping(value = "/find/name_like", method = RequestMethod.GET)
     public List<Tag> findByNameLike(@RequestParam("name") String name) {
         return tagDAL.findByNameLike(name);
     }        

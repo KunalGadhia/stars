@@ -10,7 +10,7 @@ angular.module("stars.services.tag")
 
                 'findByNameLike': {
                     'method': 'GET',
-                    'url': restRoot + '/tag/find/user_like',
+                    'url': restRoot + '/tag/find/name_like',
                     'params': {
                         'name': '@name'
                     },

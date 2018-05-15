@@ -65,7 +65,7 @@ public class TagDAL {
     }
 
     public List<Tag> findByNameLike(String name) {
-        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(emp_name) LIKE?";
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(tag_name) LIKE?";
         String nameLike = "%" + name.toLowerCase() + "%";
         return jdbcTemplate.query(sqlQuery, new Object[]{nameLike}, new BeanPropertyRowMapper<>(Tag.class));
     }

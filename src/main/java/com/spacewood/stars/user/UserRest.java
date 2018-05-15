@@ -97,6 +97,11 @@ public class UserRest {
         return userDAL.findHodByCompanyId(companyId);
     }
     
+    @RequestMapping(value = "/find/director/company_id", method = RequestMethod.GET)
+    public List<User> findDirectorByCompanyId(@RequestParam("companyId") Integer companyId) throws Exception {
+        return userDAL.findDirectorByCompanyId(companyId);
+    }
+    
     @RequestMapping(value = "/find/user_like", method = RequestMethod.GET)
     public List<User> findByNameLike(@RequestParam("username") String username) {
         return userDAL.findByNameLike(username);

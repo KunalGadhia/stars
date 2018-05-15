@@ -18,6 +18,7 @@ angular.module("stars", [
     'stars.services.additional_details',
     'stars.services.company',
     'stars.services.tag',
+    'stars.services.hod_review',
 
     // include controllers and states
     'stars.states',

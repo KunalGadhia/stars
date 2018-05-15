@@ -43,6 +43,7 @@
                                 <label>Department</label>
                                 <select class="form-control" ng-model="editableEmployee.department" required="">
                                     <option value="">Select Department</option>
+                                    <option value="NO_DEPARTMENT">No Department</option>
                                     <option value="ACCOUNTS">Accounts</option>
                                     <option value="BSR">BSR</option>
                                     <option value="BRANCH_STORES">Branch Stores</option>
@@ -100,7 +101,8 @@
                             <div class="form-group">
                                 <label>Designation</label>
                                 <select class="form-control" ng-model="editableEmployee.designation">
-                                    <option value="">Select Employee</option>    
+                                    <option value="">Select Designation</option>    
+                                    <option value="DIRECTOR">Director</option>
                                     <option value="AGM">AGM</option>
                                     <option value="AREA_SALES_MANAGER">Area Sales Manager</option>
                                     <option value="ASSISTANT">Assistant</option>

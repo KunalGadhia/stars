@@ -20,6 +20,16 @@ angular.module("stars.states.evaluate", [])
                 'templateUrl': templateRoot + '/masters/evaluate/form2.html',
                 'controller': 'Form2Controller'
             });
+            $stateProvider.state('admin.hod_eval', {
+                'url': '/hod/:employeeId/eval',
+                'templateUrl': templateRoot + '/masters/evaluate/hod_eval.html',
+                'controller': 'HodEvalController'
+            });
+            $stateProvider.state('admin.hod_eval_edit', {
+                'url': '/hod/:employeeId/eval/edit',
+                'templateUrl': templateRoot + '/masters/evaluate/hod_eval.html',
+                'controller': 'HodEvalEditController'
+            });
             $stateProvider.state('admin.form2.delete', {
                 'url': '/form2/:form2DetailId/delete',
                 'templateUrl': templateRoot + '/masters/evaluate/delete.html',
@@ -95,19 +105,19 @@ angular.module("stars.states.evaluate", [])
             };
         })
         .controller('Form2Controller', function (AdditionalDetailsService, Form2DetailsService, KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
-            $scope.user = $rootScope.currentUser;            
+            $scope.user = $rootScope.currentUser;
             UserService.findByUsername({
                 'username': $scope.user.username
-            }, function (userObject) {                
-                if(userObject.role === "ROLE_HR"){
+            }, function (userObject) {
+                if (userObject.role === "ROLE_HR") {
                     $scope.showHRBack = true;
                     $scope.showAdminBack = false;
-                }else if(userObject.role === "ROLE_ADMIN"){
+                } else if (userObject.role === "ROLE_ADMIN") {
                     $scope.showHRBack = false;
                     $scope.showAdminBack = true;
                 }
             });
-            $scope.employeeId = $stateParams.emploeeId;
+            $scope.employeeId = $stateParams.employeeId;
             $scope.editableForm2 = {};
             $scope.additionalDetails = {};
             AdditionalDetailsService.findByEmployeeId({
@@ -171,6 +181,84 @@ angular.module("stars.states.evaluate", [])
             $scope.refreshForm2DetailsList = function () {
                 $scope.form2DetailsList = Form2DetailsService.findByEmployeeId({
                     'employeeId': $stateParams.employeeId
+                });
+            };
+        })
+        .controller('HodEvalController', function (HodReviewDetailsService, TagService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
+            $scope.editableHodReviewDetails = {};
+            $scope.tagDisplay = [];
+            $scope.editableHodReviewDetails.tags = [];
+            $scope.user = $rootScope.currentUser;
+            $scope.employeeId = $stateParams.employeeId;
+            $scope.employeeObject = EmployeeService.get({
+                'id': $stateParams.employeeId
+            });
+            $scope.searchTags = function (tagString) {
+                return TagService.findByNameLike({
+                    'name': tagString
+                }).$promise;
+            };
+            $scope.setTag = function (tag) {
+                $scope.tagDisplay.push(tag);
+                $scope.tagName = "";
+                $scope.editableHodReviewDetails.tags.push(tag.id);
+            };
+            $scope.removeTags = function (tags) {
+                var index = $scope.tagDisplay.indexOf(tags);
+                var index1 = $scope.editableHodReviewDetails.tags.indexOf(tags.id);
+                $scope.tagDisplay.splice(index, 1);
+                $scope.editableHodReviewDetails.tags.splice(index1, 1);
+            };
+            $scope.saveHodEval = function (editableHodReviewDetails) {
+                editableHodReviewDetails.employeeId = $stateParams.employeeId;
+                editableHodReviewDetails.noUpdatedDate = new Date();
+                HodReviewDetailsService.save(editableHodReviewDetails, function (savedData) {
+                    $state.go('admin.director_resource_list', {'employeeId': $scope.employeeObject.departmentHead}, {'reload': true});
+                });
+            };
+        })
+        .controller('HodEvalEditController', function (HodReviewDetailsService, TagService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
+            $scope.editableHodReviewDetails = {};
+            $scope.tagDisplay = [];
+//            $scope.editableHodReviewDetails.tags = [];
+            $scope.user = $rootScope.currentUser;
+            $scope.employeeId = $stateParams.employeeId;
+            $scope.employeeObject = EmployeeService.get({
+                'id': $stateParams.employeeId
+            });
+            HodReviewDetailsService.get({
+                'id': $stateParams.employeeId
+            }, function (hodReviewDetailsObject) {
+                $scope.editableHodReviewDetails = hodReviewDetailsObject;
+                angular.forEach(hodReviewDetailsObject.tags, function (tag) {
+                    $scope.tagDisplay.push(
+                            TagService.get({
+                                'id': tag
+                            })
+                            );
+                });
+            });
+            $scope.searchTags = function (tagString) {
+                return TagService.findByNameLike({
+                    'name': tagString
+                }).$promise;
+            };
+            $scope.setTag = function (tag) {
+                $scope.tagDisplay.push(tag);
+                $scope.tagName = "";
+                $scope.editableHodReviewDetails.tags.push(tag.id);
+            };
+            $scope.removeTags = function (tags) {
+                var index = $scope.tagDisplay.indexOf(tags);
+                var index1 = $scope.editableHodReviewDetails.tags.indexOf(tags.id);
+                $scope.tagDisplay.splice(index, 1);
+                $scope.editableHodReviewDetails.tags.splice(index1, 1);
+            };
+            $scope.saveHodEval = function (editableHodReviewDetails) {
+                editableHodReviewDetails.employeeId = $stateParams.employeeId;
+                editableHodReviewDetails.noUpdatedDate = new Date();
+                HodReviewDetailsService.save(editableHodReviewDetails, function (savedData) {
+                    $state.go('admin.director_resource_list', {'employeeId': $scope.employeeObject.departmentHead}, {'reload': true});
                 });
             };
         })

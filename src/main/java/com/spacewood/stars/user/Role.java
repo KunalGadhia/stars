@@ -11,6 +11,7 @@ package com.spacewood.stars.user;
  */
 public enum Role {
     ROLE_ADMIN,
+    ROLE_DIRECTOR,
     ROLE_HOD,
     ROLE_EMPLOYEE,
     ROLE_HR

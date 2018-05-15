@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.spacewood.hodreviewdetails;
+package com.spacewood.stars.hodreviewdetail;
 
 import java.util.Date;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Objects;
  *
  * @author webdesign
  */
-public class HodReviewDetails {
+public class HodReviewDetail {
 
     private Integer id;
     private Integer employeeId;
@@ -118,17 +118,17 @@ public class HodReviewDetails {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.employeeId);
-        hash = 53 * hash + Objects.hashCode(this.performance);
-        hash = 53 * hash + Objects.hashCode(this.challenge);
-        hash = 53 * hash + Objects.hashCode(this.training);
-        hash = 53 * hash + Objects.hashCode(this.expectation);
-        hash = 53 * hash + Objects.hashCode(this.noComment);
-        hash = 53 * hash + Objects.hashCode(this.dirComment);
-        hash = 53 * hash + Objects.hashCode(this.noUpdatedDate);
-        hash = 53 * hash + Objects.hashCode(this.dirUpdatedDate);
-        hash = 53 * hash + Objects.hashCode(this.tags);
+        hash = 43 * hash + Objects.hashCode(this.id);
+        hash = 43 * hash + Objects.hashCode(this.employeeId);
+        hash = 43 * hash + Objects.hashCode(this.performance);
+        hash = 43 * hash + Objects.hashCode(this.challenge);
+        hash = 43 * hash + Objects.hashCode(this.training);
+        hash = 43 * hash + Objects.hashCode(this.expectation);
+        hash = 43 * hash + Objects.hashCode(this.noComment);
+        hash = 43 * hash + Objects.hashCode(this.dirComment);
+        hash = 43 * hash + Objects.hashCode(this.noUpdatedDate);
+        hash = 43 * hash + Objects.hashCode(this.dirUpdatedDate);
+        hash = 43 * hash + Objects.hashCode(this.tags);
         return hash;
     }
 
@@ -143,7 +143,7 @@ public class HodReviewDetails {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final HodReviewDetails other = (HodReviewDetails) obj;
+        final HodReviewDetail other = (HodReviewDetail) obj;
         if (!Objects.equals(this.performance, other.performance)) {
             return false;
         }
@@ -182,7 +182,7 @@ public class HodReviewDetails {
 
     @Override
     public String toString() {
-        return "HodReviewDetails{" + "id=" + id + ", employeeId=" + employeeId + ", performance=" + performance + ", challenge=" + challenge + ", training=" + training + ", expectation=" + expectation + ", noComment=" + noComment + ", dirComment=" + dirComment + ", noUpdatedDate=" + noUpdatedDate + ", dirUpdatedDate=" + dirUpdatedDate + ", tags=" + tags + '}';
+        return "HodReviewDetail{" + "id=" + id + ", employeeId=" + employeeId + ", performance=" + performance + ", challenge=" + challenge + ", training=" + training + ", expectation=" + expectation + ", noComment=" + noComment + ", dirComment=" + dirComment + ", noUpdatedDate=" + noUpdatedDate + ", dirUpdatedDate=" + dirUpdatedDate + ", tags=" + tags + '}';
     }
-    
+
 }

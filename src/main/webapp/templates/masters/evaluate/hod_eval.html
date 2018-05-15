@@ -1,0 +1,182 @@
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <div class="pull-left">
+
+            <button data-ui-sref="admin.director_resource_list({'employeeId': employeeObject.departmentHead})"
+                    class="btn btn-default">
+                <i class="fa fa-arrow-left"></i>
+                Back
+            </button>             
+        </div>
+        <div>
+            <h4>HOD Evaluation</h4>
+        </div>
+    </div>
+    <div class="row">
+        <h3 style="margin-left: 30px;">Personal Details :</h3>
+        <hr style="width: 1310px;margin-left: 20px;border-top:  2px solid;">
+        <image style="margin-left: 30px;margin-bottom: 20px" ng-src="./rest/employee/{{employeeObject.id}}/attachment" width="150px" height="200px"/>
+    </div>    
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Name :</label>
+            <span class="col-sm-6">{{employeeObject.empName}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Designation :</label>
+            <span class="col-sm-6">{{employeeObject.designation}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Employee Code :</label>
+            <span class="col-sm-6">{{employeeObject.empNo}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Department :</label>
+            <span class="col-sm-6">{{employeeObject.department}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Date Of Birth :</label>
+            <span class="col-sm-6">{{employeeObject.empDob| date}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Date Of Joining :</label>
+            <span class="col-sm-6">{{employeeObject.empDoj| date}}</span>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Grade :</label>
+            <span class="col-sm-6">{{employeeObject.grade}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Educational Qualification :</label>
+            <span class="col-sm-6">{{employeeObject.eduQual}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Total Experience :</label>
+            <span class="col-sm-6">{{employeeObject.totalExp}} Years</span>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Location :</label>
+            <span class="col-sm-6">{{employeeObject.location}}</span>
+        </div>  
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="modal-header text-center" style="min-height: 60px">
+        <h3 class="col-md-12 col-lg-12 col-xs-12">
+            Evaluation Parameters
+        </h3>           
+    </div>
+    <div class="panel-body">
+        <!--<div class="row">-->
+        <form role="form" ng-submit="saveHodEval(editableHodReviewDetails)">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Performance</label>
+                        <textarea rows="3" class="form-control" ng-model="editableHodReviewDetails.performance">
+                                
+                        </textarea>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Challenges & Suggestions</label>
+                        <textarea rows="3" class="form-control" ng-model="editableHodReviewDetails.challenge">
+                                
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Trainings Required</label>
+                        <textarea rows="3" class="form-control" ng-model="editableHodReviewDetails.training">                                
+                        </textarea>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Expectations</label>
+                        <textarea rows="3" class="form-control" ng-model="editableHodReviewDetails.expectation">                                
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Neutral Observer Comments</label>
+                        <textarea rows="3" class="form-control" ng-model="editableHodReviewDetails.noComment">                                
+                        </textarea>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Director Comments</label>
+                        <textarea rows="3" class="form-control" ng-model="editableHodReviewDetails.areaOfImprovement">                                
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Tags</label>
+                        <input class="form-control"
+                               placeholder="Select Tags"
+                               uib-typeahead="tags.id as tags.tagName for tags in searchTags($viewValue)"
+                               typeahead-on-select="setTag($item)"
+                               typeahead-editable="false"
+                               typeahead-loading="loadingTag" 
+                               typeahead-no-results="noTagFound"
+                               ng-model="tagName" />
+                        <p ng-show="noTagFound" class="help-block text-muted">No Tag Found</p>
+                        <p ng-show="loadingTag" class="help-block text-muted">Loading...</p>                      
+                    </div>
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <ul ng-repeat="tag in tagDisplay" class="left_margin">
+                        <li class="col-md-8">
+                            {{tag.tagName}} 
+                        </li>
+                        <li class="col-md-4 list-unstyled">
+                            <button type="button" ng-click="removeTags(tag)" class="btn btn-link top_padding">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>                
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-lg btn-primary">
+                    <i class="fa fa-save"></i>
+                    Save
+                </button>
+                <!--                <a target="_blank" class="btn btn-lg btn-primary" data-ui-sref="print_form2({'employeeId' : employeeObject.id})">
+                                    <i class="fa fa-print"></i>
+                                    Print Form 2
+                                </a>-->
+                <button type="button"
+                        onclick="window.history.back()"
+                        class="btn btn-link" >
+                    cancel
+                </button>				
+            </div>
+        </form>
+        <!--</div>-->        
+    </div>
+</div>
+
+<div data-ui-view=""></div>

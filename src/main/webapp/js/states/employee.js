@@ -111,7 +111,7 @@ angular.module("stars.states.employee", [])
                     });
                     UserService.findHodByCompanyId({
                         'companyId': userObject.companyId
-                    }, function (hodList) {                        
+                    }, function (hodList) {
                         $scope.hodList = hodList;
                     });
                     $scope.nextPage = function () {
@@ -145,10 +145,16 @@ angular.module("stars.states.employee", [])
                 EmployeeService.get({
                     'id': $scope.searchEmployeeId
                 }, function (employeeObject) {
+                    employeeObject.reportingToObject = EmployeeService.get({
+                        'id': employeeObject.reportingTo
+                    });
+                    employeeObject.departmentHeadObject = EmployeeService.get({
+                        'id': employeeObject.departmentHead
+                    });
                     $scope.employeeList.push(employeeObject);
                 });
             };
-            $scope.clearSearch = function () {                              
+            $scope.clearSearch = function () {
                 $state.go('admin.masters_employee', null, {'reload': true});
             };
             $scope.searchEmpByHod = function (employeeId) {
@@ -167,7 +173,7 @@ angular.module("stars.states.employee", [])
                         });
                     });
                 });
-            };           
+            };
         })
         .controller('EmployeeAddController', function ($rootScope, UserService, CompanyService, EmployeeService, $scope, $stateParams, $state, paginationLimit) {
 

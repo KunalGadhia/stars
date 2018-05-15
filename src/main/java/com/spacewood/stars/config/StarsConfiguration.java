@@ -28,12 +28,13 @@ import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 @Configuration
 @ComponentScan(basePackages = "com.spacewood.stars")
 public class StarsConfiguration {
+
     @Value("${stars.db.driver_class}")
     private String driverClassname;
 
     @Value("${stars.db.connection_string}")
     private String connectionString;
-    
+
     @Bean
     public DataSource dataSource() throws PropertyVetoException {
         Properties mysqlProperties = new Properties();
@@ -61,8 +62,9 @@ public class StarsConfiguration {
     public static RoleHierarchy roleHierarchy() {
 
         String roleHierarchyStringRepresentation
-                = Role.ROLE_ADMIN + " > " + Role.ROLE_HOD + "\n"
-                 + Role.ROLE_HOD + " > " + Role.ROLE_EMPLOYEE;
+                = Role.ROLE_DIRECTOR + " = " + Role.ROLE_ADMIN + "\n"
+                + Role.ROLE_ADMIN + " > " + Role.ROLE_HOD + "\n"
+                + Role.ROLE_HOD + " > " + Role.ROLE_EMPLOYEE;
 
         //logger.info("Registered Role Hierarchy: \n{}", roleHierarchyStringRepresentation);
         RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();

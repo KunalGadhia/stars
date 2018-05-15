@@ -11,6 +11,7 @@ package com.spacewood.stars.employee;
  */
 public enum Designation {
     NO_DESIGNATION,
+    DIRECTOR,
     AGM,
     AREA_SALES_MANAGER,
     ASSISTANT,

@@ -42,6 +42,14 @@ angular.module("stars.services.user")
                     },
                     'isArray': true
                 },
+                'findDirectorByCompanyId': {
+                    'method': 'GET',
+                    'url': restRoot + '/user/find/director/company_id',
+                    'params': {
+                      'companyId': '@companyId'  
+                    },
+                    'isArray': true
+                },
                 'findByUsername': {
                     'method': 'GET',
                     'url': restRoot + '/user/find/username',

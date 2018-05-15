@@ -101,6 +101,11 @@ public class UserDAL {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND role='ROLE_HOD' AND " + Columns.COMPANY_ID + " = ?";
         return jdbcTemplate.query(sqlQuery, new Object[]{companyId}, new BeanPropertyRowMapper<>(User.class));
     }
+    
+    public List<User> findDirectorByCompanyId(Integer companyId) {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND role='ROLE_DIRECTOR' AND " + Columns.COMPANY_ID + " = ?";
+        return jdbcTemplate.query(sqlQuery, new Object[]{companyId}, new BeanPropertyRowMapper<>(User.class));
+    }
 
     public List<User> findByNameLike(String username) {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND lower(username) LIKE?";
