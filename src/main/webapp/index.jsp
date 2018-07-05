@@ -347,6 +347,7 @@
         <script src="${pageContext.request.contextPath}/js/states/employee.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/hr_menu.js"></script>
         <script src="${pageContext.request.contextPath}/js/states/tag.js"></script>
+        <script src="${pageContext.request.contextPath}/js/states/dir_menu.js"></script>
 
         <!--Services-->
         <script src="${pageContext.request.contextPath}/js/services/user_service.js"></script>

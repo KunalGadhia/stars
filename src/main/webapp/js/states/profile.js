@@ -40,24 +40,35 @@ angular.module("stars.states.profile", [])
                     $scope.showAdminBack = false;
                     $scope.showEmployeeBack = false;
                     $scope.showHodBack = false;
+                    $scope.showDirBack = false;
                     $scope.hideProfile = true;
                 } else if (userObject.role === "ROLE_ADMIN") {
                     $scope.showHRBack = false;
                     $scope.showAdminBack = true;
                     $scope.showEmployeeBack = false;
                     $scope.showHodBack = false;
+                    $scope.showDirBack = false;
+                    $scope.hideProfile = true;
+                } else if (userObject.role === "ROLE_DIRECTOR") {
+                    $scope.showHRBack = false;
+                    $scope.showAdminBack = false;
+                    $scope.showEmployeeBack = false;
+                    $scope.showHodBack = false;
+                    $scope.showDirBack = true;
                     $scope.hideProfile = true;
                 } else if (userObject.role === "ROLE_EMPLOYEE") {
                     $scope.showHRBack = false;
                     $scope.showAdminBack = false;
                     $scope.showEmployeeBack = true;
                     $scope.showHodBack = false;
+                    $scope.showDirBack = false;
                     $scope.hideProfile = false;
                 } else if (userObject.role === "ROLE_HOD") {
                     $scope.showHRBack = false;
                     $scope.showAdminBack = false;
                     $scope.showEmployeeBack = false;
                     $scope.showHodBack = true;
+                    $scope.showDirBack = false;
                     $scope.hideProfile = false;
                 }
                 EmployeeService.get({
@@ -130,7 +141,7 @@ angular.module("stars.states.profile", [])
                 console.log("Employee Object :%O", $scope.employeeObject);
             });
             $scope.goBack = function () {
-                $state.go('admin.profile', { }, {'reload': true});
+                $state.go('admin.profile', {}, {'reload': true});
             };
             var uploader = $scope.fileUploader = new FileUploader({
                 url: restRoot + '/employee/' + $stateParams.employeeId + '/attachment',

@@ -32,7 +32,8 @@ angular.module("stars", [
     'stars.states.employee',
     'stars.states.hr_menu',
     'stars.states.tag',
-    'stars.states.auth'
+    'stars.states.auth',
+    'stars.states.dir_menu'
 
 ])
 

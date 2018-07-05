@@ -25,6 +25,11 @@ angular.module("stars.states.admin", [])
                 'templateUrl': templateRoot + '/masters/hod_menu.html',
                 'controller': 'HodMenu'
             });
+            $stateProvider.state('admin.dir', {
+                'url': '/dir',
+                'templateUrl': templateRoot + '/masters/director_menu.html',
+                'controller': 'DirMenu'
+            });
             $stateProvider.state('admin.hr', {
                 'url': '/hr',
                 'templateUrl': templateRoot + '/masters/hr_menu.html',
@@ -60,6 +65,8 @@ angular.module("stars.states.admin", [])
         .controller('HodMenu', function ($scope, UserService) {
         })
         .controller('HrMenu', function ($scope, UserService) {
+        })
+        .controller('DirMenu', function ($scope, UserService) {
         })
         .controller('LogoutController', function (UserService, $scope, $state) {
             console.log("Coming to logout Controller??");

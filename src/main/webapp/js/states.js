@@ -67,6 +67,8 @@ angular.module("stars.states", ['ngAnimate', 'ui.bootstrap'])
                             $state.go("admin.hod");
                         } else if (data.role === "ROLE_EMPLOYEE") {
                             $state.go("admin.employees");
+                        } else if (data.role === "ROLE_DIRECTOR") {
+                            $state.go("admin.dir");
                         }
                     });
                 }, function () {

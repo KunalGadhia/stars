@@ -1,0 +1,47 @@
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <div class="pull-left">
+            <button data-ui-sref="admin.dir"
+                    class="btn btn-default">
+                <i class="fa fa-arrow-left"></i>
+                Back
+            </button>            
+        </div>
+        <div>
+            <h4>Reporting Employee's List</h4>
+        </div>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="text-right">#</th>
+                <th>Employee Number</th>
+                <th>Employee Name</th>
+                <th>Department</th>
+                <th>Designation</th>                             
+                <th class="text-right">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="employee in resourcesList">
+                <td data-title="#" class="text-right">{{ currentOffset + $index + 1}}</td>
+                <td data-title="Employee Number">{{ employee.empNo}}</td>   
+                <td data-title="Employee Name">{{ employee.empName}}</td>  
+                <td data-title="Department">{{ employee.department}}</td>  
+                <td data-title="Designation">{{ employee.designation}}</td>
+                <td data-title="Actions" class="text-right">
+                    <span ng-show="employee.reviewed">
+                        <a data-ui-sref="admin.dir_eval_edit({ employeeId: employee.id })"
+                           class="btn btn-primary">
+                            See Evaluation&nbsp;
+                            <i class="fa fa-list"></i>
+                        </a>
+                    </span>                    
+                </td>                 
+            </tr>
+        </tbody>        
+    </table>
+</div>
+
+<div data-ui-view=""></div>

@@ -7,6 +7,18 @@ and open the template in the editor.
     Created on : Oct 25, 2017, 11:40:10 AM
     Author     : Kunal Gadhia
 */
+.prslDetailDiv ul li{
+    float: left;
+    list-style: none;
+    list-style: none;
+    font-size: 18px;
+    padding: 0 5px;
+    line-height: 170px;
+}
+.prslDetailDiv ul li span{
+    padding: 5px 10px;
+}
+
 @media only screen and (max-width:320px){
    .nbs-flexisel-item {
         width: 300.333px !important;

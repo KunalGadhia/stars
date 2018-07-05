@@ -6,7 +6,7 @@
 angular.module("stars.states.user", [])
         .config(function ($stateProvider, templateRoot) {
             $stateProvider.state('admin.masters_user', {
-                'url': '/user_master?offset',
+                'url': '/user_master',
                 'templateUrl': templateRoot + '/masters/user/list.html',
                 'controller': 'UserListController'
             });
@@ -26,7 +26,7 @@ angular.module("stars.states.user", [])
                 'controller': 'UserDeleteController'
             });
         })
-        .controller('UserListController', function ($rootScope, EmployeeService, UserService, $scope, $stateParams, $state, paginationLimit) {
+        .controller('UserListController', function ($window, $rootScope, EmployeeService, UserService, $scope, $stateParams, $state, paginationLimit) {
 
             $scope.user = $rootScope.currentUser;
             UserService.findByUsername({
@@ -36,89 +36,106 @@ angular.module("stars.states.user", [])
                     $scope.showHRBack = true;
                     $scope.showAdminBack = false;
 
-                    if (
-                            $stateParams.offset === undefined ||
-                            isNaN($stateParams.offset) ||
-                            new Number($stateParams.offset) < 0)
-                    {
-                        $scope.currentOffset = 0;
-                    } else {
-                        $scope.currentOffset = new Number($stateParams.offset);
-                    }
-
-                    $scope.nextOffset = $scope.currentOffset + 10;
-
+                    $scope.currentOffset = 0;
+                    $scope.mainUserArray = [];
                     $scope.nextUsers = UserService.findUsersByCompany({
                         'companyId': userObject.companyId,
                         'offset': $scope.nextOffset
                     });
-                    $scope.users = UserService.findUsersByCompany({
+
+                    UserService.findUsersByCompany({
                         'companyId': userObject.companyId,
                         'offset': $scope.currentOffset
                     }, function (userList) {
-                        console.log("S :%O", userList);
-                        angular.forEach($scope.users, function (user) {
+                        angular.forEach(userList, function (user) {
                             user.employee = EmployeeService.get({
                                 'id': user.employeeId
                             });
+                            $scope.mainUserArray.push(user);
                         });
                     });
 
-                    $scope.nextPage = function () {
-                        $scope.currentOffset += paginationLimit;
-                        $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                    $scope.userCall = function (offset) {
+                        UserService.findUsersByCompany({
+                            'companyId': userObject.companyId,
+                            'offset': $scope.currentOffset
+                        }, function (userList) {
+                            angular.forEach(userList, function (user) {
+                                user.employee = EmployeeService.get({
+                                    'id': user.employeeId
+                                });
+                                $scope.mainUserArray.push(user);
+                            });
+                        });
                     };
-                    $scope.previousPage = function () {
-                        if ($scope.currentOffset <= 0) {
-                            return;
-                        }
-                        $scope.currentOffset -= paginationLimit;
-                        $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                    $scope.enterIntoArray = function (user) {
+                        $scope.mainUserArray.push(user);
                     };
 
+                    $scope.nextPage = function () {
+                        $scope.currentOffset += paginationLimit;
+                        $scope.nextOffset = $scope.currentOffset + 10;
+                        $scope.userCall($scope.currentOffset);
+                    };
+
+                    angular.element($window).bind('scroll', function (response) {
+                        if (this.pageYOffset + this.innerHeight === $(document).height()) {
+                            $scope.nextPage();
+                        }
+                        ;
+                    });
                 } else if (userObject.role === "ROLE_ADMIN") {
                     $scope.showHRBack = false;
                     $scope.showAdminBack = true;
 
-                    if (
-                            $stateParams.offset === undefined ||
-                            isNaN($stateParams.offset) ||
-                            new Number($stateParams.offset) < 0)
-                    {
-                        $scope.currentOffset = 0;
-                    } else {
-                        $scope.currentOffset = new Number($stateParams.offset);
-                    }
-
-                    $scope.nextOffset = $scope.currentOffset + 10;
-
+                    $scope.currentOffset = 0;
+                    $scope.mainUserArray = [];
                     $scope.nextUsers = UserService.findUsersByCompany({
                         'companyId': userObject.companyId,
                         'offset': $scope.nextOffset
                     });
-                    $scope.users = UserService.findUsersByCompany({
+
+                    UserService.findUsersByCompany({
                         'companyId': userObject.companyId,
                         'offset': $scope.currentOffset
                     }, function (userList) {
-                        console.log("S :%O", userList);
-                        angular.forEach($scope.users, function (user) {
+                        angular.forEach(userList, function (user) {
                             user.employee = EmployeeService.get({
                                 'id': user.employeeId
                             });
+                            $scope.mainUserArray.push(user);
                         });
                     });
 
+                    $scope.userCall = function (offset) {
+                        UserService.findUsersByCompany({
+                            'companyId': userObject.companyId,
+                            'offset': $scope.currentOffset
+                        }, function (userList) {
+                            angular.forEach(userList, function (user) {
+                                user.employee = EmployeeService.get({
+                                    'id': user.employeeId
+                                });
+                                $scope.mainUserArray.push(user);
+                            });
+                        });
+                    };
+                    $scope.enterIntoArray = function (user) {
+                        $scope.mainUserArray.push(user);
+                    };
+
                     $scope.nextPage = function () {
                         $scope.currentOffset += paginationLimit;
-                        $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
+                        $scope.nextOffset = $scope.currentOffset + 10;
+                        $scope.userCall($scope.currentOffset);
                     };
-                    $scope.previousPage = function () {
-                        if ($scope.currentOffset <= 0) {
-                            return;
+
+                    angular.element($window).bind('scroll', function (response) {
+                        if (this.pageYOffset + this.innerHeight === $(document).height()) {
+                            $scope.nextPage();
                         }
-                        $scope.currentOffset -= paginationLimit;
-                        $state.go(".", {'offset': $scope.currentOffset}, {'reload': true});
-                    };
+                        ;
+                    });
                 }
             });
 

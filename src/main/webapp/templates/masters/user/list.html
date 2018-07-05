@@ -35,9 +35,9 @@
                 <th class="text-right">Actions</th>
             </tr>
         </thead>
-        <tbody>
-            <tr ng-repeat="user in users">
-                <td class="text-right">{{ currentOffset + $index + 1}}</td>
+        <tbody onscroll="scrolled(this)">
+            <tr ng-repeat="user in mainUserArray">
+                <td class="text-right">{{$index + 1}}</td>
                 <td>{{ user.username}}</td>   
                 <td>{{ user.role}}</td>  
                 <td>{{ user.name}}</td>  
@@ -52,7 +52,7 @@
             </tr>
         </tbody>
     </table>
-    <nav class="panel-footer">
+<!--    <nav class="panel-footer">
         <ul class="pager">
             <li>
                 <button ng-click="previousPage()" 
@@ -71,6 +71,6 @@
                 </button>
             </li>
         </ul>
-    </nav>
+    </nav>-->
 </div>
 <div data-ui-view=""></div>

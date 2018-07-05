@@ -49,7 +49,20 @@ angular.module("stars.states.admin_menu", [])
         .controller('AdminMasterController', function ($scope, $rootScope, UserService) {
 
         })
-        .controller('AdminReportMenu', function ($scope, UserService) {
+        .controller('AdminReportMenu', function ($scope, $rootScope, UserService) {
+            $scope.user = $rootScope.currentUser;
+            console.log("user Object :%O", $scope.user);
+            UserService.findByUsername({
+               'username':$scope.user.username 
+            }, function(userObject){
+                if(userObject.role === "ROLE_ADMIN"){
+                    $scope.showDirBack = false;
+                    $scope.showAdminBack = true;
+                }else if(userObject.role === "ROLE_DIRECTOR"){
+                    $scope.showDirBack = true;
+                    $scope.showAdminBack = false;
+                }
+            });
         })
         .controller('AdminDepartmentResourceMenu', function (KraDetailsService, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
             $scope.resourcesList = EmployeeService.findByDepartmentHead({
@@ -106,6 +119,7 @@ angular.module("stars.states.admin_menu", [])
             });
         })
         .controller('AdminDirectorResourceMenu', function (HodReviewDetailsService, KraDetailsService, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
+            $scope.showSaveButton = true;
             $scope.resourcesList = EmployeeService.findByDepartmentHead({
                 'departmentHeadId': $stateParams.employeeId
             }, function (resourcesList) {
@@ -114,26 +128,24 @@ angular.module("stars.states.admin_menu", [])
                         'employeeId': resourceData.id
                     }).$promise.catch(function (response) {
                         if (response.status === 500) {
-                            console.log("500");
-                            resourceData.showUpdateButton = false;
+                            resourceData.showSaveButton = true;
                         } else if (response.status === 404) {
-                            resourceData.showUpdateButton = false;
+                            resourceData.showSaveButton = true;
                         } else if (response.status === 400) {
-                            resourceData.showUpdateButton = false;
+                            resourceData.showSaveButton = true;
                         } else if (response.status === 200) {
-                            console.log("200");
-                            resourceData.showUpdateButton = true;
+                            resourceData.showSaveButton = false;
                         }
                     }).then(function (hodReviewDetailsObject) {
-                        console.log("Anything here :%O", hodReviewDetailsObject);
                         if (hodReviewDetailsObject !== undefined) {
-                            resourceData.showUpdateButton = true;
+                            resourceData.showSaveButton = false;
                         } else {
-                            resourceData.showUpdateButton = false;
+                            resourceData.showSaveButton = true;
                         }
                     });
                 });
             });
+            console.log("Resource List :%O", $scope.resourcesList);
         })
         .controller('UpdateAdditionalDetails', function ($state, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
             $scope.additionalDetails = AdditionalDetailsService.findByEmployeeId({

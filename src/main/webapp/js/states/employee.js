@@ -20,6 +20,11 @@ angular.module("stars.states.employee", [])
                 'templateUrl': templateRoot + '/masters/employee/form.html',
                 'controller': 'EmployeeEditController'
             });
+            $stateProvider.state('admin.masters_employee.upload_photo', {
+                'url': '/:employeeId/photo_upload',
+                'templateUrl': templateRoot + '/masters/employee/upload_photo.html',
+                'controller': 'EmployeePhotoUploadController'
+            });
             $stateProvider.state('admin.masters_employee.delete', {
                 'url': '/:employeeId/delete',
                 'templateUrl': templateRoot + '/masters/employee/delete.html',
@@ -280,6 +285,59 @@ angular.module("stars.states.employee", [])
                 employee.$delete(function () {
                     $state.go('admin.masters_employee', null, {'reload': true});
                 });
+            };
+        })
+        .controller('EmployeePhotoUploadController', function (FileUploader, restRoot, KraDetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
+            $scope.enableSaveButton = true;
+            EmployeeService.get({
+                'id': $stateParams.employeeId
+            }, function (employee) {
+                $scope.employeeObject = employee;
+                console.log("Employee Object :%O", $scope.employeeObject);
+            });
+            $scope.goBack = function () {
+                $state.go('admin.masters_employee', {}, {'reload': true});
+            };
+            var uploader = $scope.fileUploader = new FileUploader({
+                url: restRoot + '/employee/' + $stateParams.employeeId + '/attachment',
+                autoUpload: true,
+                alias: 'attachment'
+            });
+            uploader.onBeforeUploadItem = function (item) {
+                $scope.uploadInProgress = true;
+                $scope.uploadSuccess = false;
+                console.log("before upload item:", item);
+                console.log("uploader", uploader);
+            };
+            uploader.onErrorItem = function (fileItem, response, status, headers) {
+                $scope.uploadFailed = true;
+                $scope.uploadInProgress = false;
+                $scope.uploadSuccess = false;
+//                    $state.go('.', {}, {'reload': true});
+                console.log("upload error");
+//                $scope.refreshRawMarketPrice();
+            };
+            uploader.onCompleteItem = function (fileItem, response, status, headers) {
+                if (status === 200) {
+                    console.log("Upload Successful");
+                    $state.go('admin.masters_employee.upload_photo', {
+                        'employeeId': $stateParams.employeeId
+                    }, {'reload': true});
+                    $scope.uploadInProgress = false;
+                    $scope.uploadFailed = false;
+                    $scope.uploadSuccess = true;
+                    $scope.enableSaveButton = false;
+                } else if (status === 500)
+                {
+                    $scope.uploadInProgress = false;
+                    $scope.uploadFailed = false;
+//                    $scope.uploadWarning = true;
+                } else {
+                    $scope.uploadInProgress = false;
+                    $scope.uploadFailed = true;
+                }
+
+                console.log("upload completion", response);
             };
         });
 

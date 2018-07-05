@@ -2,7 +2,7 @@
     <div class="panel-heading text-center">
         <div class="pull-left">
 
-            <button data-ui-sref="admin.director_resource_list({'employeeId': employeeObject.departmentHead})"
+            <button data-ui-sref="admin.director_emp_list"
                     class="btn btn-default">
                 <i class="fa fa-arrow-left"></i>
                 Back
@@ -27,7 +27,8 @@
                 </ul>
             </div>
         </div>
-     </div>    
+     </div>  
+      
     <div class="row">
         <div class="col-sm-4">
             <label class="col-sm-6">Name :</label>
@@ -85,91 +86,31 @@
     </div>
     <div class="panel-body">
         <!--<div class="row">-->
-        <form role="form" ng-submit="saveHodEval(editableHodReviewDetails)">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Performance</label>
-                        <textarea rows="3" class="form-control" ng-model="editableHodReviewDetails.performance">
-                                
-                        </textarea>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Challenges & Suggestions</label>
-                        <textarea rows="3" class="form-control" ng-model="editableHodReviewDetails.challenge">
-                                
-                        </textarea>
-                    </div>
-                </div>
+        <div class='row'>
+            <div class='col-sm-6' style="border-right: 1px solid">
+                <ul>
+                    <li ng-click="showData('Performance')" title='Click to Show Data'><h2>Performance</h2></li>
+                    <li ng-click="showData('Challenge')" title='Click to Show Data'><h2>Challenges & Suggestions</h2></li>
+                    <li ng-click="showData('Training')" title='Click to Show Data'><h2>Trainings Required</h2></li>
+                    <li ng-click="showData('Expectation')" title='Click to Show Data'><h2>Expectations</h2></li>
+                    <li ng-click="showData('No_Comment')" title='Click to Show Data'><h2>Neutral Observer Comments</h2></li>
+                </ul>
             </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Trainings Required</label>
-                        <textarea rows="3" class="form-control" ng-model="editableHodReviewDetails.training">                                
-                        </textarea>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Expectations</label>
-                        <textarea rows="3" class="form-control" ng-model="editableHodReviewDetails.expectation">                                
-                        </textarea>
-                    </div>
-                </div>
+            <div class='col-sm-6'>
+                <span>{{displayData}}</span>
             </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Neutral Observer Comments</label>
-                        <textarea rows="3" class="form-control" ng-model="editableHodReviewDetails.noComment">                                
-                        </textarea>
-                    </div>
-                </div>
-                <div class="col-sm-6">
+        </div>
+        <br>
+        <form role="form" ng-submit="saveHodEval(editableHodReviewDetails)">            
+            <div class="row">                
+                <div class="col-sm-12">
                     <div class="form-group">
                         <label>Director Comments</label>
-                        <textarea rows="3" class="form-control" ng-model="editableHodReviewDetails.areaOfImprovement">                                
+                        <textarea rows="3" class="form-control" ng-model="editableHodReviewDetails.dirComment">                                
                         </textarea>
                     </div>
                 </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Tags</label>
-                        <input class="form-control"
-                               placeholder="Select Tags"
-                               uib-typeahead="tags.id as tags.tagName for tags in searchTags($viewValue)"
-                               typeahead-on-select="setTag($item)"
-                               typeahead-editable="false"
-                               typeahead-loading="loadingTag" 
-                               typeahead-no-results="noTagFound"
-                               ng-model="tagName" />
-                        <p ng-show="noTagFound" class="help-block text-muted">No Tag Found</p>
-                        <p ng-show="loadingTag" class="help-block text-muted">Loading...</p>                      
-                    </div>
-                </div>                
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <ul ng-repeat="tag in tagDisplay" class="left_margin">
-                        <li class="col-md-8">
-                            {{tag.tagName}} 
-                        </li>
-                        <li class="col-md-4 list-unstyled">
-                            <button type="button" ng-click="removeTags(tag)" class="btn btn-link top_padding">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </li>
-                    </ul>
-                </div>                
-            </div>
+            </div>            
             <div class="modal-footer">
                 <button class="btn btn-lg btn-primary">
                     <i class="fa fa-save"></i>

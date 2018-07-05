@@ -37,16 +37,25 @@
                 <td data-title="">{{ employee.empDob | date}}</td>
                 <td data-title="">{{ employee.eduQual}}</td>
                 <td data-title="">{{ employee.location}}</td>
-<!--                <td data-title="" ng-if="employee.complete === true"><label class="label label-success">Complete</label></td>
-                <td data-title="" ng-if="employee.inProgress === true"><label class="label label-warning">Partial Complete ({{employee.totalWeightage}} %)</label></td>
-                <td data-title="" ng-if="employee.notStarted === true"><label class="label label-danger">Not Started</label></td>-->
+                <!--                <td data-title="" ng-if="employee.complete === true"><label class="label label-success">Complete</label></td>
+                                <td data-title="" ng-if="employee.inProgress === true"><label class="label label-warning">Partial Complete ({{employee.totalWeightage}} %)</label></td>
+                                <td data-title="" ng-if="employee.notStarted === true"><label class="label label-danger">Not Started</label></td>-->
                 <!--<td>{{ user.mobileNo}}</td>-->                
-                <td data-title="" class="text-right">                    
-                    <a data-ui-sref="admin.hod_eval({ employeeId: employee.id })"
-                       class="btn btn-primary" ng-hide="showUpdateButton">
-                        Evaluate HOD &nbsp;
-                        <i class="fa fa-pencil"></i>
-                    </a>
+                <td data-title="" class="text-right">
+                    <span ng-show="employee.showSaveButton">
+                        <a data-ui-sref="admin.hod_eval({ employeeId: employee.id })"
+                           class="btn btn-primary">
+                            Evaluate HOD &nbsp;
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </span>
+                    <span ng-hide="employee.showSaveButton">
+                        <a data-ui-sref="admin.hod_eval_edit({ employeeId: employee.id })"
+                           class="btn btn-primary">
+                            Update Evaluation &nbsp;
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </span>
                 </td>                 
             </tr>
         </tbody>        
