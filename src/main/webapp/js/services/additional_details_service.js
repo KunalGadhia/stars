@@ -20,6 +20,46 @@ angular.module("stars.services.additional_details")
                     'method': 'GET',
                     'url': restRoot + '/additional_details/find_all_list',
                     'isArray': true
+                },
+                'findByCommSkill': {
+                    'method': 'GET',
+                    'url': restRoot + '/additional_details/find_comm_skill',
+                    'isArray': true
+                },
+                'findBySupervisoryDevelopment': {
+                    'method': 'GET',
+                    'url': restRoot + '/additional_details/find_supervisory_dev',
+                    'isArray': true
+                },
+                'findByTeamBuilding': {
+                    'method': 'GET',
+                    'url': restRoot + '/additional_details/find_team_building',
+                    'isArray': true
+                },
+                'findByNegotiationSkill': {
+                    'method': 'GET',
+                    'url': restRoot + '/additional_details/find_negotiation_skill',
+                    'isArray': true
+                },
+                'findByCrm': {
+                    'method': 'GET',
+                    'url': restRoot + '/additional_details/find_crm',
+                    'isArray': true
+                },
+                'findByPresentationSkill': {
+                    'method': 'GET',
+                    'url': restRoot + '/additional_details/find_presentation_skill',
+                    'isArray': true
+                },
+                'findByTimeManagement': {
+                    'method': 'GET',
+                    'url': restRoot + '/additional_details/find_time_management',
+                    'isArray': true
+                },
+                'findByFunctional': {
+                    'method': 'GET',
+                    'url': restRoot + '/additional_details/find_functional',
+                    'isArray': true
                 }
             });
         });

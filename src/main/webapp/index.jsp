@@ -358,6 +358,7 @@
         <script src="${pageContext.request.contextPath}/js/services/company_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/tag_service.js"></script>
         <script src="${pageContext.request.contextPath}/js/services/hod_review_service.js"></script>
+        <script src="${pageContext.request.contextPath}/js/services/form3_details_service.js"></script>
     </head>
     <body style="font-family: 'Roboto', sans-serif;">
         <div data-ui-view></div>        

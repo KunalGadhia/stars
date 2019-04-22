@@ -99,7 +99,12 @@
                 <td>{{ employee.departmentHeadObject.empName}}</td>
                 <td>{{ employee.location}}</td>
                 <td class="text-right">
-                     <a data-ui-sref="admin.masters_employee.upload_photo({ employeeId: employee.id })"
+                    <a data-ui-sref="admin.masters_employee.update_details({ employeeId: employee.id })"
+                       class="btn btn-primary">
+                        Update Details
+                    </a>
+                    <br>
+                    <a data-ui-sref="admin.masters_employee.upload_photo({ employeeId: employee.id })"
                        class="btn btn-primary">					
                         <i class="fa fa-upload"></i>
                     </a>

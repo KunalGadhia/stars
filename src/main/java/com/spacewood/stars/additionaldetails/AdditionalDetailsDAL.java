@@ -21,6 +21,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class AdditionalDetailsDAL {
+
     public static final class Columns {
 
         public static final String ID = "id";
@@ -80,6 +81,46 @@ public class AdditionalDetailsDAL {
 
     public List<AdditionalDetails> findAllList() {
         String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE";
+        return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(AdditionalDetails.class));
+    }
+
+    public List<AdditionalDetails> findByCommSkill() {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.COMM_INTERPERSONAL_SKILL + " = TRUE";
+        return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(AdditionalDetails.class));
+    }
+
+    public List<AdditionalDetails> findBySupervisoryDevelopment() {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.SUPERVISORY_DEVELOPMENT + " = TRUE";
+        return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(AdditionalDetails.class));
+    }
+
+    public List<AdditionalDetails> findByTeamBuilding() {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.TEAM_BUILDING + " = TRUE";
+        return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(AdditionalDetails.class));
+    }
+
+    public List<AdditionalDetails> findByNegotiationSkill() {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.SELLING_NEGOTIATION_SKILL + " = TRUE";
+        return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(AdditionalDetails.class));
+    }
+
+    public List<AdditionalDetails> findByCrm() {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.CRM + " = TRUE";
+        return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(AdditionalDetails.class));
+    }
+
+    public List<AdditionalDetails> findByPresentationSkill() {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.PRESENTATION_SKILL + " = TRUE";
+        return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(AdditionalDetails.class));
+    }
+
+    public List<AdditionalDetails> findByTimeManagement() {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.TIME_MANAGEMENT + " = TRUE";
+        return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(AdditionalDetails.class));
+    }
+
+    public List<AdditionalDetails> findByFunctional() {
+        String sqlQuery = "SELECT * FROM " + TABLE_NAME + " WHERE deleted = FALSE AND " + Columns.FUNCTIONAL + " = TRUE";
         return jdbcTemplate.query(sqlQuery, new Object[]{}, new BeanPropertyRowMapper<>(AdditionalDetails.class));
     }
 
@@ -149,7 +190,7 @@ public class AdditionalDetailsDAL {
                     additionaldetails.getTeamBuilding(),
                     additionaldetails.getSellingNegotiationSkill(),
                     additionaldetails.getCrm(),
-                    additionaldetails.getPresentationSkill(),                    
+                    additionaldetails.getPresentationSkill(),
                     additionaldetails.getTimeManagement(),
                     additionaldetails.getFunctional(),
                     additionaldetails.getHodComment(),

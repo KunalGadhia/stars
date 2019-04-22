@@ -40,6 +40,23 @@ public class EmployeeDAL {
         public static final String LAST_PROMOTION = "last_promotion";
         public static final String DEPARTMENT_HEAD = "department_head";
         public static final String COMPANY_ID = "company_id";
+        public static final String TEMPORARY_ADDRESS1 = "temporary_address1";
+        public static final String TEMPORARY_ADDRESS2 = "temporary_address2";
+        public static final String TEMPORARY_ADDRESS3 = "temporary_address3";
+        public static final String TEMPORARY_ADDRESS4 = "temporary_address4";
+        public static final String PERMANENT_ADDRESS1 = "permanent_address1";
+        public static final String PERMANENT_ADDRESS2 = "permanent_address2";
+        public static final String PERMANENT_ADDRESS3 = "permanent_address3";
+        public static final String PERMANENT_ADDRESS4 = "permanent_address4";
+        public static final String PERSONAL_CONTACT_NO = "personal_contact_no";
+        public static final String OFFICIAL_CONTACT_NO = "official_contact_no";
+        public static final String EMERGENCY_CONTACT_NO = "emergency_contact_no";
+        public static final String OFFICIAL_MAIL_ID = "official_mail_id";
+        public static final String PERSONAL_MAIL_ID = "personal_mail_id";
+        public static final String GENDER = "gender";
+        public static final String BLOODGROUP = "bloodgroup";
+        public static final String PAN_NUMBER = "pan_number";
+        public static final String AADHAR_NO = "aadhar_no";
         public static final String IMAGE = "image";
     }
 
@@ -68,7 +85,25 @@ public class EmployeeDAL {
                         Columns.REPORTING_TO,
                         Columns.LAST_PROMOTION,
                         Columns.DEPARTMENT_HEAD,
-                        Columns.COMPANY_ID
+                        Columns.COMPANY_ID,
+                        Columns.TEMPORARY_ADDRESS1,
+                        Columns.TEMPORARY_ADDRESS2,
+                        Columns.TEMPORARY_ADDRESS3,
+                        Columns.TEMPORARY_ADDRESS4,
+                        Columns.PERMANENT_ADDRESS1,
+                        Columns.PERMANENT_ADDRESS2,
+                        Columns.PERMANENT_ADDRESS3,
+                        Columns.PERMANENT_ADDRESS4,
+                        Columns.PERSONAL_CONTACT_NO,
+                        Columns.OFFICIAL_CONTACT_NO,
+                        Columns.EMERGENCY_CONTACT_NO,
+                        Columns.OFFICIAL_MAIL_ID,
+                        Columns.PERSONAL_MAIL_ID,
+                        Columns.GENDER,
+                        Columns.BLOODGROUP,
+                        Columns.PAN_NUMBER,
+                        Columns.AADHAR_NO
+                        
                 )
                 .usingGeneratedKeyColumns(Columns.ID);
     }
@@ -161,6 +196,23 @@ public class EmployeeDAL {
         parameters.put(Columns.LAST_PROMOTION, employee.getLastPromotion());
         parameters.put(Columns.DEPARTMENT_HEAD, employee.getDepartmentHead());
         parameters.put(Columns.COMPANY_ID, employee.getCompanyId());
+        parameters.put(Columns.TEMPORARY_ADDRESS1, employee.getTemporaryAddress1());
+        parameters.put(Columns.TEMPORARY_ADDRESS2, employee.getTemporaryAddress2());
+        parameters.put(Columns.TEMPORARY_ADDRESS3, employee.getTemporaryAddress3());
+        parameters.put(Columns.TEMPORARY_ADDRESS4, employee.getTemporaryAddress4());
+        parameters.put(Columns.PERMANENT_ADDRESS1, employee.getPermanentAddress1());
+        parameters.put(Columns.PERMANENT_ADDRESS2, employee.getPermanentAddress2());
+        parameters.put(Columns.PERMANENT_ADDRESS3, employee.getPermanentAddress3());
+        parameters.put(Columns.PERMANENT_ADDRESS4, employee.getPermanentAddress4());
+        parameters.put(Columns.PERSONAL_CONTACT_NO, employee.getPersonalContactNo());
+        parameters.put(Columns.OFFICIAL_CONTACT_NO, employee.getOfficialContactNo());
+        parameters.put(Columns.EMERGENCY_CONTACT_NO, employee.getEmergencyContactNo());
+        parameters.put(Columns.OFFICIAL_MAIL_ID, employee.getOfficialMailId());
+        parameters.put(Columns.PERSONAL_MAIL_ID, employee.getPersonalMailId());
+        parameters.put(Columns.GENDER, employee.getGender());
+        parameters.put(Columns.BLOODGROUP, employee.getBloodgroup());
+        parameters.put(Columns.PAN_NUMBER, employee.getPanNumber());
+        parameters.put(Columns.AADHAR_NO, employee.getAadharNo());
 
         Number newId = insertEmployee.executeAndReturnKey(parameters);
         employee = findById(newId.intValue());
@@ -191,6 +243,23 @@ public class EmployeeDAL {
                 + Columns.LAST_PROMOTION + " = ?,"
                 + Columns.DEPARTMENT_HEAD + " = ?,"
                 + Columns.COMPANY_ID + " = ?,"
+                + Columns.TEMPORARY_ADDRESS1 + " = ?,"
+                + Columns.TEMPORARY_ADDRESS2 + " = ?,"
+                + Columns.TEMPORARY_ADDRESS3 + " = ?,"
+                + Columns.TEMPORARY_ADDRESS4 + " = ?,"
+                + Columns.PERMANENT_ADDRESS1 + " = ?,"
+                + Columns.PERMANENT_ADDRESS2 + " = ?,"
+                + Columns.PERMANENT_ADDRESS3 + " = ?,"
+                + Columns.PERMANENT_ADDRESS4 + " = ?,"
+                + Columns.PERSONAL_CONTACT_NO + " = ?,"
+                + Columns.OFFICIAL_CONTACT_NO + " = ?,"
+                + Columns.EMERGENCY_CONTACT_NO + " = ?,"
+                + Columns.OFFICIAL_MAIL_ID + " = ?,"
+                + Columns.PERSONAL_MAIL_ID + " = ?,"
+                + Columns.GENDER + " = ?,"
+                + Columns.BLOODGROUP + " = ?,"
+                + Columns.PAN_NUMBER + " = ?,"
+                + Columns.AADHAR_NO + " = ?,"
                 + Columns.IMAGE + " = '" + path + "' WHERE " + Columns.ID + " = ?";
         Number updatedCount = jdbcTemplate.update(sqlQuery,
                 new Object[]{
@@ -209,6 +278,23 @@ public class EmployeeDAL {
                     employee.getLastPromotion(),
                     employee.getDepartmentHead(),
                     employee.getCompanyId(),
+                    employee.getTemporaryAddress1(),
+                    employee.getTemporaryAddress2(),
+                    employee.getTemporaryAddress3(),
+                    employee.getTemporaryAddress4(),
+                    employee.getPermanentAddress1(),
+                    employee.getPermanentAddress2(),
+                    employee.getPermanentAddress3(),
+                    employee.getPermanentAddress4(),
+                    employee.getPersonalContactNo(),
+                    employee.getOfficialContactNo(),
+                    employee.getEmergencyContactNo(),
+                    employee.getOfficialMailId(),
+                    employee.getPersonalMailId(),
+                    employee.getGender(),
+                    employee.getBloodgroup(),
+                    employee.getPanNumber(),
+                    employee.getAadharNo(),
                     employee.getId()
                 });
         employee = findById(employee.getId());

@@ -20,6 +20,11 @@ angular.module("stars.states.evaluate", [])
                 'templateUrl': templateRoot + '/masters/evaluate/form2.html',
                 'controller': 'Form2Controller'
             });
+            $stateProvider.state('admin.form3', {
+                'url': '/form3/feedback',
+                'templateUrl': templateRoot + '/masters/evaluate/form3.html',
+                'controller': 'Form3Controller'
+            });
             $stateProvider.state('admin.hod_eval', {
                 'url': '/hod/:employeeId/eval',
                 'templateUrl': templateRoot + '/masters/evaluate/hod_eval.html',
@@ -187,6 +192,61 @@ angular.module("stars.states.evaluate", [])
                 $scope.form2DetailsList = Form2DetailsService.findByEmployeeId({
                     'employeeId': $stateParams.employeeId
                 });
+            };
+        })
+        .controller('Form3Controller', function (Form3DetailsService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state) {
+            $scope.user = $rootScope.currentUser;
+            UserService.findByUsername({
+                'username': $scope.user.username
+            }, function (userObject) {
+                $scope.employeeId = userObject.employeeId;
+                $scope.employeeObject = EmployeeService.get({
+                    'id': userObject.employeeId
+                });
+                Form3DetailsService.findByEmployeeId({
+                    'employeeId': $scope.employeeId
+                }, function (form3Data) {                    
+                    if (form3Data.id === undefined) {                        
+                    } else if (form3Data.id !== undefined) {                        
+                        $scope.editableForm3 = form3Data;
+                    }
+                    $scope.form3EditData = form3Data;
+                });
+                if (userObject.role === "ROLE_HR") {
+                    $scope.showHRBack = true;
+                    $scope.showAdminBack = false;
+                    $scope.showEmployeeBack = false;
+                    $scope.showHodBack = false;
+                } else if (userObject.role === "ROLE_ADMIN") {
+                    $scope.showHRBack = false;
+                    $scope.showAdminBack = true;
+                    $scope.showEmployeeBack = false;
+                    $scope.showHodBack = false;
+                } else if (userObject.role === "ROLE_EMPLOYEE") {
+                    $scope.showHRBack = false;
+                    $scope.showAdminBack = false;
+                    $scope.showEmployeeBack = true;
+                    $scope.showHodBack = false;
+                } else if (userObject.role === "ROLE_HOD") {
+                    $scope.showHRBack = false;
+                    $scope.showAdminBack = false;
+                    $scope.showEmployeeBack = false;
+                    $scope.showHodBack = true;
+                }
+            });
+            $scope.editableForm3 = {};
+            $scope.saveForm3 = function (form3Content) {                
+                if (form3Content.id === undefined) {                    
+                    form3Content.commentVisible = false;
+                    form3Content.employeeId = $scope.employeeObject.id;
+                    Form3DetailsService.save(form3Content, function (savedData) {                        
+                        $state.go('admin.employees', null, {'reload': true});
+                    });
+                } else if (form3Content.id !== undefined) {                    
+                    form3Content.$save(function () {
+                        $state.go('admin.employees', null, {'reload': true});
+                    });
+                }
             };
         })
         .controller('HodEvalController', function (HodReviewDetailsService, TagService, EmployeeService, UserService, $scope, $stateParams, $rootScope, $state, paginationLimit) {
@@ -431,44 +491,6 @@ angular.module("stars.states.evaluate", [])
                     $scope.ratingForm1 = a;
                 });
             });
-
-//            $scope.$watch('editableForm2.rating', function (rating) {
-//                var rating = parseInt(rating);
-//                var weightage = parseInt($scope.editableForm2.weightage);
-//                var finalweightage = (weightage / 100);
-//                $scope.editableForm2.ratingScore = Math.round((finalweightage * rating) * 100) / 100;
-//            });
-//
-//            $scope.approveForm2 = function (editableForm2) {
-//                var d = new Date();
-//                editableForm2.employeeId = $stateParams.employeeId;
-//                editableForm2.year = d.getFullYear();
-//                $scope.saveForm2(editableForm2);
-//            };
-//            $scope.saveForm2 = function (editableForm2Final) {
-//                Form2DetailsService.save(editableForm2Final, function (savedData) {
-//                    $scope.editableForm2 = {};
-//                    $scope.refreshForm2DetailsList();
-//                });
-//            };
-//            $scope.approveAdditionalDetail = function (additionalDetail) {
-//                var d1 = new Date();
-//                additionalDetail.employeeId = $stateParams.employeeId;
-//                additionalDetail.year = d1.getFullYear();
-//                $scope.saveAdditionalDetail(additionalDetail);
-//            };
-//            $scope.saveAdditionalDetail = function (finalAdditionalDetail) {
-//                console.log("FInal additional Detail :%O", finalAdditionalDetail);
-//                AdditionalDetailsService.save(finalAdditionalDetail, function (savedData) {
-//                    $state.go('admin.evaluate', null, {'reload': true});
-//                });
-//            };
-//
-//            $scope.refreshForm2DetailsList = function () {
-//                $scope.form2DetailsList = Form2DetailsService.findByEmployeeId({
-//                    'employeeId': $stateParams.employeeId
-//                });
-//            };
         });
 
 

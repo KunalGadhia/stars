@@ -1,0 +1,432 @@
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <div class="pull-left">
+
+            <button data-ui-sref="admin.department_resource_list({'employeeId': employeeObject.departmentHead})"
+                    class="btn btn-default" ng-show="showAdminBack">
+                <i class="fa fa-arrow-left"></i>
+                Back
+            </button> 
+            <button data-ui-sref="admin.hr_department_resource_list({'employeeId': employeeObject.departmentHead})"
+                    class="btn btn-default" ng-show="showHRBack">
+                <i class="fa fa-arrow-left"></i>
+                Back
+            </button>
+            <button data-ui-sref="admin.employees"
+                    class="btn btn-default" ng-show="showEmployeeBack">
+                <i class="fa fa-arrow-left"></i>
+                Back
+            </button>
+            <button data-ui-sref="admin.hod"
+                    class="btn btn-default" ng-show="showHodBack">
+                <i class="fa fa-arrow-left"></i>
+                Back
+            </button>
+        </div>
+        <div>
+            <h4>Form 3</h4>
+        </div>
+    </div>
+    <div class="row">
+        <h3 style="margin-left: 30px;">Personal Details :</h3>
+        <hr style="width: 1310px;margin-left: 20px;border-top:  2px solid;">
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Name :</label>
+            <span class="col-sm-6">{{employeeObject.empName}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Designation :</label>
+            <span class="col-sm-6">{{employeeObject.designation}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Employee Code :</label>
+            <span class="col-sm-6">{{employeeObject.empNo}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Department :</label>
+            <span class="col-sm-6">{{employeeObject.department}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Date Of Birth :</label>
+            <span class="col-sm-6">{{employeeObject.empDob| date}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Date Of Joining :</label>
+            <span class="col-sm-6">{{employeeObject.empDoj| date}}</span>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Grade :</label>
+            <span class="col-sm-6">{{employeeObject.grade}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Educational Qualification :</label>
+            <span class="col-sm-6">{{employeeObject.eduQual}}</span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-6">Total Experience :</label>
+            <span class="col-sm-6">{{employeeObject.totalExp}} Years</span>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label class="col-sm-6">Location :</label>
+            <span class="col-sm-6">{{employeeObject.location}}</span>
+        </div>        
+    </div>
+
+</div>
+
+<div class="panel panel-default">
+    <div class="modal-header text-center" style="min-height: 60px">
+        <h3 class="col-md-12 col-lg-12 col-xs-12">
+            Feedback Form
+        </h3>           
+    </div>
+    <!--<div class="panel-body" ng-if="editableForm3.commentVisible === false || editableForm3.commentVisible === undefined">-->
+        <div class="panel-body" ng-if="form3EditData.commentVisible === false || form3EditData.commentVisible === undefined">
+        <div class="row">
+            <form role="form" ng-submit="saveForm3(editableForm3)">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>What were the plans for last year, how did you achieve it?</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer1Emp">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>What extra efforts you have taken which benefitted the company? (Ex: Cost Saving Initiative)</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer2Emp">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Area Of Improvement?</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer3Emp">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Area Of Excellence within performance?</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer4Emp">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>What are your future goals & expectations?</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer5Emp">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>What was your reaction to the most critical tasks / project during assessment period?</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer6Emp">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <h2>What was going through your mind when you were implementing the task</h2>
+                <h3>Phase Of Task</h3>
+                <ul>
+                    <li>
+                        <div class="form-group">
+                            <label>Phase A: What was you reaction when task was assigned to you?</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer7Emp">
+                                
+                            </textarea>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-group">
+                            <label>Phase B: Strategies for implementing the above tasks?</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer8Emp">
+                                
+                            </textarea>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-group">
+                            <label>Phase C: Were there any challenges in existing process? If yes, what were your recommendation for change?</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer9Emp">
+                                
+                            </textarea>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-group">
+                            <label>Actual Output VS Expected Output?</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer10Emp">
+                                
+                            </textarea>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-group">
+                            <label>Additional Remark</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.remarks">
+                                
+                            </textarea>
+                        </div>
+                    </li>
+                </ul>            
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </form>             
+        </div>
+        <div class="panel-body" ng-if="form3EditData.commentVisible === true">
+            <!--<div class="row">-->
+            <form role="form" ng-submit="saveForm3(editableForm3)">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12"><label>Question 1) What were the plans for last year, how did you achieve it? </label></div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Employee Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer1Emp" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>HOD Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer1Hod" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12"><label>Question 2) What extra efforts you have taken which benefitted the company? (Ex: Cost Saving Initiative)</label></div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Employee Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer2Emp" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>HOD Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer2Hod" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12"><label>Question 3) Area Of Improvement?</label></div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Employee Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer3Emp" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>HOD Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer3Hod" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12"><label>Question 4) Area Of Excellence within performance?</label></div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Employee Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer4Emp" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>HOD Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer4Hod" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12"><label>Question 5) What are your future goals and expectations?</label></div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Employee Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer5Emp" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>HOD Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer5Hod" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12"><label>Question 6) What was your reaction to the most critical tasks/project during the assessment period?</label></div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Employee Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer6Emp" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>HOD Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer6Hod" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <h2>What was going through your mind when you were implementing the task</h2>
+                <h3>Phase Of Task</h3>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12"><label>Phase A) What was your reaction when the task was assigned to you?</label></div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Employee Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer7Emp" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>HOD Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer7Hod" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12"><label>Phase B: Strategies for implementing the above tasks?</label></div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Employee Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer8Emp" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>HOD Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer8Hod" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12"><label>Phase C: Were there any challenges in existing process? If yes, what were your recommendation for change?</label></div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Employee Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer9Emp" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>HOD Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer9Hod" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12"><label>Phase D: Actual Output VS Expected Output?</label></div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Employee Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer10Emp" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>HOD Response</label>
+                            <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.answer10Hod" readonly="">
+                                
+                            </textarea>
+                        </div>
+                    </div>
+                </div>                        
+                <div class="row">
+                    <div class="form-group">
+                        <label>Additional Remark</label>
+                        <textarea maxlength="799" rows="3" class="form-control" ng-model="editableForm3.remarks" readonly="">
+                                
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-lg btn-primary">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                    <button type="button"
+                            onclick="window.history.back()"
+                            class="btn btn-link" >
+                        cancel
+                    </button>				
+                </div>
+            </form>             
+        </div>
+    </div>
+
+    <div data-ui-view=""></div>

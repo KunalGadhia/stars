@@ -1,0 +1,41 @@
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <div class="pull-left">
+            <button data-ui-sref="admin.report_menu"
+                    class="btn btn-default">
+                <i class="fa fa-arrow-left"></i>
+                Back
+            </button>            
+        </div>
+        <div>
+            <h4>Get Employees By Training Needs</h4>
+        </div>
+    </div>
+    <div class="row">
+        <br>
+    </div>
+    <div class="row" style="margin-top: 20px;margin-left: 5px">
+        <div class="col-sm-6">
+            <div class="form-group">                
+                <select class="form-control" ng-model="trainingName" style="height: 46px">
+                    <option value="">Select Training</option>
+                    <option value="COMM_INTERPERSONAL_SKILL">Communication Interpersonal Skill</option>
+                    <option value="SUPERVISORY_DEV">Supervisory Development</option>
+                    <option value="TEAM_BUILDING">Team Building</option>
+                    <option value="SELLING_NEGOTIATION_SKILL">Selling Negotiation Skill</option>
+                    <option value="CRM">CRM</option>
+                    <option value="PRESENTATION_SKILL">Presentation Skill</option>
+                    <option value="TIME_MANAGEMENT">Time Management</option>
+                    <option value="FUNCTIONAL">Functional</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">                
+                <a class='btn btn-primary btn-lg' target="_blank" data-ui-sref="training_report_details({'training': trainingName})">Fetch Report</a>
+            </div>
+        </div>
+    </div>    
+</div>
+
+<div data-ui-view=""></div>

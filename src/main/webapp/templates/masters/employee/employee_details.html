@@ -1,0 +1,165 @@
+<div class="modal modal-stars">
+    <div class="modal-backdrop fade in"></div>
+    <div class="modal-dialog">
+        <form role="form" ng-submit="updateEmployee(editableEmployee)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fa fa-user"></i>
+                        Employee Details Form
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <h3>Temporary Address</h3>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Temporary Address 1</label>
+                                <input placeholder="Temporary Address 1" type="text" class="form-control" ng-model="editableEmployee.temporaryAddress1" required="">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Temporary Address 2</label>
+                                <input placeholder="Temporary Address 2" type="text" class="form-control" ng-model="editableEmployee.temporaryAddress2" required="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Temporary Address 3</label>
+                                <input placeholder="Temporary Address 3" type="text" class="form-control" ng-model="editableEmployee.temporaryAddress3" >
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Temporary Address 4</label>
+                                <input placeholder="Temporary Address 4" type="text" class="form-control" ng-model="editableEmployee.temporaryAddress4" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Permanent Address Similar to temporary address/</label>
+                                <input type="checkbox" class="form-control" ng-model="editableEmployee.permanentSimilar" >
+                            </div>
+                        </div>
+                        <div class="col-sm-6">                            
+                        </div>
+                    </div>
+                    <h3>Permanent Address</h3>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Permanent Address 1</label>
+                                <input placeholder="Permanent Address 1" type="text" class="form-control" ng-model="editableEmployee.permanentAddress1" required="">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Permanent Address 2</label>
+                                <input placeholder="Permanent Address 2" type="text" class="form-control" ng-model="editableEmployee.permanentAddress2" required="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Permanent Address 3</label>
+                                <input placeholder="Permanent Address 3" type="text" class="form-control" ng-model="editableEmployee.permanentAddress3" >
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Permanent Address 4</label>
+                                <input placeholder="Permanent Address 4" type="text" class="form-control" ng-model="editableEmployee.permanentAddress4" >
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Contact Details</h3>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Personal Contact No</label>
+                                <input placeholder="Personal Contact No" type="text" class="form-control" ng-model="editableEmployee.personalContactNo">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Official Contact No</label>
+                                <input placeholder="Official Contact No" type="text" class="form-control" ng-model="editableEmployee.officialContactNo">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Emergency Contact No</label>
+                                <input placeholder="Emergency Contact No" type="text" class="form-control" ng-model="editableEmployee.emergencyContactNo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Official Mail Id</label>
+                                <input placeholder="Official Mail Id" type="email" class="form-control" ng-model="editableEmployee.officialMailId" >
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Personal Mail Id</label>
+                                <input placeholder="Personal Mail Id" type="email" class="form-control" ng-model="editableEmployee.personalMailId" >
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Other Details</h3>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <select class="form-control" ng-model="editableEmployee.gender">
+                                    <option value="">Select Gender</option>
+                                    <option value="MALE">Male</option>
+                                    <option value="FEMALE">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Blood Group</label>
+                                <input placeholder="Blood Group" type="text" class="form-control" ng-model="editableEmployee.bloodgroup">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>PAN Number</label>
+                                <input placeholder="PAN Number" type="text" class="form-control" ng-model="editableEmployee.panNumber" >
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Aadhar Number</label>
+                                <input placeholder="Aadhar Number" type="text" class="form-control" ng-model="editableEmployee.aadharNo" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-lg btn-primary">
+                            <i class="fa fa-save"></i>
+                            Save
+                        </button>
+                        <button type="button"
+                                onclick="window.history.back()"
+                                class="btn btn-link" >
+                            cancel
+                        </button>				
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

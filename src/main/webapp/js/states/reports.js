@@ -50,6 +50,11 @@ angular.module("stars.states.reports", [])
                 'templateUrl': templateRoot + '/masters/reports/form9.html',
                 'controller': 'AdminForm9Controller'
             });
+            $stateProvider.state('admin.training_report', {
+                'url': '/training_report',
+                'templateUrl': templateRoot + '/masters/reports/training_report/form.html',
+                'controller': 'TrainingReportFormController'
+            });
             $stateProvider.state('report1_details', {
                 'url': '/:employeeId/report1_details',
                 'templateUrl': templateRoot + '/masters/reports/form1_report.html',
@@ -94,6 +99,11 @@ angular.module("stars.states.reports", [])
                 'url': '/:companyId/report9_details',
                 'templateUrl': templateRoot + '/masters/reports/form9_report.html',
                 'controller': 'Report9Details'
+            });
+            $stateProvider.state('training_report_details', {
+                'url': '/:training/training_report_details',
+                'templateUrl': templateRoot + '/masters/reports/training_report/report.html',
+                'controller': 'TrainingReportDetails'
             });
 //            $stateProvider.state('admin.department_resource_list.update_additional_details', {
 //                'url': '/:employeeId/update_additional_details',
@@ -260,6 +270,9 @@ angular.module("stars.states.reports", [])
             }, function (userObject) {
                 $scope.companyId = userObject.companyId;
             });
+        })
+        .controller('TrainingReportFormController', function ($rootScope, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
+
         })
         .controller('Report1Details', function (KraDetailsService, AdditionalDetailsService, $scope, $stateParams, UserService, EmployeeService) {
             $scope.kraEmployeeObject = EmployeeService.get({
@@ -597,6 +610,80 @@ angular.module("stars.states.reports", [])
                     });
                 });
             });
-//            });
-
+        })
+        .controller('TrainingReportDetails', function ($scope, $stateParams, AdditionalDetailsService, EmployeeService) {
+            console.log("Stateparams:%O", $stateParams);
+            if ($stateParams.training === "COMM_INTERPERSONAL_SKILL") {
+                $scope.trainingCategory = "Communication Interpersonal Skill";
+                $scope.resourcesList = AdditionalDetailsService.findByCommSkill(function (trainingList) {
+                    angular.forEach($scope.resourcesList, function (resourceData) {
+                        resourceData.employeeObject = EmployeeService.get({
+                            'id': resourceData.employeeId
+                        });
+                    });
+                });
+            } else if ($stateParams.training === "SUPERVISORY_DEV") {
+                $scope.trainingCategory = "Supervisory Development";
+                $scope.resourcesList = AdditionalDetailsService.findBySupervisoryDevelopment(function (trainingList) {
+                    angular.forEach($scope.resourcesList, function (resourceData) {
+                        resourceData.employeeObject = EmployeeService.get({
+                            'id': resourceData.employeeId
+                        });
+                    });
+                });
+            } else if ($stateParams.training === "TEAM_BUILDING") {
+                $scope.trainingCategory = "Team Building";
+                $scope.resourcesList = AdditionalDetailsService.findByTeamBuilding(function (trainingList) {
+                    angular.forEach($scope.resourcesList, function (resourceData) {
+                        resourceData.employeeObject = EmployeeService.get({
+                            'id': resourceData.employeeId
+                        });
+                    });
+                });
+            } else if ($stateParams.training === "SELLING_NEGOTIATION_SKILL") {
+                $scope.trainingCategory = "Selling Negotiation Skill";
+                $scope.resourcesList = AdditionalDetailsService.findByNegotiationSkill(function (trainingList) {
+                    angular.forEach($scope.resourcesList, function (resourceData) {
+                        resourceData.employeeObject = EmployeeService.get({
+                            'id': resourceData.employeeId
+                        });
+                    });
+                });
+            } else if ($stateParams.training === "CRM") {
+                $scope.trainingCategory = "CRM";
+                $scope.resourcesList = AdditionalDetailsService.findByCrm(function (trainingList) {
+                    angular.forEach($scope.resourcesList, function (resourceData) {
+                        resourceData.employeeObject = EmployeeService.get({
+                            'id': resourceData.employeeId
+                        });
+                    });
+                });
+            } else if ($stateParams.training === "PRESENTATION_SKILL") {
+                $scope.trainingCategory = "Presentation Skill";
+                $scope.resourcesList = AdditionalDetailsService.findByPresentationSkill(function (trainingList) {
+                    angular.forEach($scope.resourcesList, function (resourceData) {
+                        resourceData.employeeObject = EmployeeService.get({
+                            'id': resourceData.employeeId
+                        });
+                    });
+                });
+            } else if ($stateParams.training === "TIME_MANAGEMENT") {
+                $scope.trainingCategory = "Time Management";
+                $scope.resourcesList = AdditionalDetailsService.findByTimeManagement(function (trainingList) {
+                    angular.forEach($scope.resourcesList, function (resourceData) {
+                        resourceData.employeeObject = EmployeeService.get({
+                            'id': resourceData.employeeId
+                        });
+                    });
+                });
+            } else if ($stateParams.training === "FUNCTIONAL") {
+                $scope.trainingCategory = "Functional";
+                $scope.resourcesList = AdditionalDetailsService.findByFunctional(function (trainingList) {
+                    angular.forEach($scope.resourcesList, function (resourceData) {
+                        resourceData.employeeObject = EmployeeService.get({
+                            'id': resourceData.employeeId
+                        });
+                    });
+                });
+            }
         });

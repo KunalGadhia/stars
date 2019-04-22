@@ -19,7 +19,7 @@ angular.module("stars", [
     'stars.services.company',
     'stars.services.tag',
     'stars.services.hod_review',
-
+    'stars.services.form3_details',
     // include controllers and states
     'stars.states',
     'stars.states.admin',

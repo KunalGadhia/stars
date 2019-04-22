@@ -25,6 +25,11 @@ angular.module("stars.states.employee", [])
                 'templateUrl': templateRoot + '/masters/employee/upload_photo.html',
                 'controller': 'EmployeePhotoUploadController'
             });
+            $stateProvider.state('admin.masters_employee.update_details', {
+                'url': '/:employeeId/update_details',
+                'templateUrl': templateRoot + '/masters/employee/employee_details.html',
+                'controller': 'EmployeeDetailsUpdateController'
+            });
             $stateProvider.state('admin.masters_employee.delete', {
                 'url': '/:employeeId/delete',
                 'templateUrl': templateRoot + '/masters/employee/delete.html',
@@ -339,6 +344,49 @@ angular.module("stars.states.employee", [])
 
                 console.log("upload completion", response);
             };
+        })
+        .controller('EmployeeDetailsUpdateController', function (EmployeeService, $scope, $stateParams, $state, $rootScope, UserService) {
+            EmployeeService.get({
+                'id': $stateParams.employeeId
+            }, function (employeeObject) {
+                console.log("WHat is Employee Object :%O", employeeObject);
+                employeeObject.empDoj = new Date(employeeObject.empDoj);
+                employeeObject.empDob = new Date(employeeObject.empDob);
+                employeeObject.totalExp = parseInt(employeeObject.totalExp);
+                $scope.reportingEmployeeObject = EmployeeService.get({
+                    'id': employeeObject.reportingTo
+                });
+                $scope.headEmployeeObject = EmployeeService.get({
+                    'id': employeeObject.departmentHead
+                });
+                $scope.editableEmployee = employeeObject;
+            });
+            $scope.user = $rootScope.currentUser;
+            $scope.userObject = UserService.findByUsername({
+                'username': $scope.user.username
+            });
+
+            $scope.$watch('editableEmployee.permanentSimilar', function (similar) {
+                console.log("Similar :" + similar);
+                if(similar === true){
+                    $scope.editableEmployee.permanentAddress1 = $scope.editableEmployee.temporaryAddress1;
+                    $scope.editableEmployee.permanentAddress2 = $scope.editableEmployee.temporaryAddress2;
+                    $scope.editableEmployee.permanentAddress3 = $scope.editableEmployee.temporaryAddress3;
+                    $scope.editableEmployee.permanentAddress4 = $scope.editableEmployee.temporaryAddress4;
+                }else if(similar === false){
+                    $scope.editableEmployee.temporaryAddress1 = "";
+                    $scope.editableEmployee.temporaryAddress2 = "";
+                    $scope.editableEmployee.temporaryAddress3 = "";
+                    $scope.editableEmployee.temporaryAddress4 = "";
+                }
+            });
+
+            $scope.updateEmployee = function (employeeObject) {
+                employeeObject.$save(function () {
+                    $state.go('admin.masters_employee', null, {'reload': true});
+                });
+            };
+
         });
 
 

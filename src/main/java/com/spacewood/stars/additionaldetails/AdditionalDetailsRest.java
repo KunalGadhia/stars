@@ -63,4 +63,44 @@ public class AdditionalDetailsRest {
     public List<AdditionalDetails> findAllList() {
         return additionalDetailsDAL.findAllList();
     }
+    
+    @RequestMapping(value = "/find_comm_skill", method = RequestMethod.GET)
+    public List<AdditionalDetails> findByCommSkill() {
+        return additionalDetailsDAL.findByCommSkill();
+    }
+    
+    @RequestMapping(value = "/find_supervisory_dev", method = RequestMethod.GET)
+    public List<AdditionalDetails> findBySupervisoryDevelopment() {
+        return additionalDetailsDAL.findBySupervisoryDevelopment();
+    }
+    
+    @RequestMapping(value = "/find_team_building", method = RequestMethod.GET)
+    public List<AdditionalDetails> findByTeamBuilding() {
+        return additionalDetailsDAL.findByTeamBuilding();
+    }
+    
+    @RequestMapping(value = "/find_negotiation_skill", method = RequestMethod.GET)
+    public List<AdditionalDetails> findByNegotiationSkill() {
+        return additionalDetailsDAL.findByNegotiationSkill();
+    }
+    
+    @RequestMapping(value = "/find_crm", method = RequestMethod.GET)
+    public List<AdditionalDetails> findByCrm() {
+        return additionalDetailsDAL.findByCrm();
+    }
+    
+    @RequestMapping(value = "/find_presentation_skill", method = RequestMethod.GET)
+    public List<AdditionalDetails> findByPresentationSkill() {
+        return additionalDetailsDAL.findByPresentationSkill();
+    }
+    
+    @RequestMapping(value = "/find_time_management", method = RequestMethod.GET)
+    public List<AdditionalDetails> findByTimeManagement() {
+        return additionalDetailsDAL.findByTimeManagement();
+    }
+    
+    @RequestMapping(value = "/find_functional", method = RequestMethod.GET)
+    public List<AdditionalDetails> findByFunctional() {
+        return additionalDetailsDAL.findByFunctional();
+    }
 }
