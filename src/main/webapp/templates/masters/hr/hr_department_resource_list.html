@@ -41,14 +41,19 @@
                 <td ng-if="employee.inProgress === true"><label class="label label-warning">Partial Complete ({{employee.totalWeightage}} %)</label></td>
                 <td ng-if="employee.notStarted === true"><label class="label label-danger">Not Started</label></td>                
                 <td class="text-right">
-<!--                    <a data-ui-sref="admin.department_resource_list.update_additional_details({ employeeId: employee.id })"
-                       class="btn btn-primary" ng-show="employee.showUpdateButton">
-                        Update Additional Details &nbsp;
-                        <i class="fa fa-pencil"></i>
-                    </a>-->
+                    <!--                    <a data-ui-sref="admin.department_resource_list.update_additional_details({ employeeId: employee.id })"
+                                           class="btn btn-primary" ng-show="employee.showUpdateButton">
+                                            Update Additional Details &nbsp;
+                                            <i class="fa fa-pencil"></i>
+                                        </a>-->
                     <a data-ui-sref="admin.form2({ employeeId: employee.id })"
                        class="btn btn-primary">
                         Form 2 &nbsp;
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <a data-ui-sref="admin.form3({ employeeId: employee.id })"
+                       class="btn btn-primary">
+                        Form C &nbsp;
                         <i class="fa fa-pencil"></i>
                     </a>
                 </td>                 
